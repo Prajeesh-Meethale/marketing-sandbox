@@ -34,7 +34,7 @@ export function ExportButton({ data }: { data: InvestigationData }) {
       const engine = ev?.targetEngine || ev?.engine || "Target Engine";
       md += `### ${engine}\n`;
       md += `- **Status:** ${f.targetBrandMentioned ? "Mentioned" : "Omitted"}\n`;
-      md += `- **Rank Position:** ${f.targetRank ? \`#\${f.targetRank}\` : "Omitted / Unranked"}\n`;
+      md += `- **Rank Position:** ${f.targetRank ? "#" + f.targetRank : "Omitted / Unranked"}\n`;
       md += `- **Competitors Listed:** ${f.competitorsMentioned.join(", ") || "None"}\n\n`;
     });
 
