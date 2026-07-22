@@ -1,6 +1,8 @@
 import { getInvestigationData } from "@/lib/db";
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic';
+
 export default async function EvidenceExplorer() {
   const data = await getInvestigationData();
 

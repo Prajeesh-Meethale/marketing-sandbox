@@ -2,6 +2,8 @@ import { getInvestigationData } from "@/lib/db";
 import Link from "next/link";
 import { DeveloperToolsNav } from "@/components/DeveloperToolsNav";
 
+export const dynamic = 'force-dynamic';
+
 export default async function FinalReportView() {
   const data = await getInvestigationData();
   const { website, findings, evidence, citations, insights, recommendations } = data;
