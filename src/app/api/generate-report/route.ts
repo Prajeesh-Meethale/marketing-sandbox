@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { savePromptAndEvidence, clearInvestigationData, saveForensicsData, saveSynthesisData, getInvestigationData } from "@/lib/db";
-import { OpenRouterProvider } from "@/lib/providers/OpenRouterProvider";
+import { getExecutionProvider } from "@/lib/providers";
 import { performTechnicalAeoAudit, generateFindingsAndCitations } from "@/lib/forensic";
 import { performSinglePassSynthesis } from "@/lib/synthesis";
 import { Prompt, Evidence } from "@/domain/models";
@@ -23,8 +23,8 @@ export async function POST(req: Request) {
     // Clear previous investigation data
     await clearInvestigationData();
 
-    // 🚀 PHASE 1: Gather Evidence via OpenRouterProvider Batch Execution
-    const provider = new OpenRouterProvider();
+    // 🚀 PHASE 1: Gather Evidence via Smart Fallback Provider (Gemini Key Pool -> OpenRouter)
+    const provider = getExecutionProvider() as any;
     const batchItems = promptPack.map(p => ({ engine: p.engine, payload: p.payload }));
 
     let batchResponses;

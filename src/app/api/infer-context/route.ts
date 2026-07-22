@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { OpenRouterProvider } from "@/lib/providers/OpenRouterProvider";
+import { getExecutionProvider } from "@/lib/providers";
 
 export const maxDuration = 60; // Extend Vercel serverless function execution limit to 60 seconds
 
@@ -58,7 +58,7 @@ Return ONLY a valid JSON object matching this schema:
   ]
 }`;
 
-        const provider = new OpenRouterProvider();
+        const provider = getExecutionProvider();
         const response = await provider.execute(prompt, "Gemini");
 
         const cleanedJson = response.rawTranscript.replace(/```json\n?|\n?```/g, "").trim();

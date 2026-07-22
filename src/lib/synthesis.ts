@@ -1,6 +1,6 @@
 import { InvestigationData } from "./db";
 import { Insight, Recommendation } from "@/domain/models";
-import { OpenRouterProvider } from "./providers/OpenRouterProvider";
+import { getExecutionProvider } from "./providers";
 
 export interface SynthesisResult {
   insights: Insight[];
@@ -10,10 +10,10 @@ export interface SynthesisResult {
 /**
  * Single-Pass Synthesis Pipeline:
  * Bundles evidence transcripts, AEO technical audits, and SRO findings, then
- * passes them to OpenRouterProvider to generate structured Insights & Recommendations.
+ * passes them to SmartFallbackProvider (Gemini Key Pool -> OpenRouter) to generate structured Insights & Recommendations.
  */
 export async function performSinglePassSynthesis(data: InvestigationData): Promise<SynthesisResult> {
-  const provider = new OpenRouterProvider();
+  const provider = getExecutionProvider();
 
   const brandId = data.website?.brandId || crypto.randomUUID();
   const websiteUrl = data.website?.url || "Not provided";

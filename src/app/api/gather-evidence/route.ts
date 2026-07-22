@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { savePromptAndEvidence, clearInvestigationData } from "@/lib/db";
-import { OpenRouterProvider } from "@/lib/providers/OpenRouterProvider";
+import { getExecutionProvider } from "@/lib/providers";
 import { Prompt, Evidence } from "@/domain/models";
 
 export async function POST(req: Request) {
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     // Clear previous investigation data since we are in a sandbox testing mode
     await clearInvestigationData();
 
-    const provider = new OpenRouterProvider();
+    const provider = getExecutionProvider() as any;
 
     // 🚀 BATCH EXECUTION: Batch all prompts into 1 single OpenRouter request to save API credits & time
     const batchItems = promptPack.map(p => ({ engine: p.engine, payload: p.payload }));
