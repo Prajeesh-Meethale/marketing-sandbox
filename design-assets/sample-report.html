@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Visibility Investigation — Beeingsocial</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f4ff',
+              100: '#e0e9fe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              900: '#0f172a',
+              950: '#090d16',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0b0f19;
+      color: #e2e8f0;
+    }
+    .glass-card {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card-hover {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card-hover:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px rgba(79, 70, 229, 0.15);
+    }
+    mark.competitor {
+      background: rgba(244, 63, 94, 0.15);
+      color: #fda4af;
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    mark.target {
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="min-h-screen antialiased selection:bg-indigo-500 selection:text-white pb-24">
+
+  <!-- Floating Sticky Action Bar (Top Mobile/Desktop) -->
+  <div class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80 px-4 py-3">
+    <div class="max-w-4xl mx-auto flex justify-between items-center text-xs">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold uppercase tracking-wider text-[10px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+          Outbound Intelligence Briefing
+        </span>
+        <span class="text-slate-400 hidden sm:inline">Target: <strong class="text-slate-200">beeingsocial.com</strong></span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-slate-400 text-[11px] font-mono">CONFIDENTIAL</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-10 space-y-14">
+
+    <!-- Report Header / Metadata -->
+    <header class="space-y-4">
+      <div class="text-slate-400 text-xs font-mono tracking-widest uppercase">
+        Prepared for Executive Leadership · July 2026
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+        AI Visibility Investigation Report
+      </h1>
+      <p class="text-slate-400 text-sm sm:text-base font-medium">
+        Target Domain: <a href="https://beeingsocial.com" target="_blank" class="text-indigo-400 underline underline-offset-4 decoration-indigo-500/40 hover:text-indigo-300">beeingsocial.com</a>
+      </p>
+    </header>
+
+    <!-- SECTION 3: OPENING NARRATIVE (Mandatory Plain Narrative - No Dashboard First!) -->
+    <section class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-800/80 space-y-8 relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- What We Investigated -->
+      <div class="space-y-3">
+        <h3 class="text-xs font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2">
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          What We Investigated
+        </h3>
+        <p class="text-slate-200 text-base sm:text-lg leading-relaxed font-light">
+          We investigated how AI recommendation systems evaluate and recommend companies in your category, what information sources they rely on, and whether <strong class="text-white font-semibold">Beeingsocial</strong> appears during active commercial buyer conversations.
+        </p>
+      </div>
+
+      <div class="h-px bg-slate-800/80"></div>
+
+      <!-- What We Found -->
+      <div class="space-y-3">
+        <h3 class="text-xs font-bold uppercase tracking-widest text-rose-400 flex items-center gap-2">
+          <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          What We Found
+        </h3>
+        <p class="text-slate-200 text-base sm:text-lg leading-relaxed font-light">
+          Across <strong class="text-white font-bold underline decoration-rose-500/50">12 high-intent commercial buyer queries</strong> and <strong class="text-white font-bold">4 major AI engines</strong> (ChatGPT, Perplexity, Gemini, Claude), <strong class="text-rose-300 font-semibold">Beeingsocial appeared 0 times</strong>. Competitors were consistently recommended instead. The primary reason isn't product quality — it's limited machine-readable authority and missing entity citations.
+        </p>
+      </div>
+    </section>
+
+    <!-- MODULE 1: THE REALITY CHECK -->
+    <section class="space-y-6">
+      <div class="space-y-1">
+        <div class="text-xs font-bold uppercase tracking-widest text-indigo-400">Module 1</div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">The Reality Check</h2>
+        <p class="text-slate-400 text-sm">Are AI recommendation systems presenting your brand to buyers when asked?</p>
+      </div>
+
+      <!-- Hero Metrics (Fraction Order Locked) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Hero Metric 1: Recommendation Fraction -->
+        <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">AI Recommendation Rate</div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-4xl sm:text-5xl font-black text-rose-400 tracking-tight">0 / 12</span>
+            <span class="text-xs text-slate-400 font-medium">buying questions</span>
+          </div>
+          <p class="text-xs text-slate-400 pt-2 border-t border-slate-800/60">
+            Zero inclusion in buyer shortlist queries.
+          </p>
+        </div>
+
+        <!-- Hero Metric 2: Technical Readiness -->
+        <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Technical AEO Readiness</div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-4xl sm:text-5xl font-black text-indigo-400 tracking-tight">80 / 100</span>
+            <span class="text-xs text-slate-400 font-medium">technical score</span>
+          </div>
+          <p class="text-xs text-slate-400 pt-2 border-t border-slate-800/60">
+            Base web crawlers can access site, but context files are missing.
+          </p>
+        </div>
+      </div>
+
+      <!-- Primary Finding Banner -->
+      <div class="p-5 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 text-indigo-200 text-sm sm:text-base leading-relaxed flex items-start gap-3">
+        <span class="text-indigo-400 text-xl">💡</span>
+        <div>
+          <strong class="text-white block font-semibold mb-0.5">Primary Finding</strong>
+          AI systems understand your website reasonably well, but rarely recommend your business to commercial buyers.
+        </div>
+      </div>
+
+      <!-- Query Matrix Grid -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Buyer Query Recommendation Matrix</h4>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-sans">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400 uppercase tracking-wider font-semibold">
+                <th class="pb-3 pr-4 font-semibold">Evaluated Buyer Query</th>
+                <th class="pb-3 px-3 text-center">ChatGPT</th>
+                <th class="pb-3 px-3 text-center">Perplexity</th>
+                <th class="pb-3 px-3 text-center">Gemini</th>
+                <th class="pb-3 px-3 text-center">Claude</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 font-medium">
+              <tr>
+                <td class="py-3.5 pr-4 text-slate-200">"Top performance marketing agencies for D2C brands in India"</td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+              </tr>
+              <tr>
+                <td class="py-3.5 pr-4 text-slate-200">"Best social media management agencies for growth-stage startups"</td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+              </tr>
+              <tr>
+                <td class="py-3.5 pr-4 text-slate-200">"Recommended digital marketing vendors for ecommerce ROI"</td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+                <td class="py-3.5 px-3 text-center"><span class="px-2 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold">ABSENT</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 2: THE EVIDENCE (CRIME SCENE) -->
+    <section class="space-y-6">
+      <div class="space-y-1">
+        <div class="text-xs font-bold uppercase tracking-widest text-purple-400">Module 2</div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">The Evidence</h2>
+        <p class="text-slate-400 text-sm">What buyers are actually seeing when evaluating your market segment.</p>
+      </div>
+
+      <!-- Single Introductory Sentence (Rule 108) -->
+      <p class="text-base text-slate-300 font-medium">
+        The models consistently named <strong class="text-white underline decoration-rose-400">Hootsuite</strong> and <strong class="text-white underline decoration-rose-400">Sprout Social</strong> instead of Beeingsocial.
+      </p>
+
+      <!-- Interactive Transcript Viewer -->
+      <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden">
+        <!-- Engine Tabs -->
+        <div class="flex border-b border-slate-800 bg-slate-950/60 overflow-x-auto">
+          <button onclick="switchTab('chatgpt')" id="tab-chatgpt" class="px-5 py-3 text-xs font-bold border-b-2 border-indigo-500 text-white bg-slate-900/80 transition">
+            ChatGPT (OpenAI)
+          </button>
+          <button onclick="switchTab('perplexity')" id="tab-perplexity" class="px-5 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition">
+            Perplexity AI
+          </button>
+          <button onclick="switchTab('claude')" id="tab-claude" class="px-5 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition">
+            Claude 3.5
+          </button>
+        </div>
+
+        <!-- Transcript Content Panels -->
+        <div class="p-6 font-mono text-xs sm:text-sm text-slate-300 leading-relaxed space-y-4">
+          <div id="content-chatgpt" class="space-y-3">
+            <div class="text-xs font-sans text-slate-400 mb-2">
+              Query: <em>"What are the top recommended social media management agencies for scaling brands?"</em>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 leading-relaxed font-sans text-slate-300">
+              "When evaluating top-tier social media management platforms and agencies for scaling brands, key market leaders include <mark class="competitor">Hootsuite</mark>, <mark class="competitor">Sprout Social</mark>, and <mark class="competitor">Buffer</mark>. These providers offer enterprise scheduling, multi-channel analytics, and team workflows."
+            </div>
+            <div class="flex items-center gap-2 text-xs font-sans text-rose-400 font-semibold pt-1">
+              <span>✕ Target Brand (Beeingsocial) omitted from transcript recommendations.</span>
+            </div>
+          </div>
+
+          <div id="content-perplexity" class="hidden space-y-3">
+            <div class="text-xs font-sans text-slate-400 mb-2">
+              Query: <em>"Which agencies dominate social media marketing in 2026?"</em>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 leading-relaxed font-sans text-slate-300">
+              "Top providers based on citation frequency [1][2]: <mark class="competitor">Sprout Social</mark> for enterprise customer care, <mark class="competitor">Hootsuite</mark> for campaign analytics, and <mark class="competitor">Agorapulse</mark> for agency reporting workflows."
+            </div>
+            <div class="flex items-center gap-2 text-xs font-sans text-rose-400 font-semibold pt-1">
+              <span>✕ Target Brand (Beeingsocial) omitted from transcript recommendations.</span>
+            </div>
+          </div>
+
+          <div id="content-claude" class="hidden space-y-3">
+            <div class="text-xs font-sans text-slate-400 mb-2">
+              Query: <em>"Best digital marketing partners for D2C brands"</em>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 leading-relaxed font-sans text-slate-300">
+              "Recommended vendors include <mark class="competitor">Sendible</mark> and <mark class="competitor">Hootsuite</mark>. They excel at structured multi-account management and centralized reporting."
+            </div>
+            <div class="flex items-center gap-2 text-xs font-sans text-rose-400 font-semibold pt-1">
+              <span>✕ Target Brand (Beeingsocial) omitted from transcript recommendations.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 3: THE FORENSICS -->
+    <section class="space-y-6">
+      <div class="space-y-1">
+        <div class="text-xs font-bold uppercase tracking-widest text-emerald-400">Module 3</div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">The Forensics</h2>
+        <p class="text-slate-400 text-sm">Why AI trusts your competitors more than you.</p>
+      </div>
+
+      <p class="text-base text-slate-300 leading-relaxed font-light">
+        ChatGPT looked for "social media management agencies" across 3 cited web directories. You are missing from 2 of them — so the model defaulted to the brands it could independently confirm.
+      </p>
+
+      <!-- Dependency Flowchart Visualization -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-6">
+        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Citation Dependency Chain</div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center text-xs">
+          <!-- Step 1 -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+            <div class="text-indigo-400 font-bold uppercase text-[10px]">1. Buyer Prompt</div>
+            <div class="text-slate-200 font-semibold">"Top social media agencies"</div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2 relative">
+            <div class="text-amber-400 font-bold uppercase text-[10px]">2. AI Citation Source</div>
+            <div class="text-slate-200 font-semibold">g2.com / softwareadvice.com</div>
+            <span class="text-[10px] text-amber-400 block font-mono">High Citation Weight</span>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 space-y-2">
+            <div class="text-rose-400 font-bold uppercase text-[10px]">3. Entity Result</div>
+            <div class="text-rose-300 font-bold">Beeingsocial ABSENT</div>
+            <div class="text-[10px] text-slate-400">Competitors Verified & Quoted</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 4: THE MACHINE LAYER -->
+    <section class="space-y-6">
+      <div class="space-y-1">
+        <div class="text-xs font-bold uppercase tracking-widest text-amber-400">Module 4</div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">The Machine Layer</h2>
+        <p class="text-slate-400 text-sm">What AI actually sees when it looks at your website.</p>
+      </div>
+
+      <!-- Business Consequence Groupings (Rule 7.1) -->
+      <div class="space-y-4">
+
+        <!-- Group 1: Front Door -->
+        <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden">
+          <div class="p-5 bg-slate-900/50 border-b border-slate-800 flex justify-between items-center">
+            <h3 class="font-bold text-slate-200 text-base flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+              1. Machines can't find the front door
+            </h3>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-rose-500/20 text-rose-300 border border-rose-500/30">CONFIDENCE: HIGH</span>
+          </div>
+          
+          <div class="p-6 space-y-4 text-xs sm:text-sm">
+            <div>
+              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Symptom</strong>
+              <p class="text-slate-200 font-medium">No llms.txt context file, no bot blocking in robots.txt.</p>
+            </div>
+            <div>
+              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Mechanism</strong>
+              <p class="text-slate-300 font-light leading-relaxed">
+                AI crawlers can technically access your pages, but you provide zero structured guidance telling them what your core business actually does. It is like a building with no directory sign — crawlers enter but leave without confidence.
+              </p>
+            </div>
+            <div>
+              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Business Cost</strong>
+              <p class="text-rose-300 font-semibold">
+                AI models fall back on unverified third-party directory listings instead of authoritative information from your site.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-slate-800/60 flex flex-wrap justify-between items-center gap-2">
+              <span class="text-slate-300"><strong>Fix:</strong> Publish standardized <code class="bg-slate-800 px-1.5 py-0.5 rounded text-indigo-300 font-mono">llms.txt</code> at root</span>
+              <span class="px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 font-bold text-xs border border-emerald-500/20">Effort: Low · ★ Quick Win</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group 2: Repeat what you do -->
+        <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden">
+          <div class="p-5 bg-slate-900/50 border-b border-slate-800 flex justify-between items-center">
+            <h3 class="font-bold text-slate-200 text-base flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+              2. Machines find you, but can't confidently repeat what you do
+            </h3>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-amber-500/20 text-amber-300 border border-amber-500/30">CONFIDENCE: HIGH</span>
+          </div>
+
+          <div class="p-6 space-y-4 text-xs sm:text-sm">
+            <div>
+              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Symptom</strong>
+              <p class="text-slate-200 font-medium">Missing Organization JSON-LD and FAQ Schema markup.</p>
+            </div>
+            <div>
+              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Mechanism</strong>
+              <p class="text-slate-300 font-light leading-relaxed">
+                Your web pages read like promotional brochures rather than structured data answers that LLMs can extract and quote.
+              </p>
+            </div>
+            <div>
+              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Business Cost</strong>
+              <p class="text-amber-300 font-semibold">
+                Competitors get quoted directly in AI responses while Beeingsocial gets summarized vaguely or omitted entirely.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-slate-800/60 flex flex-wrap justify-between items-center gap-2">
+              <span class="text-slate-300"><strong>Fix:</strong> Add JSON-LD schema & BLUF-style content structure</span>
+              <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 font-bold text-xs border border-amber-500/20">Effort: Medium</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Confirming Line (Rule 7.1.4 - Passed Checks Collapsed!) -->
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+          <span>✔ <strong>Nothing else is holding you back.</strong> HTTPS security, page rendering speed, and language declarations all pass cleanly.</span>
+          <span class="text-[10px] font-mono text-slate-500 uppercase">5 Checks Passed</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MODULE 5: THE ROADMAP -->
+    <section class="space-y-6">
+      <div class="space-y-1">
+        <div class="text-xs font-bold uppercase tracking-widest text-emerald-400">Module 5</div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">The Strategic Roadmap</h2>
+        <p class="text-slate-400 text-sm">Prioritized action plan to establish AI search dominance.</p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Phase 1: Quick Wins -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+            <span class="text-xs font-extrabold uppercase text-emerald-400 tracking-wider">Phase 1 · Immediate Wins</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">1 - 2 WEEKS</span>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm">
+            <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 flex justify-between items-start gap-4">
+              <div>
+                <strong class="text-white block font-semibold">Publish llms.txt Specification</strong>
+                <p class="text-slate-400 text-xs mt-0.5">Deploy standardized entity file at beeingsocial.com/llms.txt.</p>
+              </div>
+              <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 text-[10px] font-bold rounded uppercase shrink-0">★ Quick Win</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 2: Structural Authority -->
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+            <span class="text-xs font-extrabold uppercase text-indigo-400 tracking-wider">Phase 2 · Structural Authority</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">MONTH 1</span>
+          </div>
+
+          <div class="space-y-3 text-xs sm:text-sm">
+            <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 flex justify-between items-start gap-4">
+              <div>
+                <strong class="text-white block font-semibold">Implement Schema & Directory Citation Ingestion</strong>
+                <p class="text-slate-400 text-xs mt-0.5">Add Organization schema and claim high-weight directory nodes cited by ChatGPT.</p>
+              </div>
+              <span class="px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-[10px] font-bold rounded uppercase shrink-0">High Impact</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: FINAL ASSESSMENT (Loop Closed) -->
+    <section class="p-8 rounded-3xl bg-gradient-to-br from-indigo-950/60 via-slate-900 to-slate-950 border border-indigo-500/30 space-y-4">
+      <h3 class="text-xs font-bold uppercase tracking-widest text-indigo-400">Final Assessment</h3>
+      <p class="text-slate-200 text-base sm:text-lg leading-relaxed font-light">
+        The opportunity isn't to become more visible. It's to become more understandable. Beeingsocial has the expertise and the credibility — it is just disconnected from AI knowledge graphs in a way models can't parse. That gap is highly fixable, and most of the fix doesn't require new content, just better packaging of what already exists.
+      </p>
+    </section>
+
+  </div>
+
+  <script>
+    function switchTab(engine) {
+      const tabs = ['chatgpt', 'perplexity', 'claude'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        const content = document.getElementById(`content-${t}`);
+        if (t === engine) {
+          btn.className = "px-5 py-3 text-xs font-bold border-b-2 border-indigo-500 text-white bg-slate-900/80 transition";
+          content.classList.remove('hidden');
+        } else {
+          btn.className = "px-5 py-3 text-xs font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition";
+          content.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
