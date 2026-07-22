@@ -1,6 +1,7 @@
 import { getInvestigationData } from "@/lib/db";
 import Link from "next/link";
 import { DeveloperToolsNav } from "@/components/DeveloperToolsNav";
+import { ExportButton } from "@/components/ExportButton";
 
 export const dynamic = 'force-dynamic';
 
@@ -50,6 +51,7 @@ export default async function FinalReportView() {
           </div>
 
           <div className="flex items-center gap-3">
+            <ExportButton data={data} />
             <DeveloperToolsNav />
           </div>
         </div>
