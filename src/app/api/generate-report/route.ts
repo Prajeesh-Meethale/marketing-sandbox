@@ -5,6 +5,8 @@ import { performTechnicalAeoAudit, generateFindingsAndCitations } from "@/lib/fo
 import { performSinglePassSynthesis } from "@/lib/synthesis";
 import { Prompt, Evidence } from "@/domain/models";
 
+export const maxDuration = 60; // Extend Vercel serverless function execution limit to 60 seconds
+
 export async function POST(req: Request) {
   try {
     const { companyName, websiteUrl, promptPack, buyerQueries, competitors } = await req.json();

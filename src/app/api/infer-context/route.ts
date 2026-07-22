@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { OpenRouterProvider } from "@/lib/providers/OpenRouterProvider";
 
+export const maxDuration = 60; // Extend Vercel serverless function execution limit to 60 seconds
+
 export async function POST(req: Request) {
     try {
         const { companyName, websiteUrl } = await req.json();
