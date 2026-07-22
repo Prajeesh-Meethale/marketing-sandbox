@@ -1,0 +1,261 @@
+{
+  "prompts": [
+    {
+      "id": "3901915b-8fdb-41f2-a3fa-8826d6b90aa4",
+      "queryId": "query-mock-id",
+      "engine": "ChatGPT",
+      "payload": "I'm evaluating top options for social media management. Can you give me a ranked list of the best 5 brands/companies to consider? Please start directly with the recommended brand names."
+    },
+    {
+      "id": "a8ebb40e-c159-4dab-a98c-1c740cbd0d74",
+      "queryId": "query-mock-id",
+      "engine": "Perplexity",
+      "payload": "What are the top-rated social media management providers in the market? Provide a direct bulleted list of top company names with key highlights for each."
+    },
+    {
+      "id": "ea28bb85-a016-4961-a2ac-02d73715a343",
+      "queryId": "query-mock-id",
+      "engine": "Gemini",
+      "payload": "Which 4-5 companies dominate social media management? Give a ranked breakdown starting immediately with the top company names and their main value props."
+    },
+    {
+      "id": "e8d08d19-e642-4ba9-ae3d-fea820f76f26",
+      "queryId": "query-mock-id",
+      "engine": "Claude",
+      "payload": "I need a direct recommendation of the best social media management vendors. List the top 4 options by company name first, then briefly compare their core capabilities."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "d7d611da-436e-4ea1-a4e5-734e812ef11a",
+      "promptId": "3901915b-8fdb-41f2-a3fa-8826d6b90aa4",
+      "executionProvider": "openrouter",
+      "targetEngine": "ChatGPT",
+      "engine": "ChatGPT",
+      "rawTranscript": "Hootsuite, Sprout Social, Buffer, Sendible, and Agorapulse are the top 5 social media management brands to consider, offering a range of features from scheduling and analytics to content creation and team collaboration.",
+      "timestamp": "2026-07-21T19:06:07.106Z",
+      "scrapedAt": "2026-07-21T19:06:07.107Z",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "12dd3c86-daa0-4efa-9319-ee29fe76cb7d",
+      "promptId": "a8ebb40e-c159-4dab-a98c-1c740cbd0d74",
+      "executionProvider": "openrouter",
+      "targetEngine": "Perplexity",
+      "engine": "Perplexity",
+      "rawTranscript": "Top-rated social media management providers include: \n* Hootsuite - comprehensive platform with scheduling and analytics \n* Sprout Social - focuses on social media management and customer service \n* Buffer - known for its user-friendly interface and scheduling capabilities \n* Sendible - offers a wide range of features including automation and reporting \n* Agorapulse - provides in-depth analytics and social media management tools",
+      "timestamp": "2026-07-21T19:06:07.130Z",
+      "scrapedAt": "2026-07-21T19:06:07.130Z",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "214872f7-fe48-49fb-ab25-a066aab04d68",
+      "promptId": "ea28bb85-a016-4961-a2ac-02d73715a343",
+      "executionProvider": "openrouter",
+      "targetEngine": "Gemini",
+      "engine": "Gemini",
+      "rawTranscript": "The top companies dominating social media management are: 1. Hootsuite - with its all-in-one platform for scheduling, analytics, and team collaboration, 2. Sprout Social - focusing on social media management and customer service, 3. Buffer - known for its ease of use and scheduling features, 4. Sendible - offering a broad set of features including automation and detailed reporting, and 5. Agorapulse - providing advanced analytics and social media management tools.",
+      "timestamp": "2026-07-21T19:06:07.145Z",
+      "scrapedAt": "2026-07-21T19:06:07.145Z",
+      "status": "SUCCESS"
+    },
+    {
+      "id": "9aaae1c7-80ff-4869-9da2-228e809184c6",
+      "promptId": "e8d08d19-e642-4ba9-ae3d-fea820f76f26",
+      "executionProvider": "openrouter",
+      "targetEngine": "Claude",
+      "engine": "Claude",
+      "rawTranscript": "The top 4 social media management vendors are: Hootsuite, Sprout Social, Buffer, and Sendible. Comparing their core capabilities: Hootsuite and Sprout Social offer robust analytics and team collaboration tools, while Buffer excels in user-friendly scheduling. Sendible stands out with its automation features and comprehensive reporting, making each a strong choice depending on specific business needs.",
+      "timestamp": "2026-07-21T19:06:07.156Z",
+      "scrapedAt": "2026-07-21T19:06:07.156Z",
+      "status": "SUCCESS"
+    }
+  ],
+  "findings": [
+    {
+      "id": "6c70cb0a-228c-4bf0-83c0-558ade8c4543",
+      "evidenceId": "d7d611da-436e-4ea1-a4e5-734e812ef11a",
+      "findingType": "BRAND_OMITTED",
+      "targetBrandMentioned": false,
+      "competitorsMentioned": [
+        "Hootsuite",
+        "Buffer",
+        "Sprout Social"
+      ],
+      "targetRank": null
+    },
+    {
+      "id": "001d8fa5-76d9-46b4-964b-ec5753b92e43",
+      "evidenceId": "12dd3c86-daa0-4efa-9319-ee29fe76cb7d",
+      "findingType": "BRAND_OMITTED",
+      "targetBrandMentioned": false,
+      "competitorsMentioned": [
+        "Hootsuite",
+        "Buffer",
+        "Sprout Social"
+      ],
+      "targetRank": null
+    },
+    {
+      "id": "aa3fbc6d-1a6c-43ef-bbdb-0edec0f12f40",
+      "evidenceId": "214872f7-fe48-49fb-ab25-a066aab04d68",
+      "findingType": "BRAND_OMITTED",
+      "targetBrandMentioned": false,
+      "competitorsMentioned": [
+        "Hootsuite",
+        "Buffer",
+        "Sprout Social"
+      ],
+      "targetRank": null
+    },
+    {
+      "id": "16918ff1-f177-49c3-b0ff-a217cb05c01f",
+      "evidenceId": "9aaae1c7-80ff-4869-9da2-228e809184c6",
+      "findingType": "BRAND_OMITTED",
+      "targetBrandMentioned": false,
+      "competitorsMentioned": [
+        "Hootsuite",
+        "Buffer",
+        "Sprout Social"
+      ],
+      "targetRank": null
+    }
+  ],
+  "citations": [],
+  "website": {
+    "id": "addd169e-af37-432e-99af-a276d643026c",
+    "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
+    "url": "https://beeingsocial.com",
+    "lastAuditedAt": "2026-07-21T19:06:07.199Z",
+    "aeoScore": 80,
+    "technicalChecks": [
+      {
+        "type": "Robots.txt AI Crawlers",
+        "status": "PASS",
+        "details": "Allows GPTBot, ClaudeBot, PerplexityBot, and Google-Extended access to beeingsocial.com."
+      },
+      {
+        "type": "JSON-LD Schema Markup",
+        "status": "PASS",
+        "details": "Detected Organization & Product schema markup for direct entity knowledge graph ingestion."
+      },
+      {
+        "type": "llms.txt Specification",
+        "status": "WARNING",
+        "details": "llms.txt file missing at beeingsocial.com/llms.txt. Adding llms.txt improves LLM context accuracy."
+      },
+      {
+        "type": "Semantic HTML Structure",
+        "status": "PASS",
+        "details": "Proper H1-H3 hierarchy and main section landmarks detected for scraper parsing."
+      },
+      {
+        "type": "SSR & Crawler Accessibility",
+        "status": "PASS",
+        "details": "Server-side HTML rendering verified without client-side JS rendering blocks."
+      }
+    ]
+  },
+  "insights": [
+    {
+      "id": "6c24381c-495b-4a71-9dbe-3602e39807a4",
+      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
+      "topic": "Visibility and Ranking",
+      "findingIds": [
+        "6c70cb0a-228c-4bf0-83c0-558ade8c4543",
+        "001d8fa5-76d9-46b4-964b-ec5753b92e43",
+        "aa3fbc6d-1a6c-43ef-bbdb-0edec0f12f40",
+        "16918ff1-f177-49c3-b0ff-a217cb05c01f"
+      ],
+      "narrative": "Beeingsocial.com is not mentioned in any of the transcript snippets from the analyzed engines, indicating a lack of visibility and ranking for the brand in the social media management domain.",
+      "whyThisMatters": "This matters because without visibility and ranking, the brand is unlikely to be considered by potential customers, resulting in lost business opportunities.",
+      "businessImpact": "Reduced brand awareness, decreased website traffic, and lower sales conversions."
+    },
+    {
+      "id": "61d35784-bbdf-41bd-ac22-3c4829ebc7aa",
+      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
+      "topic": "Technical AEO Gaps",
+      "findingIds": [
+        "6c70cb0a-228c-4bf0-83c0-558ade8c4543",
+        "001d8fa5-76d9-46b4-964b-ec5753b92e43",
+        "aa3fbc6d-1a6c-43ef-bbdb-0edec0f12f40",
+        "16918ff1-f177-49c3-b0ff-a217cb05c01f"
+      ],
+      "narrative": "The missing llms.txt file at beeingsocial.com/llms.txt is a technical gap that may be impacting the brand's context accuracy and overall AEO performance.",
+      "whyThisMatters": "This matters because the llms.txt file is a crucial component for LLM context accuracy, and its absence may be hindering the brand's ability to provide relevant and accurate information to users.",
+      "businessImpact": "Inaccurate or incomplete information may lead to a negative user experience, decreased trust, and ultimately, lost business."
+    },
+    {
+      "id": "6d2735e0-4427-4d6b-a876-45b7d5324ddf",
+      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
+      "topic": "Competitor Landscape",
+      "findingIds": [
+        "6c70cb0a-228c-4bf0-83c0-558ade8c4543",
+        "001d8fa5-76d9-46b4-964b-ec5753b92e43",
+        "aa3fbc6d-1a6c-43ef-bbdb-0edec0f12f40",
+        "16918ff1-f177-49c3-b0ff-a217cb05c01f"
+      ],
+      "narrative": "The transcript snippets consistently mention competitors such as Hootsuite, Buffer, and Sprout Social, indicating a strong presence and reputation in the social media management domain.",
+      "whyThisMatters": "This matters because the competitor landscape is highly competitive, and beeingsocial.com needs to differentiate itself and establish a strong presence to attract and retain customers.",
+      "businessImpact": "Failure to establish a strong presence may result in market share loss and decreased revenue."
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "6307614d-a007-49c4-a2d3-6664842d126a",
+      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
+      "actionType": "Technical Optimization",
+      "title": "Create and Implement llms.txt File",
+      "description": "Create an llms.txt file and upload it to beeingsocial.com/llms.txt to improve LLM context accuracy and overall AEO performance.",
+      "effort": "LOW",
+      "impact": "MEDIUM",
+      "basedOnInsightIds": [
+        "6c24381c-495b-4a71-9dbe-3602e39807a4",
+        "61d35784-bbdf-41bd-ac22-3c4829ebc7aa",
+        "6d2735e0-4427-4d6b-a876-45b7d5324ddf"
+      ]
+    },
+    {
+      "id": "a5ae45c9-7f66-4d93-915b-7b1c832cdf99",
+      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
+      "actionType": "Content Creation",
+      "title": "Develop High-Quality, Relevant Content",
+      "description": "Develop high-quality, relevant, and informative content that showcases beeingsocial.com's expertise and unique value proposition in the social media management domain.",
+      "effort": "MEDIUM",
+      "impact": "HIGH",
+      "basedOnInsightIds": [
+        "6c24381c-495b-4a71-9dbe-3602e39807a4",
+        "61d35784-bbdf-41bd-ac22-3c4829ebc7aa",
+        "6d2735e0-4427-4d6b-a876-45b7d5324ddf"
+      ]
+    },
+    {
+      "id": "e4165a70-5060-4867-87a9-c0839bd7b5bf",
+      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
+      "actionType": "Digital Marketing",
+      "title": "Implement a Comprehensive Digital Marketing Strategy",
+      "description": "Implement a comprehensive digital marketing strategy that includes SEO, social media marketing, and content marketing to increase brand visibility, drive website traffic, and generate leads.",
+      "effort": "HIGH",
+      "impact": "HIGH",
+      "basedOnInsightIds": [
+        "6c24381c-495b-4a71-9dbe-3602e39807a4",
+        "61d35784-bbdf-41bd-ac22-3c4829ebc7aa",
+        "6d2735e0-4427-4d6b-a876-45b7d5324ddf"
+      ]
+    },
+    {
+      "id": "52544e9a-427b-4693-a4a3-175bbc93528a",
+      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
+      "actionType": "Competitor Analysis",
+      "title": "Conduct a Competitor Analysis and Differentiation Strategy",
+      "description": "Conduct a thorough competitor analysis to identify gaps and opportunities, and develop a differentiation strategy that showcases beeingsocial.com's unique value proposition and competitive advantages.",
+      "effort": "MEDIUM",
+      "impact": "MEDIUM",
+      "basedOnInsightIds": [
+        "6c24381c-495b-4a71-9dbe-3602e39807a4",
+        "61d35784-bbdf-41bd-ac22-3c4829ebc7aa",
+        "6d2735e0-4427-4d6b-a876-45b7d5324ddf"
+      ]
+    }
+  ]
+}

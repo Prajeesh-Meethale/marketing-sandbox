@@ -1,0 +1,150 @@
+{
+  "runType": "SAMPLE",
+  "runAt": "2026-07-19T15:57:30.781Z",
+  "elapsedSeconds": 4,
+  "totalApiCalls": 10,
+  "completedCalls": 0,
+  "errors": [
+    {
+      "promptId": "P01",
+      "engine": "chatgpt",
+      "error": "Scrape request failed (401): Auth method is not supported"
+    },
+    {
+      "promptId": "P01",
+      "engine": "perplexity",
+      "error": "Scrape request failed (401): Auth method is not supported"
+    },
+    {
+      "promptId": "P03",
+      "engine": "chatgpt",
+      "error": "Scrape request failed (401): Auth method is not supported"
+    },
+    {
+      "promptId": "P03",
+      "engine": "perplexity",
+      "error": "Scrape request failed (401): Auth method is not supported"
+    },
+    {
+      "promptId": "P07",
+      "engine": "chatgpt",
+      "error": "Scrape request failed (401): Auth method is not supported"
+    },
+    {
+      "promptId": "P07",
+      "engine": "perplexity",
+      "error": "Scrape request failed (401): Auth method is not supported"
+    },
+    {
+      "promptId": "P14",
+      "engine": "chatgpt",
+      "error": "Scrape request failed (401): Auth method is not supported"
+    },
+    {
+      "promptId": "P14",
+      "engine": "perplexity",
+      "error": "Scrape request failed (401): Auth method is not supported"
+    },
+    {
+      "promptId": "P22",
+      "engine": "chatgpt",
+      "error": "Scrape request failed (401): Auth method is not supported"
+    },
+    {
+      "promptId": "P22",
+      "engine": "perplexity",
+      "error": "Scrape request failed (401): Auth method is not supported"
+    }
+  ],
+  "prompts": [
+    {
+      "id": "P01",
+      "angle": "Retail investing – first-timer on-ramp",
+      "text": "I'm 23, just started my first job in India, and want to invest ₹500 a month. Which app should I start with so I don't get overwhelmed?"
+    },
+    {
+      "id": "P03",
+      "angle": "Head-to-head – investing brand dominance",
+      "text": "Between Groww and Zerodha, which is better in 2026 for long-term index fund investing for a typical Indian salaried professional?"
+    },
+    {
+      "id": "P07",
+      "angle": "Consumer payments – UPI super-app battle",
+      "text": "For everyday UPI payments and bill payments in India in 2026, is Paytm still a good choice or have PhonePe and others become better?"
+    },
+    {
+      "id": "P14",
+      "angle": "B2B payments – developer/founder mindshare",
+      "text": "Best payment gateway stack for an early-stage Indian SaaS startup in 2025-26 that needs subscriptions, one-time payments, refunds, and good developer docs?"
+    },
+    {
+      "id": "P22",
+      "angle": "Strategic – moat & durability map",
+      "text": "Among Groww, Zerodha, Razorpay, PhonePe, Paytm, CRED, and Slice, which brands have the strongest long-term moat in Indian fintech as of 2026, and why?"
+    }
+  ],
+  "engines": [
+    {
+      "id": "chatgpt",
+      "label": "ChatGPT"
+    },
+    {
+      "id": "perplexity",
+      "label": "Perplexity"
+    }
+  ],
+  "brands": [
+    {
+      "name": "Groww",
+      "aliases": [
+        "groww"
+      ]
+    },
+    {
+      "name": "Zerodha",
+      "aliases": [
+        "zerodha",
+        "zerodha kite",
+        "kite by zerodha"
+      ]
+    },
+    {
+      "name": "Razorpay",
+      "aliases": [
+        "razorpay"
+      ]
+    },
+    {
+      "name": "PhonePe",
+      "aliases": [
+        "phonepe",
+        "phone pe",
+        "phone-pe"
+      ]
+    },
+    {
+      "name": "Paytm",
+      "aliases": [
+        "paytm"
+      ]
+    },
+    {
+      "name": "CRED",
+      "aliases": [
+        "cred"
+      ]
+    },
+    {
+      "name": "Slice",
+      "aliases": [
+        "slice"
+      ]
+    },
+    {
+      "name": "Upstox",
+      "aliases": [
+        "upstox"
+      ]
+    }
+  ]
+}

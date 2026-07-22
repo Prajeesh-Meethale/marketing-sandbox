@@ -1,0 +1,33 @@
+[
+  {
+    "promptId": "P01",
+    "engine": "ChatGPT (API)",
+    "mentionedBrands": [
+      "Groww",
+      "Zerodha",
+      "Paytm"
+    ],
+    "answerPreview": "Starting your investment journey is a great decision, and doing so with a modest amount allows you to learn and grow gradually. In India, there are se...",
+    "sourcesFound": 0
+  },
+  {
+    "promptId": "P03",
+    "engine": "ChatGPT (API)",
+    "mentionedBrands": [
+      "Groww",
+      "Zerodha"
+    ],
+    "answerPreview": "To determine which platform might be better for long-term index fund investing for a typical Indian salaried professional in 2026, we need to take a f...",
+    "sourcesFound": 0
+  },
+  {
+    "promptId": "P14",
+    "engine": "ChatGPT (API)",
+    "mentionedBrands": [
+      "Razorpay",
+      "CRED"
+    ],
+    "answerPreview": "For an early-stage Indian SaaS startup in 2025-26, it's important to choose a payment gateway stack that supports subscriptions, one-time payments, re...",
+    "sourcesFound": 0
+  }
+]

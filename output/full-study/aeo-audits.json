@@ -1,0 +1,118 @@
+[
+  {
+    "brand": "Groww",
+    "url": "https://groww.in",
+    "wordCount": 3436,
+    "h1Count": 1,
+    "isHttps": true,
+    "hasSchema": true,
+    "hasRobots": true,
+    "score": 100
+  },
+  {
+    "brand": "Zerodha",
+    "url": "https://zerodha.com",
+    "wordCount": 1016,
+    "h1Count": 1,
+    "isHttps": true,
+    "hasSchema": true,
+    "hasRobots": true,
+    "score": 100
+  },
+  {
+    "brand": "Zerodha",
+    "url": "https://zerodha.tech",
+    "wordCount": 487,
+    "h1Count": 1,
+    "isHttps": true,
+    "hasSchema": true,
+    "hasRobots": false,
+    "score": 80
+  },
+  {
+    "brand": "Razorpay",
+    "url": "https://razorpay.com",
+    "wordCount": 24441,
+    "h1Count": 32,
+    "isHttps": true,
+    "hasSchema": true,
+    "hasRobots": true,
+    "score": 80
+  },
+  {
+    "brand": "PhonePe",
+    "url": "https://phonepe.com",
+    "wordCount": 1787,
+    "h1Count": 0,
+    "isHttps": true,
+    "hasSchema": true,
+    "hasRobots": true,
+    "score": 80
+  },
+  {
+    "brand": "Paytm",
+    "url": "https://paytm.com",
+    "wordCount": 9129,
+    "h1Count": 1,
+    "isHttps": true,
+    "hasSchema": true,
+    "hasRobots": true,
+    "score": 100
+  },
+  {
+    "brand": "Paytm",
+    "url": "https://ir.paytm.com",
+    "wordCount": 1650,
+    "h1Count": 2,
+    "isHttps": true,
+    "hasSchema": true,
+    "hasRobots": true,
+    "score": 80
+  },
+  {
+    "brand": "Paytm",
+    "url": "https://paytmbank.com",
+    "status": "error",
+    "error": "fetch failed"
+  },
+  {
+    "brand": "CRED",
+    "url": "https://cred.club",
+    "wordCount": 2437,
+    "h1Count": 0,
+    "isHttps": true,
+    "hasSchema": false,
+    "hasRobots": true,
+    "score": 60
+  },
+  {
+    "brand": "Slice",
+    "url": "https://slice.com",
+    "wordCount": 6697,
+    "h1Count": 1,
+    "isHttps": true,
+    "hasSchema": true,
+    "hasRobots": true,
+    "score": 100
+  },
+  {
+    "brand": "Slice",
+    "url": "https://slice.so",
+    "wordCount": 411,
+    "h1Count": 1,
+    "isHttps": true,
+    "hasSchema": false,
+    "hasRobots": true,
+    "score": 80
+  },
+  {
+    "brand": "Upstox",
+    "url": "https://upstox.com",
+    "wordCount": 3183,
+    "h1Count": 1,
+    "isHttps": true,
+    "hasSchema": true,
+    "hasRobots": true,
+    "score": 100
+  }
+]
