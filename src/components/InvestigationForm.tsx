@@ -37,7 +37,7 @@ export function InvestigationForm({ onSubmit, isLoading }: { onSubmit: (data: { 
         <button 
           type="submit" 
           disabled={isLoading}
-          className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+          className="w-full bg-green-700 text-white font-semibold py-3 rounded-lg hover:bg-green-800 transition disabled:opacity-50"
         >
           {isLoading ? "Inferring Context..." : "Initialize Investigation"}
         </button>
