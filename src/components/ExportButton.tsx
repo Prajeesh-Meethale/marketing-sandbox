@@ -10,7 +10,7 @@ export function ExportButton({ data }: { data: InvestigationData }) {
     let md = `# AI Visibility Report\n\n`;
     if (data.website) {
       md += `**Audited URL:** ${data.website.url}\n`;
-      md += `**Date:** ${new Date(data.website.lastAuditedAt).toLocaleDateString()}\n\n`;
+      md += `**Date:** ${new Date(data.website.lastAuditedAt || Date.now()).toLocaleDateString()}\n\n`;
       md += `## Technical AEO Score: ${data.website.aeoScore}/100\n\n`;
     }
 
