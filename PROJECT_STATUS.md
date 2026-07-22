@@ -14,41 +14,26 @@ This document tracks the complete architecture, features built, and verification
 
 ---
 
-## 🟢 Current Overall Status: Repository Pattern Complete & Vercel/Supabase Ready
+## 🟢 Current Overall Status: Multi-Key Free Pool + Supabase + Vercel 60s Timeout Active
 
-> **Status Note**: The application is fully refactored into a clean Repository Abstraction (`src/lib/repositories/`). Storage logic is 100% decoupled from business logic. Ready for Vercel deployment with Supabase production database support.
-
----
-
-## 🎯 Current Milestone Completed: Persistence Decoupling & Supabase Repository
-
-- **Repository Abstraction (`IInvestigationRepository`)**: Storage interface defined in `src/lib/repositories/IInvestigationRepository.ts`.
-- **Supabase Repository (`SupabaseInvestigationRepository.ts`)**: Production repository utilizing `@supabase/supabase-js` to read/write JSONB investigation data.
-- **Local File Repository (`FileInvestigationRepository.ts`)**: Preserved for local offline dev (`data/investigation.json`).
-- **In-Memory Fallback (`InMemoryInvestigationRepository.ts`)**: Safe fallback for Vercel preview environments when Supabase keys are omitted (prevents serverless read-only filesystem crash).
-- **Auto Repository Factory (`getInvestigationRepository()`)**: Dynamically resolves the active repository based on environment configuration.
+> **Status Note**: The application is fully equipped with `SmartFallbackProvider` (Gemini Free Key Rotation Pool -> OpenRouter failover), Supabase JSONB repository persistence, and extended 60-second Vercel serverless execution limits.
 
 ---
 
-## 🏗️ Core Architecture & Design Decisions
+## 🎯 Key Capabilities & Execution Layer
 
-1. **Self-Contained Standalone Architecture**:
-   - Independent Next.js 16 (App Router) project with zero parent repository dependencies.
-   - Pushes cleanly to standalone GitHub repository and deploys directly to Vercel.
+1. **`SmartFallbackProvider` ($0 Cost Gemini Key Rotation Pool)**:
+   - Accepts multiple free Gemini API keys via `GEMINI_API_KEYS=key1,key2,key3`.
+   - Rotates automatically to Key #2 / Key #3 if Key #1 encounters `429 Quota Exceeded` or rate limit errors.
+   - Automatically fails over to `OpenRouterProvider` (dynamic price-sorted model chain) if all free keys are exhausted.
 
-2. **Streamlined Operator UX (Single Checkpoint Flow)**:
-   - **Step 1: New Investigation** (Company Name + Website).
-   - **Step 2: Review Understanding** (The ONLY manual checkpoint: Business Profile, Competitor List Add/Edit/Delete, Buyer Questions Add/Edit/Delete, Prompt Pack inline editing).
-   - **Step 3: Generate Report** (1-Click Action triggering background execution with animated progress indicator).
-   - **Step 4: Final 5-Module Report (`/report`)** (Executive-ready consulting investigation).
+2. **Serverless Execution Limits Extended**:
+   - `export const maxDuration = 60;` added to long-running API routes (`/api/generate-report`, `/api/infer-context`), preventing 15-second Vercel serverless timeouts.
 
-3. **Dynamic Price-Sorted OpenRouter Execution Layer**:
-   - Live model pricing fetch (`GET https://openrouter.ai/api/v1/models`) sorted ascending by cost.
-   - Batch request execution (`executeBatch`) reducing cost to **~$0.0014 per brand run**.
-
-4. **Decoupled 5-Module Domain Architecture**:
-   - 11 strict Zod schemas (`Brand`, `Website`, `Competitor`, `Evidence`, `Finding`, `Citation`, `Insight`, `Recommendation`, `Section`, `Investigation`).
-   - Technical-to-Consulting Translation Layer.
+3. **Repository Abstraction (`IInvestigationRepository`)**:
+   - `SupabaseInvestigationRepository.ts`: Production database storing investigation JSONB in Supabase.
+   - `FileInvestigationRepository.ts`: Local JSON storage (`data/investigation.json`).
+   - `InMemoryInvestigationRepository.ts`: Vercel preview build fallback.
 
 ---
 
@@ -57,13 +42,5 @@ This document tracks the complete architecture, features built, and verification
 | File Path | Purpose / Description |
 |---|---|
 | [SUPABASE_SETUP.md](file:///c:/Users/Prajeesh/Downloads/marketing-sandbox/SUPABASE_SETUP.md) | Supabase SQL schema, table setup, and Vercel environment variables. |
-| [CHAT_HISTORY_AND_CONTEXT.md](file:///c:/Users/Prajeesh/Downloads/marketing-sandbox/CHAT_HISTORY_AND_CONTEXT.md) | Chronological development log, pivot decisions, and handover guide. |
+| [src/lib/providers/SmartFallbackProvider.ts](file:///c:/Users/Prajeesh/Downloads/marketing-sandbox/src/lib/providers/SmartFallbackProvider.ts) | Multi-Key Gemini Rotation Pool + OpenRouter Failover execution engine. |
 | [PROJECT_STATUS.md](file:///c:/Users/Prajeesh/Downloads/marketing-sandbox/PROJECT_STATUS.md) | Active milestone status, architecture rules, and current state. |
-| [src/lib/repositories/](file:///c:/Users/Prajeesh/Downloads/marketing-sandbox/src/lib/repositories/) | Repository interface, factory, and implementations (Supabase, File, InMemory). |
-
----
-
-## 🚀 Next Objective & Milestone
-
-- **Deploy to Vercel**: Connect repository to Vercel, populate environment variables (`OPENROUTER_KEY`, `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`), and verify live report generation end-to-end.
-- **Design & UI Enhancements**: Iterate on design aesthetics and report visual presentation.
