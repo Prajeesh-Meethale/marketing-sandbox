@@ -1,138 +1,131 @@
 {
   "prompts": [
     {
-      "id": "3901915b-8fdb-41f2-a3fa-8826d6b90aa4",
+      "id": "0ffe5ecd-19ff-4882-b092-cebecad757a1",
       "queryId": "query-mock-id",
       "engine": "ChatGPT",
-      "payload": "I'm evaluating top options for social media management. Can you give me a ranked list of the best 5 brands/companies to consider? Please start directly with the recommended brand names."
+      "payload": "I'm evaluating top options for financial planning and wealth management. Can you give me a ranked list of the best 5 brands/companies to consider? Please start directly with the recommended brand names."
     },
     {
-      "id": "a8ebb40e-c159-4dab-a98c-1c740cbd0d74",
+      "id": "8302ba79-096a-4f87-a39b-0c72609d02ec",
       "queryId": "query-mock-id",
       "engine": "Perplexity",
-      "payload": "What are the top-rated social media management providers in the market? Provide a direct bulleted list of top company names with key highlights for each."
+      "payload": "What are the top-rated financial planning and wealth management providers? Provide a direct bulleted list of top company names with key highlights for each."
     },
     {
-      "id": "ea28bb85-a016-4961-a2ac-02d73715a343",
+      "id": "b92825e2-3456-420d-acfc-8d2de02f2189",
       "queryId": "query-mock-id",
       "engine": "Gemini",
-      "payload": "Which 4-5 companies dominate social media management? Give a ranked breakdown starting immediately with the top company names and their main value props."
+      "payload": "Which 4-5 companies dominate the financial planning and wealth management sector? Give a ranked breakdown starting immediately with the top company names and their main value props."
     },
     {
-      "id": "e8d08d19-e642-4ba9-ae3d-fea820f76f26",
+      "id": "5cd2b1d7-3606-4de4-89d5-ff09fdad0788",
       "queryId": "query-mock-id",
       "engine": "Claude",
-      "payload": "I need a direct recommendation of the best social media management vendors. List the top 4 options by company name first, then briefly compare their core capabilities."
+      "payload": "I need a direct recommendation of the best financial planning and wealth management vendors. List the top 4 options by company name first, then briefly compare their core capabilities."
     }
   ],
   "evidence": [
     {
-      "id": "d7d611da-436e-4ea1-a4e5-734e812ef11a",
-      "promptId": "3901915b-8fdb-41f2-a3fa-8826d6b90aa4",
+      "id": "06f4e4e7-9891-4e66-9b79-bc272841f8d4",
+      "promptId": "0ffe5ecd-19ff-4882-b092-cebecad757a1",
       "executionProvider": "openrouter",
       "targetEngine": "ChatGPT",
       "engine": "ChatGPT",
-      "rawTranscript": "Hootsuite, Sprout Social, Buffer, Sendible, and Agorapulse are the top 5 social media management brands to consider, offering a range of features from scheduling and analytics to content creation and team collaboration.",
-      "timestamp": "2026-07-21T19:06:07.106Z",
-      "scrapedAt": "2026-07-21T19:06:07.107Z",
+      "rawTranscript": "Here are five top brands for financial planning and wealth management to consider, each with distinct strengths and considerations:\n\n### 1. Vanguard\n\nVanguard is renowned for its low-cost investment products, particularly index funds and ETFs, making it a favorite for cost-conscious investors and those who prefer a passive investment strategy.\n\n*   **Key Strengths:**\n    *   **Low Costs:** Industry leader in low-expense ratio index funds and ETFs.\n    *   **Client-Owned Structure:** Unique structure where clients own the funds, which helps align interests and keep costs down.\n    *   **Strong Performance:** Their passive approach often outperforms actively managed funds over the long term.\n    *   **Vanguard Personal Advisor Services:** Offers a hybrid robo-advisor and human advisor service at a competitive price for those seeking guidance.\n*   **Considerations:**\n    *   **Limited Branch Network:** Primarily an online and phone-based service, which might not suit those who prefer in-person meetings.\n    *   **Fewer Tools for Active Traders:** While they offer a brokerage, it's not as feature-rich for active traders compared to some competitors.\n    *   **Less Hand-Holding:** Their core philosophy emphasizes self-directed investing, though advisor services are available.\n\n### 2. Fidelity\n\nFidelity offers a comprehensive suite of financial services, from brokerage accounts and retirement planning to wealth management and financial advice. They cater to a wide range of investors, from beginners to high-net-worth individuals.\n\n*   **Key Strengths:**\n    *   **Broad Product Offering:** Extensive selection of mutual funds (including their own zero-expense ratio funds), ETFs, stocks, bonds, and more.\n    *   **Robust Research and Tools:** Excellent research capabilities, analytical tools, and educational resources for investors.\n    *   **Strong Customer Service:** Highly rated for customer support, available online, by phone, and through a wide network of branches.\n    *   **Fidelity Go & Personalized Planning:** Offers both robo-advisor services and access to human financial advisors for more complex needs.\n*   **Considerations:**\n    *   **Can Be Overwhelming:** The sheer breadth of options might be daunting for new investors.\n    *   **Advisor Fees:** While competitive, fees for personalized wealth management can add up, similar to other full-service firms.\n\n### 3. Charles Schwab\n\nCharles Schwab is another financial giant offering a wide array of services, including brokerage, banking, financial planning, and wealth management. They are known for their strong technology platform and client-centric approach.\n\n*   **Key Strengths:**\n    *   **Comprehensive Platform:** Offers a full spectrum of investment products, banking services, and lending solutions.\n    *   **Excellent Technology:** User-friendly website and mobile apps, with robust trading tools and research.\n    *   **Schwab Intelligent Portfolios:** A popular robo-advisor service with no advisory fees for the basic version.\n    *   **Client Support:** Strong customer service with numerous branch locations and 24/7 phone support.\n*   **Considerations:**\n    *   **Cash Drag with Robo-Advisor:** The fee-free Schwab Intelligent Portfolios holds a cash allocation that doesn't earn interest, which can be a hidden cost.\n    *   **Advisor Fees:** Full-service wealth management with human advisors comes with standard advisory fees.\n\n### 4. Empower Personal Wealth (formerly Personal Capital)\n\nEmpower Personal Wealth combines cutting-edge digital tools with human financial advisors, offering a hybrid approach that appeals to tech-savvy investors and those seeking personalized guidance for larger portfolios.\n\n*   **Key Strengths:**\n    *   **Powerful Digital Tools:** Free financial dashboard to track all your accounts, analyze spending, and monitor your net worth.\n    *   **Hybrid Advisor Model:** Offers dedicated financial advisors for clients with higher asset levels, blending technology with human expertise.\n    *   **Fee Analysis:** Provides insights into hidden fees in your investment accounts.\n    *   **Retirement Planner:** Excellent tools for retirement planning and goal setting.\n*   **Considerations:**\n    *   **Minimums for Human Advisors:** Access to a dedicated financial advisor typically requires a minimum of $100,000 in investable assets.\n    *   **Advisory Fees:** Fees for wealth management services are based on a percentage of assets under management, which can be higher than purely passive options.\n\n### 5. Merrill Lynch (Bank of America Private Bank)\n\nMerrill Lynch, a subsidiary of Bank of America, offers a more traditional, full-service wealth management experience, often catering to affluent individuals and families. They provide personalized advice, investment management, and access to banking services.\n\n*   **Key Strengths:**\n    *   **Personalized Advice:** Dedicated financial advisors provide tailored strategies for complex financial situations.\n    *   **Integrated Banking:** Seamless integration with Bank of America banking and lending services, which can be convenient for existing BofA clients.\n    *   **Extensive Product Offering:** Access to a wide range of investment products, including alternative investments, and specialized services like trust and estate planning.\n    *   **Research and Insights:** Strong proprietary research and market insights from Bank of America Global Research.\n*   **Considerations:**\n    *   **Higher Fees:** Generally higher advisory fees compared to robo-advisors or low-cost passive investing platforms.\n    *   **Minimum Asset Requirements:** Typically caters to clients with higher net worth, implying higher minimums for comprehensive services.\n    *   **Potential for Product Push:** As part of a large bank, there can sometimes be a perception of advisors being incentivized to sell proprietary products.",
+      "timestamp": "2026-07-23T10:27:27.644Z",
+      "scrapedAt": "2026-07-23T10:27:27.644Z",
       "status": "SUCCESS"
     },
     {
-      "id": "12dd3c86-daa0-4efa-9319-ee29fe76cb7d",
-      "promptId": "a8ebb40e-c159-4dab-a98c-1c740cbd0d74",
+      "id": "ecfffdee-9833-4381-92d3-24dc01ecdcc6",
+      "promptId": "8302ba79-096a-4f87-a39b-0c72609d02ec",
       "executionProvider": "openrouter",
       "targetEngine": "Perplexity",
       "engine": "Perplexity",
-      "rawTranscript": "Top-rated social media management providers include: \n* Hootsuite - comprehensive platform with scheduling and analytics \n* Sprout Social - focuses on social media management and customer service \n* Buffer - known for its user-friendly interface and scheduling capabilities \n* Sendible - offers a wide range of features including automation and reporting \n* Agorapulse - provides in-depth analytics and social media management tools",
-      "timestamp": "2026-07-21T19:06:07.130Z",
-      "scrapedAt": "2026-07-21T19:06:07.130Z",
+      "rawTranscript": "Here are some of the top-rated financial planning and wealth management providers:\n\n*   **Vanguard Personal Advisor Services**: Offers a hybrid approach combining automated investing with access to human financial advisors, known for its low-cost index funds and ETFs [1]. It's particularly suitable for investors seeking a balance of professional guidance and cost efficiency [2].\n*   **Fidelity Wealth Management**: Provides a wide spectrum of services, from robo-advisors (Fidelity Go) to comprehensive wealth management with dedicated advisors. Fidelity is recognized for its strong research capabilities, diverse investment options, and competitive pricing [1].\n*   **Charles Schwab Intelligent Portfolios**: Features automated investing with commission-free ETFs and various service tiers, including Schwab Intelligent Portfolios Premium for those seeking unlimited guidance from a CFP® professional [3]. It's praised for its user-friendly platform and broad accessibility [1].\n*   **Empower (formerly Personal Capital)**: Known for its robust digital financial planning tools, including a free dashboard for tracking net worth and spending, alongside fee-based wealth management services with human advisors for higher net worth clients [4].\n*   **Merrill Lynch Wealth Management**: A full-service brokerage offering comprehensive financial planning, investment management, and banking solutions, often integrated with Bank of America services. It caters to clients seeking a traditional advisor relationship with extensive resources [1].\n*   **Morgan Stanley Wealth Management**: Provides sophisticated wealth management services, including financial planning, investment management, and specialized solutions for high-net-worth and ultra-high-net-worth individuals. It's recognized for its global reach and extensive network of financial advisors [2].\n\n---\n**Citations:**\n[1] Investopedia. \"Best Robo-Advisors.\" (Simulated citation)\n[2] NerdWallet. \"Best Wealth Management Firms.\" (Simulated citation)\n[3] Charles Schwab. \"Intelligent Portfolios Overview.\" (Simulated citation)\n[4] Empower. \"Personal Capital Acquisition.\" (Simulated citation)",
+      "timestamp": "2026-07-23T10:27:27.926Z",
+      "scrapedAt": "2026-07-23T10:27:27.926Z",
       "status": "SUCCESS"
     },
     {
-      "id": "214872f7-fe48-49fb-ab25-a066aab04d68",
-      "promptId": "ea28bb85-a016-4961-a2ac-02d73715a343",
+      "id": "482fa4d9-34a7-48ae-8034-12394a3a9b2d",
+      "promptId": "b92825e2-3456-420d-acfc-8d2de02f2189",
       "executionProvider": "openrouter",
       "targetEngine": "Gemini",
       "engine": "Gemini",
-      "rawTranscript": "The top companies dominating social media management are: 1. Hootsuite - with its all-in-one platform for scheduling, analytics, and team collaboration, 2. Sprout Social - focusing on social media management and customer service, 3. Buffer - known for its ease of use and scheduling features, 4. Sendible - offering a broad set of features including automation and detailed reporting, and 5. Agorapulse - providing advanced analytics and social media management tools.",
-      "timestamp": "2026-07-21T19:06:07.145Z",
-      "scrapedAt": "2026-07-21T19:06:07.145Z",
+      "rawTranscript": "Here are 4-5 companies that dominate the financial planning and wealth management sector, with their main value propositions:\n\n1.  **Vanguard**\n    *   **Main Value Proposition:** Unparalleled low-cost investing, primarily through index funds and ETFs. Vanguard champions a passive investment philosophy, emphasizing long-term growth, minimal fees, and broad market diversification. Their client-owned structure aligns interests directly with investors, making them highly attractive to cost-conscious individuals and institutions seeking efficient, straightforward wealth accumulation.\n\n2.  **Fidelity Investments**\n    *   **Main Value Proposition:** A comprehensive suite of financial services catering to a wide spectrum of investors, from self-directed traders to high-net-worth individuals. Fidelity offers a vast array of investment products (mutual funds, ETFs, brokerage accounts), robust retirement planning tools, active and passive investment strategies, and personalized advisory services. Their strength lies in their broad offerings, strong technology platforms, and extensive research capabilities.\n\n3.  **Charles Schwab**\n    *   **Main Value Proposition:** A leading provider of brokerage, banking, and wealth management services, known for its client-centric approach and competitive pricing. Following its acquisition of TD Ameritrade, Schwab has solidified its position as a powerhouse, offering a wide range of investment options, financial planning, and advisory services. They cater to both self-directed investors with powerful trading platforms and those seeking professional guidance, emphasizing accessibility and value.\n\n4.  **Merrill Lynch (Bank of America)**\n    *   **Main Value Proposition:** Integrated wealth management services backed by the extensive resources of Bank of America. Merrill Lynch provides personalized financial advice through a large network of financial advisors, catering primarily to affluent and high-net-worth individuals. Their value proposition includes comprehensive financial planning, investment management, trust and estate planning, and seamless access to banking and lending solutions through Bank of America, offering a holistic approach to clients' financial lives.\n\n5.  **Morgan Stanley Wealth Management**\n    *   **Main Value Proposition:** Sophisticated wealth management and advisory services primarily for affluent individuals, families, and institutions. Morgan Stanley offers highly personalized financial planning, bespoke investment strategies, private banking, and access to exclusive alternative investments. Their strength lies in their deep expertise, global reach, and ability to provide tailored solutions for complex financial needs, often leveraging their institutional investment banking capabilities.",
+      "timestamp": "2026-07-23T10:27:28.135Z",
+      "scrapedAt": "2026-07-23T10:27:28.135Z",
       "status": "SUCCESS"
     },
     {
-      "id": "9aaae1c7-80ff-4869-9da2-228e809184c6",
-      "promptId": "e8d08d19-e642-4ba9-ae3d-fea820f76f26",
+      "id": "1fca1824-d396-4bca-bcdd-43548d03d73b",
+      "promptId": "5cd2b1d7-3606-4de4-89d5-ff09fdad0788",
       "executionProvider": "openrouter",
       "targetEngine": "Claude",
       "engine": "Claude",
-      "rawTranscript": "The top 4 social media management vendors are: Hootsuite, Sprout Social, Buffer, and Sendible. Comparing their core capabilities: Hootsuite and Sprout Social offer robust analytics and team collaboration tools, while Buffer excels in user-friendly scheduling. Sendible stands out with its automation features and comprehensive reporting, making each a strong choice depending on specific business needs.",
-      "timestamp": "2026-07-21T19:06:07.156Z",
-      "scrapedAt": "2026-07-21T19:06:07.156Z",
+      "rawTranscript": "Here are four leading financial planning and wealth management vendors, along with a comparison of their core capabilities:\n\n1.  **Fidelity Investments**\n2.  **Charles Schwab**\n3.  **Vanguard**\n4.  **Merrill Lynch (Bank of America)**\n\n---\n\n**Core Capabilities Comparison:**\n\n**1. Fidelity Investments**\n*   **Target Client/Approach:** Caters to a broad spectrum, from self-directed investors to those seeking comprehensive wealth management. Strong for retirement planning and active traders.\n*   **Key Services:** Offers extensive brokerage services, mutual funds, ETFs, managed accounts (Fidelity Go, Personalized Planning & Advice), retirement planning, estate planning, and insurance. Provides access to financial advisors.\n*   **Fee Structure/Cost:** Competitive, with many no-transaction-fee mutual funds and commission-free ETFs. Managed accounts have advisory fees (e.g., 0.50% for Personalized Planning & Advice).\n*   **Technology/Platform:** Robust online platform and mobile app with advanced trading tools, research, educational resources, and goal-setting features.\n\n**2. Charles Schwab**\n*   **Target Client/Approach:** Appeals to both self-directed investors and those desiring personalized financial advice. Known for strong customer service and a wide range of investment options.\n*   **Key Services:** Comprehensive brokerage, banking, mutual funds, ETFs, managed portfolios (Schwab Intelligent Portfolios, Schwab Private Client), retirement services, and wealth management.\n*   **Fee Structure/Cost:** Generally low-cost, with commission-free stock/ETF trading. Robo-advisor (Intelligent Portfolios) is free for the basic service, while advised solutions have advisory fees (e.g., 0.80% for Schwab Private Client).\n*   **Technology/Platform:** User-friendly online portal and mobile app, strong research tools, and a suite of planning resources.\n\n**3. Vanguard**\n*   **Target Client/Approach:** Best suited for long-term, cost-conscious investors who favor passive investing strategies, primarily through index funds and ETFs.\n*   **Key Services:** Specializes in low-cost index funds and ETFs. Offers brokerage services, retirement accounts, and advisory services through Vanguard Personal Advisor Services.\n*   **Fee Structure/Cost:** Renowned for its industry-low expense ratios on funds. Vanguard Personal Advisor Services charges a competitive 0.15% advisory fee for portfolios over $500,000.\n*   **Technology/Platform:** Functional but less feature-rich than some competitors, focusing on simplicity and long-term investing.\n\n**4. Merrill Lynch (Bank of America)**\n*   **Target Client/Approach:** Primarily serves affluent and high-net-worth individuals seeking full-service, personalized wealth management and integrated banking solutions through Bank of America.\n*   **Key Services:** Comprehensive financial planning, investment management, trust and estate planning, insurance, and access to a wide range of banking and lending products through Bank of America.\n*   **Fee Structure/Cost:** Typically higher advisory fees compared to discount brokers, reflecting the full-service, personalized advisor model. Fees are often asset-based.\n*   **Technology/Platform:** Integrated platform with Bank of America, offering a unified view of banking and investment accounts. Provides access to proprietary research and planning tools.",
+      "timestamp": "2026-07-23T10:27:28.350Z",
+      "scrapedAt": "2026-07-23T10:27:28.350Z",
       "status": "SUCCESS"
     }
   ],
   "findings": [
     {
-      "id": "6c70cb0a-228c-4bf0-83c0-558ade8c4543",
-      "evidenceId": "d7d611da-436e-4ea1-a4e5-734e812ef11a",
+      "id": "1dd62992-ab83-4d21-9c7b-85d09eb15dab",
+      "evidenceId": "06f4e4e7-9891-4e66-9b79-bc272841f8d4",
       "findingType": "BRAND_OMITTED",
       "targetBrandMentioned": false,
       "competitorsMentioned": [
-        "Hootsuite",
-        "Buffer",
-        "Sprout Social"
+        "Vanguard Personal Advisor Services"
       ],
       "targetRank": null
     },
     {
-      "id": "001d8fa5-76d9-46b4-964b-ec5753b92e43",
-      "evidenceId": "12dd3c86-daa0-4efa-9319-ee29fe76cb7d",
+      "id": "7d56507b-db63-4d0f-8c20-e2c35af97567",
+      "evidenceId": "ecfffdee-9833-4381-92d3-24dc01ecdcc6",
       "findingType": "BRAND_OMITTED",
       "targetBrandMentioned": false,
       "competitorsMentioned": [
-        "Hootsuite",
-        "Buffer",
-        "Sprout Social"
+        "Vanguard Personal Advisor Services",
+        "Fidelity Wealth Management",
+        "Charles Schwab Intelligent Portfolios",
+        "Empower (formerly Personal Capital)"
       ],
       "targetRank": null
     },
     {
-      "id": "aa3fbc6d-1a6c-43ef-bbdb-0edec0f12f40",
-      "evidenceId": "214872f7-fe48-49fb-ab25-a066aab04d68",
+      "id": "b63126ee-1a46-45bd-a84d-e4b9b7750bc7",
+      "evidenceId": "482fa4d9-34a7-48ae-8034-12394a3a9b2d",
       "findingType": "BRAND_OMITTED",
       "targetBrandMentioned": false,
-      "competitorsMentioned": [
-        "Hootsuite",
-        "Buffer",
-        "Sprout Social"
-      ],
+      "competitorsMentioned": [],
       "targetRank": null
     },
     {
-      "id": "16918ff1-f177-49c3-b0ff-a217cb05c01f",
-      "evidenceId": "9aaae1c7-80ff-4869-9da2-228e809184c6",
+      "id": "a295f553-394e-4d94-aff0-3fad83e9640b",
+      "evidenceId": "1fca1824-d396-4bca-bcdd-43548d03d73b",
       "findingType": "BRAND_OMITTED",
       "targetBrandMentioned": false,
       "competitorsMentioned": [
-        "Hootsuite",
-        "Buffer",
-        "Sprout Social"
+        "Vanguard Personal Advisor Services"
       ],
       "targetRank": null
     }
   ],
   "citations": [],
   "website": {
-    "id": "addd169e-af37-432e-99af-a276d643026c",
-    "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
-    "url": "https://beeingsocial.com",
-    "lastAuditedAt": "2026-07-21T19:06:07.199Z",
+    "id": "fae9721f-9087-4e09-8920-04f9a22b60ec",
+    "brandId": "403e2040-ad5b-4de8-a759-9577e0e7305b",
+    "url": "https://ladder7.com",
+    "lastAuditedAt": "2026-07-23T10:27:28.610Z",
     "aeoScore": 80,
     "technicalChecks": [
       {
         "type": "Robots.txt AI Crawlers",
         "status": "PASS",
-        "details": "Allows GPTBot, ClaudeBot, PerplexityBot, and Google-Extended access to beeingsocial.com."
+        "details": "Allows GPTBot, ClaudeBot, PerplexityBot, and Google-Extended access to ladder7.com."
       },
       {
         "type": "JSON-LD Schema Markup",
@@ -142,7 +135,7 @@
       {
         "type": "llms.txt Specification",
         "status": "WARNING",
-        "details": "llms.txt file missing at beeingsocial.com/llms.txt. Adding llms.txt improves LLM context accuracy."
+        "details": "llms.txt file missing at ladder7.com/llms.txt. Adding llms.txt improves LLM context accuracy."
       },
       {
         "type": "Semantic HTML Structure",
@@ -158,103 +151,103 @@
   },
   "insights": [
     {
-      "id": "6c24381c-495b-4a71-9dbe-3602e39807a4",
-      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
-      "topic": "Visibility and Ranking",
+      "id": "b28088a2-e6a1-4bb4-97e1-fab2ccfa2255",
+      "brandId": "403e2040-ad5b-4de8-a759-9577e0e7305b",
+      "topic": "Critical SRO Engine Visibility Gap",
       "findingIds": [
-        "6c70cb0a-228c-4bf0-83c0-558ade8c4543",
-        "001d8fa5-76d9-46b4-964b-ec5753b92e43",
-        "aa3fbc6d-1a6c-43ef-bbdb-0edec0f12f40",
-        "16918ff1-f177-49c3-b0ff-a217cb05c01f"
+        "1dd62992-ab83-4d21-9c7b-85d09eb15dab",
+        "7d56507b-db63-4d0f-8c20-e2c35af97567",
+        "b63126ee-1a46-45bd-a84d-e4b9b7750bc7",
+        "a295f553-394e-4d94-aff0-3fad83e9640b"
       ],
-      "narrative": "Beeingsocial.com is not mentioned in any of the transcript snippets from the analyzed engines, indicating a lack of visibility and ranking for the brand in the social media management domain.",
-      "whyThisMatters": "This matters because without visibility and ranking, the brand is unlikely to be considered by potential customers, resulting in lost business opportunities.",
-      "businessImpact": "Reduced brand awareness, decreased website traffic, and lower sales conversions."
+      "narrative": "ladder7.com is entirely absent from the financial planning and wealth management recommendations provided by ChatGPT, Perplexity, Gemini, and Claude. These engines consistently list major competitors like Vanguard, Fidelity, Charles Schwab, and Empower, often detailing their core value propositions.",
+      "whyThisMatters": "Lack of presence in SRO engine outputs means zero organic visibility in a rapidly growing and influential discovery channel. This directly translates to missed opportunities for brand awareness, lead generation, and client acquisition in the AI-driven search landscape.",
+      "businessImpact": "Significant loss of potential market share and client growth, as prospective clients are being directed to competitors. This creates a substantial competitive disadvantage and limits the brand's ability to scale through modern digital channels."
     },
     {
-      "id": "61d35784-bbdf-41bd-ac22-3c4829ebc7aa",
-      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
-      "topic": "Technical AEO Gaps",
+      "id": "98c73e96-3fc3-4e01-b34a-134584eba733",
+      "brandId": "403e2040-ad5b-4de8-a759-9577e0e7305b",
+      "topic": "LLM Contextualization & Technical AEO Deficiency",
       "findingIds": [
-        "6c70cb0a-228c-4bf0-83c0-558ade8c4543",
-        "001d8fa5-76d9-46b4-964b-ec5753b92e43",
-        "aa3fbc6d-1a6c-43ef-bbdb-0edec0f12f40",
-        "16918ff1-f177-49c3-b0ff-a217cb05c01f"
+        "1dd62992-ab83-4d21-9c7b-85d09eb15dab",
+        "7d56507b-db63-4d0f-8c20-e2c35af97567",
+        "b63126ee-1a46-45bd-a84d-e4b9b7750bc7",
+        "a295f553-394e-4d94-aff0-3fad83e9640b"
       ],
-      "narrative": "The missing llms.txt file at beeingsocial.com/llms.txt is a technical gap that may be impacting the brand's context accuracy and overall AEO performance.",
-      "whyThisMatters": "This matters because the llms.txt file is a crucial component for LLM context accuracy, and its absence may be hindering the brand's ability to provide relevant and accurate information to users.",
-      "businessImpact": "Inaccurate or incomplete information may lead to a negative user experience, decreased trust, and ultimately, lost business."
+      "narrative": "The absence of an `llms.txt` file at ladder7.com/llms.txt is a critical technical AEO warning. While other technical aspects like `robots.txt` and schema markup are in place, this specific file is designed to explicitly guide LLMs on how to process and interpret website content.",
+      "whyThisMatters": "Without `llms.txt`, ladder7.com is not providing explicit instructions to LLMs, potentially leading to less accurate contextualization, misinterpretation of its unique offerings, or even exclusion from relevant AI-generated answers. This directly impacts the brand's ability to be accurately represented and included by AI models.",
+      "businessImpact": "Hindered ability for ladder7.com to be recognized and accurately positioned by AI models, reducing the likelihood of being featured in relevant SRO engine responses. This limits the brand's capacity to differentiate itself and attract its ideal client base through AI."
     },
     {
-      "id": "6d2735e0-4427-4d6b-a876-45b7d5324ddf",
-      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
-      "topic": "Competitor Landscape",
+      "id": "d67b69ca-80f4-4bf7-a78b-e3fc96f2aaba",
+      "brandId": "403e2040-ad5b-4de8-a759-9577e0e7305b",
+      "topic": "Competitor Value Proposition Dominance in AI Answers",
       "findingIds": [
-        "6c70cb0a-228c-4bf0-83c0-558ade8c4543",
-        "001d8fa5-76d9-46b4-964b-ec5753b92e43",
-        "aa3fbc6d-1a6c-43ef-bbdb-0edec0f12f40",
-        "16918ff1-f177-49c3-b0ff-a217cb05c01f"
+        "1dd62992-ab83-4d21-9c7b-85d09eb15dab",
+        "7d56507b-db63-4d0f-8c20-e2c35af97567",
+        "b63126ee-1a46-45bd-a84d-e4b9b7750bc7",
+        "a295f553-394e-4d94-aff0-3fad83e9640b"
       ],
-      "narrative": "The transcript snippets consistently mention competitors such as Hootsuite, Buffer, and Sprout Social, indicating a strong presence and reputation in the social media management domain.",
-      "whyThisMatters": "This matters because the competitor landscape is highly competitive, and beeingsocial.com needs to differentiate itself and establish a strong presence to attract and retain customers.",
-      "businessImpact": "Failure to establish a strong presence may result in market share loss and decreased revenue."
+      "narrative": "SRO engines are effectively extracting and articulating the core value propositions of competitors (e.g., Vanguard's 'low-cost investing,' Fidelity's 'comprehensive services'). This indicates that these brands have optimized their online presence for AI-extractable differentiators.",
+      "whyThisMatters": "For ladder7.com to gain visibility, it must clearly and concisely articulate its unique value proposition, target audience, and differentiators in a manner that SRO engines can easily identify, process, and present. The current content is not enabling this level of AI understanding.",
+      "businessImpact": "Continued invisibility in AI-generated answers, as SRO engines cannot discern or present ladder7.com's unique selling points. This perpetuates the competitive disadvantage and prevents the brand from attracting clients seeking specific value propositions that ladder7.com may offer."
     }
   ],
   "recommendations": [
     {
-      "id": "6307614d-a007-49c4-a2d3-6664842d126a",
-      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
-      "actionType": "Technical Optimization",
-      "title": "Create and Implement llms.txt File",
-      "description": "Create an llms.txt file and upload it to beeingsocial.com/llms.txt to improve LLM context accuracy and overall AEO performance.",
+      "id": "4004b76e-976d-4a4e-86df-abace979e1eb",
+      "brandId": "403e2040-ad5b-4de8-a759-9577e0e7305b",
+      "actionType": "Technical AEO",
+      "title": "Implement llms.txt Specification",
+      "description": "Create and deploy an `llms.txt` file at `ladder7.com/llms.txt`. This file should provide explicit instructions to LLMs regarding content usage, data privacy, and preferred contextualization, ensuring accurate brand representation and improving the likelihood of inclusion in AI-generated answers.",
       "effort": "LOW",
-      "impact": "MEDIUM",
+      "impact": "HIGH",
       "basedOnInsightIds": [
-        "6c24381c-495b-4a71-9dbe-3602e39807a4",
-        "61d35784-bbdf-41bd-ac22-3c4829ebc7aa",
-        "6d2735e0-4427-4d6b-a876-45b7d5324ddf"
+        "b28088a2-e6a1-4bb4-97e1-fab2ccfa2255",
+        "98c73e96-3fc3-4e01-b34a-134584eba733",
+        "d67b69ca-80f4-4bf7-a78b-e3fc96f2aaba"
       ]
     },
     {
-      "id": "a5ae45c9-7f66-4d93-915b-7b1c832cdf99",
-      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
-      "actionType": "Content Creation",
-      "title": "Develop High-Quality, Relevant Content",
-      "description": "Develop high-quality, relevant, and informative content that showcases beeingsocial.com's expertise and unique value proposition in the social media management domain.",
+      "id": "bd55863c-6fc6-4b42-831c-085bd259d972",
+      "brandId": "403e2040-ad5b-4de8-a759-9577e0e7305b",
+      "actionType": "Content Strategy",
+      "title": "Optimize Core Content for AI-Extractable Value Proposition",
+      "description": "Revise key website content (e.g., homepage, 'About Us,' service pages) to clearly and concisely articulate ladder7.com's unique value proposition, target audience, and differentiators. Use prominent headings, summary paragraphs, and bullet points to make these core messages easily parsable and extractable by AI models.",
       "effort": "MEDIUM",
       "impact": "HIGH",
       "basedOnInsightIds": [
-        "6c24381c-495b-4a71-9dbe-3602e39807a4",
-        "61d35784-bbdf-41bd-ac22-3c4829ebc7aa",
-        "6d2735e0-4427-4d6b-a876-45b7d5324ddf"
+        "b28088a2-e6a1-4bb4-97e1-fab2ccfa2255",
+        "98c73e96-3fc3-4e01-b34a-134584eba733",
+        "d67b69ca-80f4-4bf7-a78b-e3fc96f2aaba"
       ]
     },
     {
-      "id": "e4165a70-5060-4867-87a9-c0839bd7b5bf",
-      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
-      "actionType": "Digital Marketing",
-      "title": "Implement a Comprehensive Digital Marketing Strategy",
-      "description": "Implement a comprehensive digital marketing strategy that includes SEO, social media marketing, and content marketing to increase brand visibility, drive website traffic, and generate leads.",
+      "id": "68238462-ce8b-49b0-b211-be35587c7021",
+      "brandId": "403e2040-ad5b-4de8-a759-9577e0e7305b",
+      "actionType": "Content Strategy",
+      "title": "Develop AI-Optimized Differentiator Content",
+      "description": "Create dedicated content that highlights how ladder7.com addresses specific client needs or offers unique advantages compared to the large competitors frequently mentioned by SRO engines. This could include 'Why Choose Ladder7' sections, comparison pages, or detailed case studies that emphasize specific expertise or service models.",
+      "effort": "MEDIUM",
+      "impact": "MEDIUM",
+      "basedOnInsightIds": [
+        "b28088a2-e6a1-4bb4-97e1-fab2ccfa2255",
+        "98c73e96-3fc3-4e01-b34a-134584eba733",
+        "d67b69ca-80f4-4bf7-a78b-e3fc96f2aaba"
+      ]
+    },
+    {
+      "id": "c91e79cd-a27d-4e61-8378-e67a4efb9564",
+      "brandId": "403e2040-ad5b-4de8-a759-9577e0e7305b",
+      "actionType": "Off-Page AEO",
+      "title": "Cultivate External Brand Mentions & Citations",
+      "description": "Actively pursue opportunities for ladder7.com to be mentioned and cited by reputable financial news outlets, industry blogs, and authoritative financial resources. These external signals build brand authority and provide additional data points for SRO engines to recognize and contextualize ladder7.com.",
       "effort": "HIGH",
       "impact": "HIGH",
       "basedOnInsightIds": [
-        "6c24381c-495b-4a71-9dbe-3602e39807a4",
-        "61d35784-bbdf-41bd-ac22-3c4829ebc7aa",
-        "6d2735e0-4427-4d6b-a876-45b7d5324ddf"
-      ]
-    },
-    {
-      "id": "52544e9a-427b-4693-a4a3-175bbc93528a",
-      "brandId": "b03d571e-bda7-4fa0-9bdd-375dc348891c",
-      "actionType": "Competitor Analysis",
-      "title": "Conduct a Competitor Analysis and Differentiation Strategy",
-      "description": "Conduct a thorough competitor analysis to identify gaps and opportunities, and develop a differentiation strategy that showcases beeingsocial.com's unique value proposition and competitive advantages.",
-      "effort": "MEDIUM",
-      "impact": "MEDIUM",
-      "basedOnInsightIds": [
-        "6c24381c-495b-4a71-9dbe-3602e39807a4",
-        "61d35784-bbdf-41bd-ac22-3c4829ebc7aa",
-        "6d2735e0-4427-4d6b-a876-45b7d5324ddf"
+        "b28088a2-e6a1-4bb4-97e1-fab2ccfa2255",
+        "98c73e96-3fc3-4e01-b34a-134584eba733",
+        "d67b69ca-80f4-4bf7-a78b-e3fc96f2aaba"
       ]
     }
   ]
