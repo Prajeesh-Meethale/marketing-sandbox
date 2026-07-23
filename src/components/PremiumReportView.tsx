@@ -237,6 +237,14 @@ export function PremiumReportView({ data }: PremiumReportViewProps) {
 
   const { metadata, ticks, openingNarrative, module1, module2, module3, module4, module5, closing } = data;
 
+  // Set dynamic document title for PDF download filename
+  useEffect(() => {
+    if (metadata?.brandName) {
+      const sanitizedBrand = metadata.brandName.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+      document.title = `${sanitizedBrand}_archrift_visibility_report`;
+    }
+  }, [metadata]);
+
   // Track scroll progress bar
   useEffect(() => {
     const handleScroll = () => {
@@ -256,12 +264,17 @@ export function PremiumReportView({ data }: PremiumReportViewProps) {
   };
 
   const handlePrintPDF = () => {
+    if (metadata?.brandName) {
+      const sanitizedBrand = metadata.brandName.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+      document.title = `${sanitizedBrand}_archrift_visibility_report`;
+    }
     window.print();
   };
 
   // FULL STANDALONE HTML EXPORT (INCLUDES ALL COMPLETE CSS STYLES & MOCKUPS)
   const handleExportHTML = () => {
     setIsExporting(true);
+    const sanitizedBrand = (metadata?.brandName || "brand").toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
     try {
       const htmlContent = `<!DOCTYPE html>
 <html lang="en">
@@ -305,7 +318,7 @@ export function PremiumReportView({ data }: PremiumReportViewProps) {
   
   /* Mockup Box Styles in HTML Export */
   .chatgpt-box{background:#212121; color:#fff; border:1px solid #303030; border-radius:12px; margin-top:20px; overflow:hidden;}
-  .chatgpt-head{background:#171717; padding:10px 16px; font-family:'Roboto Mono',monospace; font-size:12px; border-bottom:1px solid #2f2f2f; display:flex; justify-content:space-between;}
+  .chatgpt-head{background:#171717; padding:10px 16px; font-family:'Roboto Mono',monospace; font-size:12px; border-bottom:1px solid #2f2f2f; display:flex; justify-between:space-between;}
   .chatgpt-body{padding:16px;}
   .chatgpt-prompt{background:#2f2f2f; color:#fff; padding:10px 16px; border-radius:16px; font-size:13px; margin-bottom:14px; text-align:right;}
   .chatgpt-[#10a37f]{color:#10a37f;}
@@ -388,7 +401,7 @@ export function PremiumReportView({ data }: PremiumReportViewProps) {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${metadata.brandName.toLowerCase()}-ai-visibility-report.html`;
+      a.download = `${sanitizedBrand}_archrift_visibility_report.html`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -399,6 +412,7 @@ export function PremiumReportView({ data }: PremiumReportViewProps) {
   };
 
   const handleExportMD = () => {
+    const sanitizedBrand = (metadata?.brandName || "brand").toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
     let md = `# AI Visibility Report — ${metadata.brandName}\n\n`;
     md += `**Audited URL:** ${metadata.url}\n`;
     md += `**Date:** ${metadata.auditedDate}\n`;
@@ -420,7 +434,7 @@ export function PremiumReportView({ data }: PremiumReportViewProps) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${metadata.brandName.toLowerCase()}-ai-visibility-report.md`;
+    a.download = `${sanitizedBrand}_archrift_visibility_report.md`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -458,11 +472,78 @@ export function PremiumReportView({ data }: PremiumReportViewProps) {
         .font-work-sans { font-family: 'Work Sans', sans-serif; }
 
         @media print {
-          .no-print { display: none !important; }
-          body { background: #ffffff !important; color: #000000 !important; }
-          .cover { background: #1B1F27 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-          .closing { background: #1B1F27 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-          section.block { page-break-inside: avoid; }
+          @page {
+            size: A4 portrait;
+            margin: 15mm 15mm 15mm 15mm;
+          }
+
+          .no-print, 
+          header.sticky, 
+          nav.border-b, 
+          .developer-tools-nav,
+          button {
+            display: none !important;
+          }
+
+          * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+
+          body {
+            background-color: #F2F1EC !important;
+            color: #232420 !important;
+            font-size: 13.5px !important;
+            line-height: 1.55 !important;
+          }
+
+          /* Ensure cover header starts cleanly */
+          header.cover {
+            background-color: #1B1F27 !important;
+            color: #EDEBE3 !important;
+            padding: 40px 24px !important;
+            break-after: page;
+            page-break-after: always;
+          }
+
+          /* Keep sections organized */
+          section {
+            padding-top: 32px !important;
+            padding-bottom: 32px !important;
+            break-inside: auto;
+          }
+
+          /* Prevent card cut-offs across page boundaries */
+          div[class*="rounded-xl"],
+          .stat-row,
+          .cite-row,
+          .group,
+          .callout,
+          .space-y-8 > div,
+          .space-y-4 > div {
+            break-inside: avoid !important;
+            page-break-inside: avoid !important;
+          }
+
+          /* Prevent orphaned headings */
+          h1, h2, h3, h4, .eyebrow {
+            break-after: avoid !important;
+            page-break-after: avoid !important;
+          }
+
+          /* Ensure all response & transcript boxes unclip for print */
+          .max-h-\[280px\],
+          .max-h-\[160px\],
+          .overflow-y-auto {
+            max-height: none !important;
+            overflow: visible !important;
+          }
+
+          /* Ensure dark engine cards retain rich contrast */
+          .bg-\[\#212121\], .bg-\[\#0F172A\], .bg-\[\#262422\], .bg-\[\#131314\] {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
         }
       `}</style>
 
