@@ -334,81 +334,104 @@
         <p class="text-slate-400 text-sm">What AI actually sees when it looks at your website.</p>
       </div>
 
-      <!-- Business Consequence Groupings (Rule 7.1) -->
-      <div class="space-y-4">
+      <!-- Business Consequence Groupings -->
+      <div class="space-y-6">
 
-        <!-- Group 1: Front Door -->
+        <!-- Group 1: Access -->
         <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden">
           <div class="p-5 bg-slate-900/50 border-b border-slate-800 flex justify-between items-center">
             <h3 class="font-bold text-slate-200 text-base flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-rose-500"></span>
               1. Machines can't find the front door
             </h3>
-            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-rose-500/20 text-rose-300 border border-rose-500/30">CONFIDENCE: HIGH</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-rose-500/20 text-rose-300 border border-rose-500/30">3 CRITICAL GAPS</span>
           </div>
           
-          <div class="p-6 space-y-4 text-xs sm:text-sm">
-            <div>
-              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Symptom</strong>
-              <p class="text-slate-200 font-medium">No llms.txt context file, no bot blocking in robots.txt.</p>
+          <div class="divide-y divide-slate-800/60 text-xs sm:text-sm">
+            <div class="p-6 space-y-2 hover:bg-slate-800/20 transition">
+              <strong class="text-rose-400 block uppercase font-bold text-[10px] tracking-wider mb-1">Missing: robots.txt AI Directives</strong>
+              <p class="text-slate-200 font-medium">Your site does not explicitly invite or guide AI web crawlers (like GPTBot).</p>
+              <p class="text-slate-400 font-light italic border-l-2 border-slate-700 pl-3"><strong>The Analogy:</strong> It's like putting up a "No Trespassing" sign for AI researchers, while leaving the door open only for human customers.</p>
             </div>
-            <div>
-              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Mechanism</strong>
-              <p class="text-slate-300 font-light leading-relaxed">
-                AI crawlers can technically access your pages, but you provide zero structured guidance telling them what your core business actually does. It is like a building with no directory sign — crawlers enter but leave without confidence.
-              </p>
+            <div class="p-6 space-y-2 hover:bg-slate-800/20 transition">
+              <strong class="text-rose-400 block uppercase font-bold text-[10px] tracking-wider mb-1">Missing: llms.txt File</strong>
+              <p class="text-slate-200 font-medium">No standardized file exists to summarize your business for AI models.</p>
+              <p class="text-slate-400 font-light italic border-l-2 border-slate-700 pl-3"><strong>The Analogy:</strong> Like handing out a massive phone book with no names highlighted. They know you exist, but don't know who to call or what you do.</p>
             </div>
-            <div>
-              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Business Cost</strong>
-              <p class="text-rose-300 font-semibold">
-                AI models fall back on unverified third-party directory listings instead of authoritative information from your site.
-              </p>
-            </div>
-            <div class="pt-3 border-t border-slate-800/60 flex flex-wrap justify-between items-center gap-2">
-              <span class="text-slate-300"><strong>Fix:</strong> Publish standardized <code class="bg-slate-800 px-1.5 py-0.5 rounded text-indigo-300 font-mono">llms.txt</code> at root</span>
-              <span class="px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 font-bold text-xs border border-emerald-500/20">Effort: Low · ★ Quick Win</span>
+            <div class="p-6 space-y-2 hover:bg-slate-800/20 transition">
+              <strong class="text-rose-400 block uppercase font-bold text-[10px] tracking-wider mb-1">Missing: llms-full.txt Context</strong>
+              <p class="text-slate-200 font-medium">No deep-dive context file available for complex AI research queries.</p>
+              <p class="text-slate-400 font-light italic border-l-2 border-slate-700 pl-3"><strong>The Analogy:</strong> Like asking a lawyer to defend your company in court, but refusing to hand over your case files.</p>
             </div>
           </div>
         </div>
 
-        <!-- Group 2: Repeat what you do -->
+        <!-- Group 2: Understanding -->
         <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden">
           <div class="p-5 bg-slate-900/50 border-b border-slate-800 flex justify-between items-center">
             <h3 class="font-bold text-slate-200 text-base flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-              2. Machines find you, but can't confidently repeat what you do
+              2. Machines see you, but don't understand you
             </h3>
-            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-amber-500/20 text-amber-300 border border-amber-500/30">CONFIDENCE: HIGH</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-amber-500/20 text-amber-300 border border-amber-500/30">4 CRITICAL GAPS</span>
           </div>
 
-          <div class="p-6 space-y-4 text-xs sm:text-sm">
-            <div>
-              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Symptom</strong>
-              <p class="text-slate-200 font-medium">Missing Organization JSON-LD and FAQ Schema markup.</p>
+          <div class="divide-y divide-slate-800/60 text-xs sm:text-sm">
+            <div class="p-6 space-y-2 hover:bg-slate-800/20 transition">
+              <strong class="text-amber-400 block uppercase font-bold text-[10px] tracking-wider mb-1">Missing: Server-Side Rendering (SSR)</strong>
+              <p class="text-slate-200 font-medium">Your content loads via Javascript, which many AI bots cannot execute.</p>
+              <p class="text-slate-400 font-light italic border-l-2 border-slate-700 pl-3"><strong>The Analogy:</strong> Giving the AI a locked safe instead of a display window. Humans see the content inside, but AI only sees the heavy metal door.</p>
             </div>
-            <div>
-              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Mechanism</strong>
-              <p class="text-slate-300 font-light leading-relaxed">
-                Your web pages read like promotional brochures rather than structured data answers that LLMs can extract and quote.
-              </p>
+            <div class="p-6 space-y-2 hover:bg-slate-800/20 transition">
+              <strong class="text-amber-400 block uppercase font-bold text-[10px] tracking-wider mb-1">Missing: Semantic HTML Hierarchy</strong>
+              <p class="text-slate-200 font-medium">Pages lack clear H1-H3 header structures that AI uses to outline topics.</p>
+              <p class="text-slate-400 font-light italic border-l-2 border-slate-700 pl-3"><strong>The Analogy:</strong> Writing a textbook without chapters, titles, or paragraphs. It's a wall of text the AI has to blindly guess the meaning of.</p>
             </div>
-            <div>
-              <strong class="text-slate-300 block text-xs uppercase font-bold text-slate-400 mb-1">Business Cost</strong>
-              <p class="text-amber-300 font-semibold">
-                Competitors get quoted directly in AI responses while Beeingsocial gets summarized vaguely or omitted entirely.
-              </p>
+            <div class="p-6 space-y-2 hover:bg-slate-800/20 transition">
+              <strong class="text-amber-400 block uppercase font-bold text-[10px] tracking-wider mb-1">Missing: BLUF Content Structure</strong>
+              <p class="text-slate-200 font-medium">Pages bury the main answer/service offering deep in the paragraphs.</p>
+              <p class="text-slate-400 font-light italic border-l-2 border-slate-700 pl-3"><strong>The Analogy:</strong> Forcing a busy executive to read a 10-page novel just to find out what you sell. AI wants the "Bottom Line Up Front."</p>
             </div>
-            <div class="pt-3 border-t border-slate-800/60 flex flex-wrap justify-between items-center gap-2">
-              <span class="text-slate-300"><strong>Fix:</strong> Add JSON-LD schema & BLUF-style content structure</span>
-              <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 font-bold text-xs border border-amber-500/20">Effort: Medium</span>
+            <div class="p-6 space-y-2 hover:bg-slate-800/20 transition">
+              <strong class="text-amber-400 block uppercase font-bold text-[10px] tracking-wider mb-1">Missing: Multimodal Image Tags</strong>
+              <p class="text-slate-200 font-medium">Images lack descriptive ALT text for visual AI models (like Gemini Pro Vision).</p>
+              <p class="text-slate-400 font-light italic border-l-2 border-slate-700 pl-3"><strong>The Analogy:</strong> Showing a beautiful portfolio of work to someone who is blindfolded, without describing it to them.</p>
             </div>
           </div>
         </div>
 
-        <!-- Single Confirming Line (Rule 7.1.4 - Passed Checks Collapsed!) -->
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-400 flex items-center justify-between">
-          <span>✔ <strong>Nothing else is holding you back.</strong> HTTPS security, page rendering speed, and language declarations all pass cleanly.</span>
-          <span class="text-[10px] font-mono text-slate-500 uppercase">5 Checks Passed</span>
+        <!-- Group 3: Trust -->
+        <div class="glass-card rounded-2xl border border-slate-800 overflow-hidden">
+          <div class="p-5 bg-slate-900/50 border-b border-slate-800 flex justify-between items-center">
+            <h3 class="font-bold text-slate-200 text-base flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+              3. Machines won't confidently recommend you
+            </h3>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">4 CRITICAL GAPS</span>
+          </div>
+
+          <div class="divide-y divide-slate-800/60 text-xs sm:text-sm">
+            <div class="p-6 space-y-2 hover:bg-slate-800/20 transition">
+              <strong class="text-indigo-400 block uppercase font-bold text-[10px] tracking-wider mb-1">Missing: Organization JSON-LD Schema</strong>
+              <p class="text-slate-200 font-medium">No verified digital identity code injected into the site headers.</p>
+              <p class="text-slate-400 font-light italic border-l-2 border-slate-700 pl-3"><strong>The Analogy:</strong> Refusing to show your business license. Without official digital ID, AI simply trusts your competitors who have their paperwork in order.</p>
+            </div>
+            <div class="p-6 space-y-2 hover:bg-slate-800/20 transition">
+              <strong class="text-indigo-400 block uppercase font-bold text-[10px] tracking-wider mb-1">Missing: Product/Service Schema</strong>
+              <p class="text-slate-200 font-medium">Core offerings are not explicitly coded as "Services" for AI knowledge graphs.</p>
+              <p class="text-slate-400 font-light italic border-l-2 border-slate-700 pl-3"><strong>The Analogy:</strong> Running a restaurant with no menu on the table. AI doesn't know exactly what dishes to recommend to hungry buyers.</p>
+            </div>
+            <div class="p-6 space-y-2 hover:bg-slate-800/20 transition">
+              <strong class="text-indigo-400 block uppercase font-bold text-[10px] tracking-wider mb-1">Missing: FAQ Schema Markup</strong>
+              <p class="text-slate-200 font-medium">Common buyer questions are not tagged in Q&A machine-readable format.</p>
+              <p class="text-slate-400 font-light italic border-l-2 border-slate-700 pl-3"><strong>The Analogy:</strong> Making customers guess the answers to common questions instead of providing a handy cheat sheet.</p>
+            </div>
+            <div class="p-6 space-y-2 hover:bg-slate-800/20 transition">
+              <strong class="text-indigo-400 block uppercase font-bold text-[10px] tracking-wider mb-1">Missing: Explicit Citation Authority</strong>
+              <p class="text-slate-200 font-medium">Lack of outgoing links to high-authority domains to establish trust.</p>
+              <p class="text-slate-400 font-light italic border-l-2 border-slate-700 pl-3"><strong>The Analogy:</strong> Making wild claims in a debate without pointing to the research. AI wants to know you back up your facts.</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -423,20 +446,28 @@
       </div>
 
       <div class="space-y-4">
-        <!-- Phase 1: Quick Wins -->
+        <!-- Phase 1: Technical Cleanup -->
         <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
           <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-            <span class="text-xs font-extrabold uppercase text-emerald-400 tracking-wider">Phase 1 · Immediate Wins</span>
-            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">1 - 2 WEEKS</span>
+            <span class="text-xs font-extrabold uppercase text-emerald-400 tracking-wider">Month 1 · Technical Cleanup</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">PAVING THE ROAD FOR AI</span>
           </div>
 
           <div class="space-y-3 text-xs sm:text-sm">
             <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 flex justify-between items-start gap-4">
               <div>
-                <strong class="text-white block font-semibold">Publish llms.txt Specification</strong>
-                <p class="text-slate-400 text-xs mt-0.5">Deploy standardized entity file at beeingsocial.com/llms.txt.</p>
+                <strong class="text-white block font-semibold">Deploy llms.txt & Core Schemas</strong>
+                <p class="text-slate-400 text-xs mt-0.5">Publish standardized entity files and inject Organization/Service JSON-LD markup to establish verified digital identity.</p>
               </div>
-              <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 text-[10px] font-bold rounded uppercase shrink-0">★ Quick Win</span>
+              <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 text-[10px] font-bold rounded uppercase shrink-0">★ Foundation</span>
+            </div>
+            
+            <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 flex justify-between items-start gap-4">
+              <div>
+                <strong class="text-white block font-semibold">Fix SSR & Semantic Hierarchy</strong>
+                <p class="text-slate-400 text-xs mt-0.5">Ensure all core service pages can be rendered by non-JS bots and follow strict H1-H3 chapter outlines.</p>
+              </div>
+              <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 text-[10px] font-bold rounded uppercase shrink-0">★ Foundation</span>
             </div>
           </div>
         </div>
@@ -444,15 +475,15 @@
         <!-- Phase 2: Structural Authority -->
         <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
           <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-            <span class="text-xs font-extrabold uppercase text-indigo-400 tracking-wider">Phase 2 · Structural Authority</span>
-            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">MONTH 1</span>
+            <span class="text-xs font-extrabold uppercase text-indigo-400 tracking-wider">Month 2-3 · Content & Authority</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">CAPTURING MENTIONS</span>
           </div>
 
           <div class="space-y-3 text-xs sm:text-sm">
             <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 flex justify-between items-start gap-4">
               <div>
-                <strong class="text-white block font-semibold">Implement Schema & Directory Citation Ingestion</strong>
-                <p class="text-slate-400 text-xs mt-0.5">Add Organization schema and claim high-weight directory nodes cited by ChatGPT.</p>
+                <strong class="text-white block font-semibold">Refactor Content to BLUF Format</strong>
+                <p class="text-slate-400 text-xs mt-0.5">Rewrite the top 5 landing pages to answer core buyer questions in the first 50 words.</p>
               </div>
               <span class="px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-[10px] font-bold rounded uppercase shrink-0">High Impact</span>
             </div>
