@@ -7,18 +7,46 @@ export function ApprovalUI({
   onApprove 
 }: { 
   data: any, 
-  onApprove: (updatedPromptPack: any[]) => void 
+  onApprove: (updatedPromptPack: any[], updatedCompetitors: string[], updatedQueries: string[]) => void 
 }) {
   const [industry, setIndustry] = useState(data.industry);
   const [valueProp, setValueProp] = useState(data.inferredValueProp);
-  const [competitors, setCompetitors] = useState(data.competitors || []);
-  const [queries, setQueries] = useState(data.buyerQueries || []);
+  const [competitors, setCompetitors] = useState<string[]>(data.competitors || []);
+  const [queries, setQueries] = useState<string[]>(data.buyerQueries || []);
   const [promptPack, setPromptPack] = useState<any[]>(data.promptPack || []);
 
   const handlePromptChange = (index: number, newPayload: string) => {
     const updated = [...promptPack];
     updated[index] = { ...updated[index], payload: newPayload };
     setPromptPack(updated);
+  };
+
+  const handleCompetitorChange = (index: number, newValue: string) => {
+    const updated = [...competitors];
+    updated[index] = newValue;
+    setCompetitors(updated);
+  };
+
+  const removeCompetitor = (index: number) => {
+    setCompetitors(competitors.filter((_, i) => i !== index));
+  };
+
+  const addCompetitor = () => {
+    setCompetitors([...competitors, ""]);
+  };
+
+  const handleQueryChange = (index: number, newValue: string) => {
+    const updated = [...queries];
+    updated[index] = newValue;
+    setQueries(updated);
+  };
+
+  const removeQuery = (index: number) => {
+    setQueries(queries.filter((_, i) => i !== index));
+  };
+
+  const addQuery = () => {
+    setQueries([...queries, ""]);
   };
 
   return (
@@ -58,25 +86,49 @@ export function ApprovalUI({
 
         {/* Competitors */}
         <section>
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">2. Competitive Landscape</h3>
-          <div className="bg-gray-50 p-4 rounded-xl border border-gray-200">
-            <ul className="list-disc pl-5 space-y-1">
-              {competitors.map((comp: string, i: number) => (
-                <li key={i} className="text-gray-700 font-medium">{comp}</li>
-              ))}
-            </ul>
+          <div className="flex justify-between items-center mb-3">
+            <h3 className="text-xl font-semibold text-gray-800">2. Competitive Landscape</h3>
+            <button onClick={addCompetitor} className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full hover:bg-blue-100 transition">
+              + Add Competitor
+            </button>
+          </div>
+          <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-2">
+            {competitors.map((comp: string, i: number) => (
+              <div key={i} className="flex gap-2 items-center">
+                <input
+                  type="text"
+                  value={comp}
+                  onChange={(e) => handleCompetitorChange(i, e.target.value)}
+                  className="flex-1 p-2 bg-white border border-gray-300 rounded-lg focus:border-blue-500 outline-none text-gray-700 font-medium text-sm"
+                  placeholder="Competitor Name"
+                />
+                <button onClick={() => removeCompetitor(i)} className="text-red-400 hover:text-red-600 font-bold px-2" title="Remove">✕</button>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* Queries */}
         <section>
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">3. High-Intent Buyer Queries</h3>
-          <div className="bg-gray-50 p-4 rounded-xl border border-gray-200">
-            <ul className="list-disc pl-5 space-y-1">
-              {queries.map((q: string, i: number) => (
-                <li key={i} className="text-gray-700 font-medium">{q}</li>
-              ))}
-            </ul>
+          <div className="flex justify-between items-center mb-3">
+            <h3 className="text-xl font-semibold text-gray-800">3. High-Intent Buyer Queries</h3>
+            <button onClick={addQuery} className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full hover:bg-blue-100 transition">
+              + Add Query
+            </button>
+          </div>
+          <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-2">
+            {queries.map((q: string, i: number) => (
+              <div key={i} className="flex gap-2 items-center">
+                <input
+                  type="text"
+                  value={q}
+                  onChange={(e) => handleQueryChange(i, e.target.value)}
+                  className="flex-1 p-2 bg-white border border-gray-300 rounded-lg focus:border-blue-500 outline-none text-gray-700 font-medium text-sm"
+                  placeholder="Buyer Query"
+                />
+                <button onClick={() => removeQuery(i)} className="text-red-400 hover:text-red-600 font-bold px-2" title="Remove">✕</button>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -112,7 +164,7 @@ export function ApprovalUI({
 
       <div className="mt-10">
         <button 
-          onClick={() => onApprove(promptPack)}
+          onClick={() => onApprove(promptPack, competitors, queries)}
           className="w-full bg-green-600 text-white font-bold py-4 rounded-xl hover:bg-green-700 transition shadow-md hover:shadow-lg text-lg flex items-center justify-center gap-2"
         >
           <span>✓ Approve & Have Jordan Scrape</span>

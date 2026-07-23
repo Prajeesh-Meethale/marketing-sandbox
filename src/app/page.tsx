@@ -35,7 +35,7 @@ export default function Home() {
     }
   };
 
-  const handleGenerateReport = async (updatedPromptPack: any[]) => {
+  const handleGenerateReport = async (updatedPromptPack: any[], updatedCompetitors: string[], updatedQueries: string[]) => {
     setIsGenerating(true);
     setError(null);
     setProgressStep("Phase 1 of 3: Querying AI Engines via Batched Execution...");
@@ -57,8 +57,8 @@ export default function Home() {
           companyName: companyDetails?.companyName || "Target Company",
           websiteUrl: companyDetails?.websiteUrl || "",
           promptPack: updatedPromptPack,
-          buyerQueries: inferredData?.buyerQueries || [],
-          competitors: inferredData?.competitors || [],
+          buyerQueries: updatedQueries,
+          competitors: updatedCompetitors,
         })
       });
 
