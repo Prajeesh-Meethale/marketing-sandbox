@@ -8,7 +8,7 @@ export function InvestigationForm({ onSubmit, isLoading }: { onSubmit: (data: { 
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-xl border border-gray-100">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Investigation Briefing</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">Brief Jordan</h2>
       
       <form onSubmit={(e) => { e.preventDefault(); onSubmit({ companyName, websiteUrl }); }} className="space-y-4">
         <div>
@@ -39,7 +39,7 @@ export function InvestigationForm({ onSubmit, isLoading }: { onSubmit: (data: { 
           disabled={isLoading}
           className="w-full bg-green-700 text-white font-semibold py-3 rounded-lg hover:bg-green-800 transition disabled:opacity-50"
         >
-          {isLoading ? "Inferring Context..." : "Initialize Investigation"}
+          {isLoading ? "Jordan is Inferring Context..." : "Have Jordan Investigate"}
         </button>
       </form>
     </div>

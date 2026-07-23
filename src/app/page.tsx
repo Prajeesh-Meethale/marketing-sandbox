@@ -83,8 +83,8 @@ export default function Home() {
         {/* Header with Developer Mode Toggle */}
         <div className="flex justify-between items-center mb-8 border-b pb-4">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Archdrift SaaS</span>
-            <h1 className="text-2xl font-extrabold text-gray-900">Prospect AI Audit Generator</h1>
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">AI Employee</span>
+            <h1 className="text-2xl font-extrabold text-gray-900">Jordan - AI Visibility Analyst</h1>
           </div>
           <DeveloperToolsNav />
         </div>
@@ -105,7 +105,7 @@ export default function Home() {
                 {progressStep}
               </p>
             </div>
-            <p className="text-xs text-gray-400">Please wait while OpenRouter gathers evidence and synthesizes the report...</p>
+            <p className="text-xs text-gray-400">Please wait while Jordan gathers evidence and synthesizes your report...</p>
           </div>
         ) : !inferredData ? (
           /* Step 1: New Investigation */

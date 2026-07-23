@@ -24,9 +24,9 @@ export function ApprovalUI({
   return (
     <div className="max-w-4xl mx-auto p-8 bg-white shadow-xl rounded-2xl border border-gray-200">
       <div className="mb-8 border-b pb-4">
-        <h2 className="text-3xl font-bold text-gray-900">Context Checkpoint</h2>
+        <h2 className="text-3xl font-bold text-gray-900">Jordan's Context Checkpoint</h2>
         <p className="text-gray-500 mt-2">
-          Review and refine the system's inferred understanding and prompts before proceeding to the deep scrape.
+          Review and refine Jordan's inferred understanding and prompts before having them proceed to the deep scrape.
         </p>
       </div>
 
@@ -115,7 +115,7 @@ export function ApprovalUI({
           onClick={() => onApprove(promptPack)}
           className="w-full bg-green-600 text-white font-bold py-4 rounded-xl hover:bg-green-700 transition shadow-md hover:shadow-lg text-lg flex items-center justify-center gap-2"
         >
-          <span>✓ Approve & Proceed to Scrape</span>
+          <span>✓ Approve & Have Jordan Scrape</span>
         </button>
       </div>
     </div>
