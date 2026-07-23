@@ -725,7 +725,7 @@ export function PremiumReportView({ data }: PremiumReportViewProps) {
           </div>
         </section>
 
-        {/* MODULE 2: Crime Scene (Transcripts with Authentic Engine Screenshot UI Mockups) */}
+        {/* MODULE 2: Crime Scene (Transcripts with Authentic Engine Traces) */}
         <section id="m2" className="py-16 border-b border-[#D9D6CB] space-y-8 scroll-mt-14">
           <div>
             <div className="font-roboto-mono text-[0.7rem] tracking-[0.12em] uppercase text-[#726E62] mb-3">
@@ -734,9 +734,6 @@ export function PremiumReportView({ data }: PremiumReportViewProps) {
             <h2 className="font-spectral text-2xl sm:text-3xl font-normal max-w-[24ch]">
               What buyers are seeing & who is recommended instead
             </h2>
-            <p className="font-work-sans text-[1rem] text-[#4A473C] mt-3 max-w-[56ch]">
-              Authentic UI screenshot-style mockups across ChatGPT, Perplexity, Claude, and Gemini.
-            </p>
           </div>
 
           <div className="space-y-8 pt-2">
