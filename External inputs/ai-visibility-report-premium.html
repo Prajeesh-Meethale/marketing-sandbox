@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fernbridge — AI Visibility Investigation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Work+Sans:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1F27;
+    --paper:#F2F1EC;
+    --panel:#EAE8E1;
+    --rule:#D9D6CB;
+    --charcoal:#232420;
+    --muted:#726E62;
+    --accent:#2C4460;
+    --flag:#7A3B3B;
+    --moss:#4B6350;
+    --on-ink:#EDEBE3;
+    --on-ink-dim:#9B9A8F;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--charcoal);
+    font-family:'Work Sans', sans-serif;
+    font-size:16.5px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--accent); color:var(--on-ink);}
+
+  .mono{font-family:'Roboto Mono', monospace;}
+  h1,h2,h3{font-family:'Spectral', serif; margin:0; font-weight:500; letter-spacing:-0.005em;}
+
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+  .skip-link{position:absolute; left:-999px; top:0; background:var(--accent); color:var(--on-ink); padding:10px 16px; z-index:100; font-family:'Roboto Mono',monospace; font-size:0.85rem;}
+  .skip-link:focus{left:12px; top:12px;}
+
+  .progress{position:fixed; top:0; left:0; height:2px; background:var(--accent); width:0%; z-index:50; transition:width .1s linear;}
+
+  /* ---------- cover ---------- */
+  .cover{
+    background:var(--ink);
+    color:var(--on-ink);
+    padding:88px 28px 72px;
+  }
+  .cover-inner{max-width:680px; margin:0 auto;}
+
+  .kicker{
+    font-family:'Roboto Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--on-ink-dim);
+    margin-bottom:36px;
+    opacity:0; animation:rise .7s ease forwards;
+  }
+  .kicker b{color:var(--on-ink); font-weight:500;}
+
+  .cover h1{
+    font-size:clamp(1.9rem, 4.4vw, 2.9rem);
+    line-height:1.28;
+    font-weight:500;
+    max-width:19ch;
+    opacity:0; animation:rise .8s ease forwards; animation-delay:.12s;
+  }
+  .cover h1 em{font-style:italic; color:var(--on-ink);}
+
+  .cover-sub{
+    max-width:52ch;
+    font-size:1.02rem;
+    color:var(--on-ink-dim);
+    margin-top:22px;
+    opacity:0; animation:rise .8s ease forwards; animation-delay:.24s;
+  }
+
+  @keyframes rise{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .tick-row{
+    margin-top:56px;
+    opacity:0; animation:rise .9s ease forwards; animation-delay:.4s;
+  }
+  .tick-row .tick-label-row{
+    font-family:'Roboto Mono', monospace;
+    font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--on-ink-dim); margin-bottom:12px;
+  }
+  .ticks{display:flex; gap:5px; align-items:flex-end;}
+  .ticks i{
+    flex:1; height:26px; background:rgba(237,235,227,0.14); border-radius:1px;
+    display:block; position:relative;
+  }
+  .ticks i.hit{background:var(--on-ink);}
+  .ticks-caption{
+    margin-top:10px; font-family:'Roboto Mono', monospace; font-size:0.72rem; color:var(--on-ink-dim);
+  }
+  .ticks-caption b{color:var(--on-ink); font-weight:500;}
+
+  /* ---------- contents ---------- */
+  .contents{
+    max-width:680px; margin:0 auto;
+    padding:56px 28px 60px;
+    border-bottom:1px solid var(--rule);
+  }
+  .contents .label{
+    font-family:'Roboto Mono', monospace; font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:18px;
+  }
+  .contents ol{list-style:none; margin:0; padding:0; display:grid; gap:2px;}
+  .contents li{
+    display:flex; align-items:baseline; gap:14px;
+    padding:9px 0; border-bottom:1px dotted var(--rule);
+  }
+  .contents .n{font-family:'Roboto Mono', monospace; font-size:0.78rem; color:var(--muted); width:22px;}
+  .contents a{text-decoration:none; font-size:0.96rem; color:var(--charcoal); flex:1;}
+  .contents a:hover{color:var(--accent);}
+
+  /* ---------- section shell ---------- */
+  main{max-width:680px; margin:0 auto; padding:0 28px;}
+  section.block{
+    padding:72px 0 56px;
+    border-bottom:1px solid var(--rule);
+    opacity:0; transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  section.block.is-visible{opacity:1; transform:translateY(0);}
+  section.block:last-of-type{border-bottom:none;}
+
+  .eyebrow{
+    font-family:'Roboto Mono', monospace;
+    font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:16px;
+  }
+  .eyebrow b{color:var(--accent); font-weight:500;}
+
+  .block h2{
+    font-size:clamp(1.3rem, 2.3vw, 1.7rem);
+    max-width:24ch;
+    font-weight:500;
+  }
+  .block .lede{
+    margin-top:14px;
+    font-size:1rem; color:#4A473C; max-width:56ch;
+  }
+
+  /* ---------- module 1 ---------- */
+  .stat-row{display:flex; gap:52px; flex-wrap:wrap; margin-top:36px; align-items:baseline;}
+  .stat .value{font-family:'Spectral', serif; font-weight:500; font-size:clamp(2.4rem, 5vw, 3.2rem); line-height:1;}
+  .stat.primary .value{color:var(--flag);}
+  .stat .unit{font-size:0.4em; color:var(--muted); margin-left:4px; font-family:'Work Sans', sans-serif;}
+  .stat .cap{font-family:'Roboto Mono', monospace; font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); margin-top:10px;}
+
+  .callout{
+    margin-top:32px; padding-left:20px; border-left:2px solid var(--accent);
+    font-family:'Spectral', serif; font-style:italic; font-size:1.08rem; color:#2A2C24;
+  }
+
+  /* ---------- module 2 ---------- */
+  .transcript{margin-top:26px;}
+  .transcript-meta{
+    font-family:'Roboto Mono', monospace; font-size:0.72rem; color:var(--muted);
+    display:flex; justify-content:space-between; gap:12px; margin-bottom:8px;
+  }
+  blockquote.transcript-body{
+    margin:0; padding-left:18px; border-left:2px solid var(--rule);
+    font-size:1rem; color:#2E2C25;
+  }
+  blockquote.transcript-body b.comp{color:var(--accent); font-weight:600;}
+  blockquote.transcript-body b.us{color:var(--moss); font-weight:600;}
+  .transcript-result{
+    margin-top:10px; padding-left:18px;
+    font-family:'Roboto Mono', monospace; font-size:0.7rem; letter-spacing:0.03em; text-transform:uppercase;
+  }
+  .transcript-result.miss{color:var(--flag);}
+  .transcript-result.hit{color:var(--moss);}
+
+  .tally-row{margin-top:30px; display:flex; gap:0; flex-wrap:wrap; border-top:1px solid var(--rule);}
+  .tally-cell{padding:14px 24px 0 0; font-size:0.88rem; color:var(--muted);}
+  .tally-cell b{color:var(--charcoal); font-family:'Spectral', serif; font-weight:500; font-size:1.05rem; display:block; margin-bottom:2px;}
+
+  /* ---------- module 3 ---------- */
+  .readout{
+    margin-top:28px; padding:18px 20px; background:var(--panel); border-radius:2px; font-size:0.98rem;
+  }
+  .cite-table{margin-top:30px;}
+  .cite-row{
+    display:grid; grid-template-columns:1fr 140px 110px; align-items:center; gap:18px;
+    padding:13px 0; border-top:1px solid var(--rule);
+  }
+  .cite-row:last-child{border-bottom:1px solid var(--rule);}
+  .cite-row .domain{font-family:'Roboto Mono', monospace; font-size:0.84rem;}
+  .cite-bar{height:5px; background:var(--rule); border-radius:2px; overflow:hidden;}
+  .cite-fill{height:100%; background:var(--accent);}
+  .cite-row .status{font-family:'Roboto Mono', monospace; font-size:0.68rem; letter-spacing:0.03em; text-transform:uppercase; text-align:right;}
+  .cite-row .status.miss{color:var(--flag);}
+  .cite-row .status.hit{color:var(--moss);}
+
+  /* ---------- module 4 ---------- */
+  .finding-group{margin-top:38px;}
+  .finding-group h3{
+    font-family:'Work Sans', sans-serif; font-weight:600; font-size:0.98rem; color:var(--charcoal);
+  }
+  .finding{margin-top:14px; border-top:1px solid var(--rule);}
+  .finding-head{
+    width:100%; display:flex; align-items:baseline; justify-content:space-between; gap:16px;
+    padding:16px 0; background:none; border:none; cursor:pointer; text-align:left;
+    font-family:'Work Sans', sans-serif; font-size:0.96rem; color:var(--charcoal);
+  }
+  .finding-head .txt{flex:1;}
+  .finding-head .meta{display:flex; align-items:center; gap:14px; flex-shrink:0;}
+  .conf{font-family:'Roboto Mono', monospace; font-size:0.66rem; letter-spacing:0.04em; text-transform:uppercase;}
+  .conf.high{color:var(--flag);}
+  .conf.medium{color:var(--muted);}
+  .plusminus{
+    width:14px; height:14px; position:relative; flex-shrink:0;
+  }
+  .plusminus::before, .plusminus::after{
+    content:""; position:absolute; background:var(--muted);
+  }
+  .plusminus::before{top:6px; left:0; width:14px; height:1.5px;}
+  .plusminus::after{top:0; left:6px; width:1.5px; height:14px; transition:opacity .2s ease;}
+  .finding.open .plusminus::after{opacity:0;}
+
+  .finding-body{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+  .finding.open .finding-body{max-height:320px;}
+  .finding-body-inner{padding:0 0 22px; display:grid; gap:10px; max-width:56ch;}
+  .finding-body-inner .row{display:flex; gap:12px; font-size:0.93rem;}
+  .finding-body-inner .k{font-family:'Roboto Mono', monospace; font-size:0.65rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--muted); width:100px; flex-shrink:0; padding-top:2px;}
+  .fix-line{
+    margin-top:4px; padding-top:12px; border-top:1px dotted var(--rule);
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.9rem;
+  }
+  .fix-tag{font-family:'Roboto Mono', monospace; font-size:0.66rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--muted);}
+  .fix-tag.win{color:var(--moss);}
+
+  .clear-line{
+    margin-top:34px; padding:16px 18px; border:1px solid var(--rule); border-radius:2px;
+    font-size:0.94rem;
+  }
+  .clear-line .tag{font-family:'Roboto Mono', monospace; font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--moss); display:block; margin-bottom:6px;}
+
+  /* ---------- module 5 ---------- */
+  .phase{margin-top:34px;}
+  .phase-num{font-family:'Roboto Mono', monospace; font-size:0.7rem; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase;}
+  .phase h3{font-family:'Spectral', serif; font-weight:500; font-size:1.15rem; margin-top:6px;}
+  .plan-item{
+    display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+    padding:11px 0; border-top:1px solid var(--rule);
+  }
+  .plan-item .desc{font-size:0.94rem; max-width:44ch;}
+  .weight{font-family:'Roboto Mono', monospace; font-size:0.64rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--muted); white-space:nowrap;}
+  .weight.high{color:var(--accent);}
+
+  /* ---------- who we are ---------- */
+  .about-lede{margin-top:16px; font-size:1rem; color:#4A473C; max-width:58ch;}
+  .quote-grid{
+    margin-top:44px; display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+  }
+  .quote-card{background:var(--paper); padding:26px 24px;}
+  .quote-card:nth-child(5){grid-column:1 / -1;}
+  .quote-card p{
+    font-family:'Spectral', serif; font-style:italic; font-size:1rem; margin:0; color:#2A2C24;
+    line-height:1.55;
+  }
+  .quote-attr{
+    margin-top:16px; display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+  }
+  .quote-attr .who{font-family:'Work Sans', sans-serif; font-size:0.85rem; font-weight:600;}
+  .quote-attr .role{display:block; font-weight:400; color:var(--muted); font-size:0.8rem; margin-top:1px;}
+  .quote-attr .industry{
+    font-family:'Roboto Mono', monospace; font-size:0.62rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--accent);
+    white-space:nowrap;
+  }
+
+  /* ---------- closing ---------- */
+  .closing{background:var(--ink); color:var(--on-ink); padding:88px 28px 64px;}
+  .closing-inner{max-width:640px; margin:0 auto;}
+  .closing .eyebrow{color:var(--on-ink-dim);}
+  .closing h2{color:var(--on-ink); font-size:clamp(1.4rem, 2.8vw, 1.9rem); max-width:22ch; font-weight:500;}
+  .closing p{color:var(--on-ink-dim); font-size:1rem; margin-top:20px; max-width:56ch;}
+  .closing p strong{color:var(--on-ink); font-weight:600;}
+  .cta-row{margin-top:36px; display:flex; gap:20px; flex-wrap:wrap; align-items:center;}
+  .cta-primary{
+    font-family:'Roboto Mono', monospace; font-size:0.76rem; letter-spacing:0.05em; text-transform:uppercase;
+    background:var(--on-ink); color:var(--ink); padding:13px 22px; border-radius:2px;
+    text-decoration:none; font-weight:500;
+  }
+  .cta-secondary{font-family:'Roboto Mono', monospace; font-size:0.76rem; color:var(--on-ink-dim); text-decoration:underline; text-underline-offset:3px;}
+  .closing-foot{
+    margin-top:52px; padding-top:22px; border-top:1px solid rgba(237,235,227,0.12);
+    font-family:'Roboto Mono', monospace; font-size:0.66rem; color:var(--on-ink-dim);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:640px){
+    .cover{padding:64px 20px 52px;}
+    main, .contents{padding-left:20px; padding-right:20px;}
+    .cite-row{grid-template-columns:1fr 90px 80px; gap:10px;}
+    .quote-grid{grid-template-columns:1fr;}
+    .quote-card:nth-child(5){grid-column:auto;}
+    .stat-row{gap:30px;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#m1" class="skip-link">Skip to report</a>
+<div class="progress" id="progress"></div>
+
+<header class="cover">
+  <div class="cover-inner">
+    <div class="kicker">AI Visibility Investigation &nbsp;·&nbsp; Prepared for <b>Fernbridge</b> &nbsp;·&nbsp; 21 July 2026</div>
+    <h1>Four AI systems were asked how buyers choose scheduling software. <em>Fernbridge came up once.</em></h1>
+    <p class="cover-sub">
+      We ran twelve real buying questions across ChatGPT, Perplexity, Gemini, and Claude, then traced
+      every answer back to its source. This is the full record.
+    </p>
+
+    <div class="tick-row">
+      <div class="tick-label-row">Recommendation trace — 12 queries</div>
+      <div class="ticks" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="hit"></i><i></i><i></i><i></i>
+      </div>
+      <div class="ticks-caption">Query 9 of 12 — <b>the only recommendation</b></div>
+    </div>
+  </div>
+</header>
+
+<nav class="contents" aria-label="Table of contents">
+  <div class="label mono">Contents</div>
+  <ol>
+    <li><span class="n mono">01</span><a href="#m1">The Reality Check</a></li>
+    <li><span class="n mono">02</span><a href="#m2">The Evidence</a></li>
+    <li><span class="n mono">03</span><a href="#m3">The Forensics</a></li>
+    <li><span class="n mono">04</span><a href="#m4">The Machine Layer</a></li>
+    <li><span class="n mono">05</span><a href="#m5">The Roadmap</a></li>
+    <li><span class="n mono">06</span><a href="#about">Who We Are</a></li>
+    <li><span class="n mono">—</span><a href="#closing">Final Assessment</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <section id="m1" class="block">
+    <div class="eyebrow">Module 01 — <b>The Reality Check</b></div>
+    <h2>Is Fernbridge being recommended when buyers ask?</h2>
+    <p class="lede">Rank 1–3 counted as a recommendation. Omission counted as absence — no partial credit.</p>
+
+    <div class="stat-row">
+      <div class="stat primary">
+        <div class="value">1 <span class="unit">/ 12</span></div>
+        <div class="cap">Queries where Fernbridge was recommended</div>
+      </div>
+      <div class="stat">
+        <div class="value">74 <span class="unit">/ 100</span></div>
+        <div class="cap">Technical readiness score</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      "The site is well built and reasonably easy for AI systems to read. That was never the problem.
+      The problem is that almost nothing tells the models Fernbridge belongs in the conversation at all."
+    </div>
+  </section>
+
+  <section id="m2" class="block">
+    <div class="eyebrow">Module 02 — <b>The Evidence</b></div>
+    <h2>What buyers are actually being told</h2>
+    <p class="lede">Raw model output, unedited. Deputy and When I Work were named consistently. Fernbridge, once.</p>
+
+    <div class="transcript">
+      <div class="transcript-meta"><span>ChatGPT</span><span>"best employee scheduling software for retail"</span></div>
+      <blockquote class="transcript-body">
+        For retail teams, <b class="comp">Deputy</b> is widely used for its shift-swapping and labor-compliance
+        tools. <b class="comp">When I Work</b> is another strong pick, especially for hourly teams needing
+        mobile-first scheduling.
+      </blockquote>
+      <div class="transcript-result miss">Not mentioned</div>
+    </div>
+
+    <div class="transcript">
+      <div class="transcript-meta"><span>Gemini</span><span>"workforce management software comparison"</span></div>
+      <blockquote class="transcript-body">
+        Common comparisons in this category include <b class="comp">Homebase</b>, praised for its free tier,
+        and <b class="comp">Deputy</b>, which scales well for multi-location businesses with compliance needs.
+      </blockquote>
+      <div class="transcript-result miss">Not mentioned</div>
+    </div>
+
+    <div class="transcript">
+      <div class="transcript-meta"><span>Claude</span><span>"free employee scheduling tool"</span></div>
+      <blockquote class="transcript-body">
+        A few options: <b class="comp">Homebase</b> offers a generous free tier for small teams, and
+        <b class="us">Fernbridge</b> has a lighter free plan aimed at field-service crews specifically.
+      </blockquote>
+      <div class="transcript-result hit">Mentioned — rank 2 of 2</div>
+    </div>
+
+    <div class="tally-row">
+      <div class="tally-cell"><b>10 / 12</b>Deputy cited</div>
+      <div class="tally-cell"><b>8 / 12</b>When I Work cited</div>
+      <div class="tally-cell"><b>6 / 12</b>Homebase cited</div>
+    </div>
+  </section>
+
+  <section id="m3" class="block">
+    <div class="eyebrow">Module 03 — <b>The Forensics</b></div>
+    <h2>Why competitors are trusted more</h2>
+    <p class="lede">Every recommendation traces back to a source the model treats as confirmation. We followed the trail.</p>
+
+    <div class="readout">
+      Gemini's comparison pulled from three review aggregators. Deputy and Homebase are indexed on all
+      three. Fernbridge is indexed on one — so the model had confirmable ground to stand on for
+      competitors, and none for Fernbridge.
+    </div>
+
+    <div class="cite-table">
+      <div class="cite-row">
+        <div class="domain">g2.com</div>
+        <div class="cite-bar"><div class="cite-fill" style="width:88%"></div></div>
+        <div class="status miss">Not indexed</div>
+      </div>
+      <div class="cite-row">
+        <div class="domain">capterra.com</div>
+        <div class="cite-bar"><div class="cite-fill" style="width:70%"></div></div>
+        <div class="status hit">Indexed</div>
+      </div>
+      <div class="cite-row">
+        <div class="domain">softwareadvice.com</div>
+        <div class="cite-bar"><div class="cite-fill" style="width:56%"></div></div>
+        <div class="status miss">Not indexed</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="m4" class="block">
+    <div class="eyebrow">Module 04 — <b>The Machine Layer</b></div>
+    <h2>What AI sees on fernbridge.io directly</h2>
+    <p class="lede">Free to check, and fully within Fernbridge's own control — no dependency on outside coverage.</p>
+
+    <div class="finding-group">
+      <h3>No direct line to the models</h3>
+      <div class="finding">
+        <button class="finding-head" aria-expanded="false">
+          <span class="txt">No llms.txt — models get nothing straight from the source</span>
+          <span class="meta"><span class="conf high">Confidence: High</span><span class="plusminus"></span></span>
+        </button>
+        <div class="finding-body">
+          <div class="finding-body-inner">
+            <div class="row"><span class="k">Mechanism</span><span>No llms.txt, no robots.txt blocking — crawlers can enter, but nothing points them to what matters.</span></div>
+            <div class="row"><span class="k">Cost</span><span>Models default to third-party pages about Fernbridge instead of what the company says about itself.</span></div>
+            <div class="fix-line"><span>Publish llms.txt</span><span class="fix-tag win">Quick win · low effort</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding-group">
+      <h3>Present, but not quotable</h3>
+      <div class="finding">
+        <button class="finding-head" aria-expanded="false">
+          <span class="txt">No FAQ schema or direct-answer content on pricing and comparison pages</span>
+          <span class="meta"><span class="conf high">Confidence: High</span><span class="plusminus"></span></span>
+        </button>
+        <div class="finding-body">
+          <div class="finding-body-inner">
+            <div class="row"><span class="k">Mechanism</span><span>Models quote pages that already read like an answer. Fernbridge's pages sell — they don't answer.</span></div>
+            <div class="row"><span class="k">Cost</span><span>This is why Deputy gets quoted directly and Fernbridge gets left off the same list entirely.</span></div>
+            <div class="fix-line"><span>Rewrite pricing and comparison pages, add FAQ schema</span><span class="fix-tag">Medium effort</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding-group">
+      <h3>Possibly invisible to non-JS crawlers</h3>
+      <div class="finding">
+        <button class="finding-head" aria-expanded="false">
+          <span class="txt">Feature pages render client-side with no fallback</span>
+          <span class="meta"><span class="conf medium">Confidence: Medium</span><span class="plusminus"></span></span>
+        </button>
+        <div class="finding-body">
+          <div class="finding-body-inner">
+            <div class="row"><span class="k">Mechanism</span><span>No SSR or noscript fallback on feature pages — a bot that skips JavaScript may see nothing there.</span></div>
+            <div class="row"><span class="k">Cost</span><span>Content already written may functionally not exist to a share of the crawlers reaching the site.</span></div>
+            <div class="fix-line"><span>Add SSR or noscript fallback</span><span class="fix-tag">High effort · needs a developer</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clear-line">
+      <span class="tag mono">All clear</span>
+      HTTPS, page weight, and language declaration all pass. This was never a broken-site problem.
+    </div>
+  </section>
+
+  <section id="m5" class="block">
+    <div class="eyebrow">Module 05 — <b>The Roadmap</b></div>
+    <h2>What to fix, in order</h2>
+    <p class="lede">Ranked by how directly each change moves the recommendation rate, not by how it was found.</p>
+
+    <div class="phase">
+      <div class="phase-num mono">Phase 1</div>
+      <h3>Open a direct line</h3>
+      <div class="plan-item"><span class="desc">Publish llms.txt so models get brand-controlled context.</span><span class="weight high">High impact</span></div>
+      <div class="plan-item"><span class="desc">Add FAQ schema and direct-answer openings to pricing and comparison pages.</span><span class="weight high">High impact</span></div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num mono">Phase 2</div>
+      <h3>Get onto the sources models trust</h3>
+      <div class="plan-item"><span class="desc">Get indexed on G2 and Software Advice — the two aggregators Fernbridge is missing from.</span><span class="weight high">High impact</span></div>
+      <div class="plan-item"><span class="desc">Publish a comparison page against Deputy and When I Work for field-service use cases.</span><span class="weight">Medium impact</span></div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num mono">Phase 3</div>
+      <h3>Confirm it held</h3>
+      <div class="plan-item"><span class="desc">Add SSR fallback to feature pages.</span><span class="weight">Medium impact</span></div>
+      <div class="plan-item"><span class="desc">Re-run this investigation in 30 days and compare the recommendation rate.</span><span class="weight">Medium impact</span></div>
+    </div>
+  </section>
+
+  <section id="about" class="block">
+    <div class="eyebrow">06 — <b>Who We Are</b></div>
+    <h2>We run this same investigation for teams across industries</h2>
+    <p class="about-lede">
+      Archdrift tracks how brands actually appear across ChatGPT, Perplexity, Gemini, Copilot, Grok, and
+      Google AI Overview — then does the work to close the gap. This is the same process, not a
+      simplified version of it.
+    </p>
+
+    <div class="quote-grid">
+      <div class="quote-card">
+        <p>"We went from not appearing at all to being the first name ChatGPT gives when someone asks
+        for a B2B growth consultant in our region. That query alone used to be invisible to us."</p>
+        <div class="quote-attr">
+          <div class="who">Maya Ferreira<span class="role">Head of Growth, Larkspur Consulting</span></div>
+          <div class="industry">B2B Consulting</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <p>"Compliance buyers ask AI a lot of specific questions before they'll even talk to sales. Getting
+        cited correctly on those questions changed the quality of leads reaching us, not just the volume."</p>
+        <div class="quote-attr">
+          <div class="who">Daniel Osei<span class="role">Marketing Director, Warrant & Cole HR Advisory</span></div>
+          <div class="industry">HR & Employment Law</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <p>"We're a smaller studio competing against names ten times our size. Archdrift found exactly
+        where AI was defaulting to the bigger competitors and why — that's what let us close the gap."</p>
+        <div class="quote-attr">
+          <div class="who">Priya Nandakumar<span class="role">VP Marketing, Skyloft Games</span></div>
+          <div class="industry">Gaming & AdTech</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <p>"The audit told us things about our own site we didn't know — pages that looked fine to a
+        person but were essentially invisible to a crawler. That was worth the engagement by itself."</p>
+        <div class="quote-attr">
+          <div class="who">Tom Halvorsen<span class="role">Founder, Northgrain Goods</span></div>
+          <div class="industry">E-Commerce</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <p>"In healthcare software, trust signals matter more than almost anything else. Archdrift's
+        forensics work showed us exactly which sources AI was leaning on to vet vendors like us, and got
+        us onto the ones that mattered."</p>
+        <div class="quote-attr">
+          <div class="who">Elena Roussel<span class="role">CMO, Verita Health Systems</span></div>
+          <div class="industry">Healthcare SaaS</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="closing" id="closing">
+  <div class="closing-inner">
+    <div class="eyebrow">Final Assessment</div>
+    <h2>The gap here isn't the product. It's the signal.</h2>
+    <p>
+      Fernbridge is a credible option for field-service scheduling — the models simply don't have
+      enough to go on to say so with confidence. <strong>Everything in the Machine Layer findings is
+      fixable without new product work</strong>, and costs nothing to verify again. That's the fastest lever
+      available before anything else gets touched.
+    </p>
+    <div class="cta-row">
+      <a href="#" class="cta-primary">Discuss the full engagement</a>
+      <a href="#" class="cta-secondary">Download this report (PDF)</a>
+    </div>
+    <div class="closing-foot">
+      <span>Prepared for fernbridge.io</span>
+      <span>Archdrift — completed in under an hour, near-zero cost to run</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var bar = document.getElementById('progress');
+    function update(){
+      var h = document.documentElement;
+      var scrolled = h.scrollTop;
+      var height = h.scrollHeight - h.clientHeight;
+      bar.style.width = (height > 0 ? (scrolled/height)*100 : 0) + '%';
+    }
+    document.addEventListener('scroll', update, {passive:true});
+    update();
+  })();
+
+  (function(){
+    var blocks = document.querySelectorAll('.block');
+    if('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('is-visible'); });
+      }, {threshold:0.1});
+      blocks.forEach(function(b){obs.observe(b);});
+    } else {
+      blocks.forEach(function(b){b.classList.add('is-visible');});
+    }
+  })();
+
+  document.querySelectorAll('.finding-head').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var f = btn.closest('.finding');
+      var open = f.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+  });
+</script>
+
+</body>
+</html>

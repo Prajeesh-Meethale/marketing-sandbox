@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fernbridge — AI Reception Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#16233A;
+    --void-2:#1E3050;
+    --paper:#E8ECEA;
+    --paper-2:#DCE2DE;
+    --line:#B9C2BC;
+    --ink:#1B2422;
+    --amber:#D9791F;
+    --teal:#256B5C;
+    --muted:#67716B;
+    --on-void:#EAF0EC;
+    --on-void-dim:#93A5AE;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--amber); color:var(--void);}
+
+  .mono{font-family:'Space Mono', monospace;}
+  .display{font-family:'Space Grotesk', sans-serif;}
+
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; margin:0; font-weight:600; letter-spacing:-0.01em;}
+
+  :focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
+  .skip-link{position:absolute; left:-999px; top:0; background:var(--amber); color:var(--void); padding:10px 16px; z-index:100; font-family:'Space Mono',monospace; font-size:0.85rem;}
+  .skip-link:focus{left:12px; top:12px;}
+
+  /* ---------- top dial nav ---------- */
+  .dial-nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(232,236,234,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center;
+    padding:0 20px;
+    height:52px;
+    overflow-x:auto;
+    gap:2px;
+  }
+  .dial-nav a{
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-decoration:none;
+    padding:8px 14px;
+    white-space:nowrap;
+    border-bottom:2px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+    position:relative;
+  }
+  .dial-nav a::before{content:"⏐"; margin-right:8px; color:var(--line); font-weight:400;}
+  .dial-nav a.active{color:var(--ink); border-bottom-color:var(--amber);}
+  .dial-nav a:hover{color:var(--ink);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:linear-gradient(160deg, var(--void) 0%, var(--void-2) 100%);
+    color:var(--on-void);
+    padding:64px 24px 0;
+    position:relative;
+  }
+  .hero-inner{max-width:760px; margin:0 auto;}
+
+  .scan-line{
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.05em;
+    color:var(--amber);
+    min-height:1.4em;
+    margin-bottom:28px;
+  }
+  .scan-line .bar{display:inline-block; width:8px; height:1em; background:var(--amber); vertical-align:middle; margin-left:2px; animation:blink 0.9s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  .hero h1{
+    font-size:clamp(2rem, 5vw, 3.2rem);
+    line-height:1.12;
+    font-weight:700;
+    max-width:15ch;
+  }
+  .hero h1 .hit{color:var(--amber);}
+
+  .hero-sub{
+    max-width:52ch;
+    font-family:'Source Serif 4', serif;
+    font-size:1.08rem;
+    color:var(--on-void-dim);
+    margin-top:24px;
+  }
+  .hero-sub strong{color:var(--on-void); font-weight:600;}
+
+  .hero-meta{
+    margin-top:40px;
+    display:flex; gap:28px; flex-wrap:wrap;
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    color:var(--on-void-dim);
+    letter-spacing:0.04em;
+    padding-bottom:32px;
+    border-bottom:1px solid rgba(234,240,236,0.14);
+  }
+  .hero-meta span b{color:var(--on-void); font-weight:700;}
+
+  /* ---------- pulse strip ---------- */
+  .pulse-wrap{
+    background:var(--void-2);
+    padding:0 24px 56px;
+  }
+  .pulse-inner{max-width:760px; margin:0 auto;}
+  .pulse-label{
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--on-void-dim);
+    padding-top:28px;
+    margin-bottom:14px;
+  }
+  .pulse-strip{
+    width:100%;
+    height:120px;
+    display:block;
+  }
+  .pulse-strip .grid-line{stroke:rgba(234,240,236,0.08); stroke-width:1;}
+  .pulse-strip .trace{fill:none; stroke:rgba(234,240,236,0.35); stroke-width:1.5;}
+  .pulse-strip .spike{fill:none; stroke:var(--amber); stroke-width:2.5;}
+  .pulse-strip .sweep{stroke:var(--on-void); stroke-width:1; opacity:0.5;}
+  .pulse-strip .tick-label{fill:var(--on-void-dim); font-family:'Space Mono', monospace; font-size:9px;}
+  .pulse-strip .tick-label.hit{fill:var(--amber); font-weight:700;}
+
+  /* ---------- section shell ---------- */
+  main{max-width:720px; margin:0 auto; padding:0 24px;}
+  section.block{
+    padding:76px 0 60px;
+    border-bottom:1px solid var(--line);
+    opacity:0; transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  section.block.is-visible{opacity:1; transform:translateY(0);}
+  section.block:last-of-type{border-bottom:none;}
+
+  .freq-tag{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Space Mono', monospace;
+    font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:18px;
+  }
+  .freq-tag::after{content:""; flex:1; height:1px; background:var(--line); min-width:30px;}
+
+  .block h2{
+    font-size:clamp(1.4rem, 2.6vw, 1.9rem);
+    max-width:22ch;
+  }
+  .block .lede{
+    margin-top:14px;
+    font-family:'Source Serif 4', serif;
+    font-size:1.04rem;
+    color:#3C463F;
+    max-width:56ch;
+  }
+
+  /* ---------- module 1: reception ---------- */
+  .reading-row{
+    display:flex; gap:56px; flex-wrap:wrap;
+    margin-top:36px;
+    align-items:flex-end;
+  }
+  .reading .value{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(2.6rem, 6vw, 3.8rem);
+    line-height:1;
+  }
+  .reading.primary .value{color:var(--amber);}
+  .reading .unit{font-size:0.42em; font-weight:500; color:var(--muted); margin-left:6px;}
+  .reading .caption{
+    font-family:'Space Mono', monospace;
+    font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--muted); margin-top:8px;
+  }
+
+  .verdict-note{
+    margin-top:32px;
+    font-family:'Source Serif 4', serif;
+    font-style:italic;
+    font-size:1.08rem;
+    padding-left:18px;
+    border-left:3px solid var(--amber);
+    color:#20281F;
+  }
+
+  /* ---------- module 2: transmissions ---------- */
+  .transmission{
+    margin-top:20px;
+    border:1px solid var(--line);
+    background:#F3F5F2;
+    border-radius:2px;
+  }
+  .transmission-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 16px;
+    border-bottom:1px solid var(--line);
+    font-family:'Space Mono', monospace;
+    font-size:0.7rem;
+    color:var(--muted);
+    letter-spacing:0.03em;
+  }
+  .transmission-head .rx{
+    display:flex; align-items:center; gap:8px;
+  }
+  .wave-icon{display:inline-flex; gap:2px; align-items:flex-end; height:12px;}
+  .wave-icon i{width:2.5px; background:var(--muted); display:block;}
+  .transmission.hit .wave-icon i{background:var(--teal);}
+  .transmission.miss .wave-icon i{background:var(--amber);}
+  .transmission-body{padding:16px;}
+  .transmission-body q{
+    font-family:'Source Serif 4', serif;
+    font-size:0.98rem;
+    color:#2A322A;
+    quotes:none;
+  }
+  .transmission-body mark{
+    background:none; color:var(--amber); font-weight:600;
+    text-decoration:underline; text-decoration-style:dotted; text-underline-offset:3px;
+  }
+  .transmission-body mark.us{color:var(--teal);}
+  .result-line{
+    margin-top:12px;
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem; letter-spacing:0.04em; text-transform:uppercase;
+  }
+  .transmission.hit .result-line{color:var(--teal);}
+  .transmission.miss .result-line{color:var(--amber);}
+
+  .tally{margin-top:28px; display:flex; gap:22px; flex-wrap:wrap;}
+  .tally-item{font-family:'Space Mono', monospace; font-size:0.78rem;}
+  .tally-item .n{color:var(--amber); font-weight:700;}
+
+  /* ---------- module 3: reception strength ---------- */
+  .source-grid{margin-top:32px; display:grid; gap:0;}
+  .source-row{
+    display:grid; grid-template-columns:1fr auto 100px;
+    align-items:center; gap:18px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .source-row .domain{font-family:'Space Mono', monospace; font-size:0.85rem;}
+  .bars{display:flex; gap:3px; align-items:flex-end; height:20px;}
+  .bars i{width:5px; display:block; background:var(--paper-2); border-radius:1px;}
+  .bars i.on{background:var(--amber);}
+  .source-row .status{
+    font-family:'Space Mono', monospace; font-size:0.66rem;
+    letter-spacing:0.04em; text-transform:uppercase; text-align:right;
+  }
+  .source-row .status.miss{color:var(--amber);}
+  .source-row .status.hit{color:var(--teal);}
+
+  .forensic-readout{
+    margin-top:28px;
+    padding:16px 18px;
+    background:var(--paper-2);
+    border-radius:2px;
+    font-size:0.96rem;
+  }
+  .forensic-readout::before{
+    content:"›"; color:var(--amber); font-family:'Space Mono', monospace; margin-right:8px; font-weight:700;
+  }
+
+  /* ---------- module 4: diagnostic panel ---------- */
+  .diag-group{margin-top:40px;}
+  .diag-group h3{
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:0.98rem;
+    color:var(--ink);
+  }
+  .diag{
+    margin-top:14px;
+    border:1px solid var(--line);
+    background:#F3F5F2;
+    border-radius:2px;
+  }
+  .diag-head{
+    width:100%; display:flex; align-items:center; gap:14px;
+    padding:14px 16px;
+    background:none; border:none; cursor:pointer; text-align:left;
+    font-family:'Space Grotesk', sans-serif; font-size:0.92rem; color:var(--ink);
+  }
+  .diag-head:hover{background:rgba(0,0,0,0.02);}
+  .gauge{flex-shrink:0; width:30px; height:30px;}
+  .diag-head .symptom{flex:1;}
+  .diag-head .conf-label{
+    font-family:'Space Mono', monospace; font-size:0.62rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--muted); white-space:nowrap;
+  }
+  .diag-chevron{
+    width:8px; height:8px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted);
+    transform:rotate(45deg); transition:transform .25s ease; flex-shrink:0;
+  }
+  .diag.open .diag-chevron{transform:rotate(-135deg);}
+  .diag-body{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+  .diag.open .diag-body{max-height:420px;}
+  .diag-body-inner{padding:0 16px 20px 60px; font-size:0.92rem; display:grid; gap:10px;}
+  .diag-body-inner .row{display:flex; gap:10px;}
+  .diag-body-inner .k{
+    font-family:'Space Mono', monospace; font-size:0.64rem; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--muted); width:100px; flex-shrink:0; padding-top:2px;
+  }
+  .diag-fix{
+    margin-top:6px; padding-top:12px; border-top:1px dashed var(--line);
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+  .fix-desc{font-family:'Source Serif 4', serif; font-size:0.9rem;}
+  .fix-tag{
+    font-family:'Space Mono', monospace; font-size:0.65rem; letter-spacing:0.04em; text-transform:uppercase;
+    padding:3px 8px; border:1px solid currentColor; border-radius:2px;
+  }
+  .fix-tag.win{color:var(--teal);}
+  .fix-tag.mid{color:var(--amber);}
+  .fix-tag.heavy{color:var(--muted);}
+
+  .all-clear{
+    margin-top:36px;
+    padding:14px 18px;
+    background:rgba(37,107,92,0.08);
+    border:1px solid rgba(37,107,92,0.28);
+    border-radius:2px;
+    font-family:'Space Mono', monospace;
+    font-size:0.82rem;
+    color:var(--teal);
+  }
+  .all-clear .note{
+    display:block; margin-top:6px;
+    font-family:'Source Serif 4', serif; font-size:0.92rem; color:#26382F; font-style:italic;
+  }
+
+  /* ---------- module 5: tuning plan ---------- */
+  .tuning-plan{margin-top:36px;}
+  .tuning-phase{margin-top:32px;}
+  .tuning-phase .phase-head{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:'Space Mono', monospace; font-size:0.72rem; color:var(--amber); letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .tuning-phase h3{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.02rem; margin-top:6px;}
+  .tuning-item{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
+    padding:12px 0; border-top:1px solid var(--line);
+  }
+  .tuning-item .desc{font-family:'Source Serif 4', serif; font-size:0.94rem; max-width:44ch;}
+  .impact{
+    font-family:'Space Mono', monospace; font-size:0.62rem; letter-spacing:0.04em; text-transform:uppercase;
+    padding:3px 8px; border-radius:2px; flex-shrink:0; white-space:nowrap;
+  }
+  .impact.high{background:rgba(217,121,31,0.12); color:var(--amber);}
+  .impact.medium{background:rgba(103,113,107,0.12); color:var(--muted);}
+
+  /* ---------- closing ---------- */
+  .closing{
+    background:linear-gradient(200deg, var(--void-2) 0%, var(--void) 100%);
+    color:var(--on-void);
+    padding:88px 24px 60px;
+  }
+  .closing-inner{max-width:680px; margin:0 auto;}
+  .closing .freq-tag{color:var(--on-void-dim);}
+  .closing .freq-tag::after{background:rgba(234,240,236,0.2);}
+  .closing h2{color:var(--on-void); font-size:clamp(1.5rem, 3vw, 2.1rem); max-width:20ch;}
+  .closing p{
+    font-family:'Source Serif 4', serif;
+    color:var(--on-void-dim); font-size:1.04rem; margin-top:20px; max-width:56ch;
+  }
+  .closing p strong{color:var(--on-void); font-weight:600;}
+  .cta-row{margin-top:38px; display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
+  .cta-primary{
+    font-family:'Space Mono', monospace; font-size:0.78rem; letter-spacing:0.05em; text-transform:uppercase;
+    background:var(--amber); color:var(--void); padding:14px 22px; border-radius:2px;
+    text-decoration:none; font-weight:700; transition:transform .15s ease;
+  }
+  .cta-primary:hover{transform:translateY(-2px);}
+  .cta-secondary{font-family:'Space Mono', monospace; font-size:0.76rem; color:var(--on-void-dim); text-decoration:underline; text-underline-offset:3px;}
+  .closing-foot{
+    margin-top:56px; padding-top:22px; border-top:1px solid rgba(234,240,236,0.12);
+    font-family:'Space Mono', monospace; font-size:0.68rem; color:var(--on-void-dim);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:640px){
+    .hero{padding:48px 18px 0;}
+    main{padding:0 18px;}
+    .source-row{grid-template-columns:1fr auto 70px; gap:10px;}
+    .diag-body-inner{padding-left:16px;}
+    .diag-head{gap:10px;}
+    .reading-row{gap:32px;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#m1" class="skip-link">Skip to report</a>
+
+<nav class="dial-nav" aria-label="Report sections">
+  <a href="#m1" data-s="m1">01 Reception</a>
+  <a href="#m2" data-s="m2">02 Transcript</a>
+  <a href="#m3" data-s="m3">03 Source Trace</a>
+  <a href="#m4" data-s="m4">04 Diagnostic</a>
+  <a href="#m5" data-s="m5">05 Tuning Plan</a>
+  <a href="#closing" data-s="closing">Assessment</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="scan-line mono">SCANNING FOR SIGNAL: FERNBRIDGE<span class="bar"></span></div>
+    <h1 id="typewriter" aria-live="polite"></h1>
+    <p class="hero-sub">
+      Four AI systems, asked twelve real buying questions people use to choose scheduling software.
+      This is what came back — and <strong>why the signal is this weak.</strong>
+    </p>
+    <div class="hero-meta">
+      <span>SUBJECT <b>fernbridge.io</b></span>
+      <span>SWEPT <b>21 JUL 2026</b></span>
+      <span>RECEIVERS <b>ChatGPT · Perplexity · Gemini · Claude</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="pulse-wrap">
+  <div class="pulse-inner">
+    <div class="pulse-label mono">Reception trace — 12 queries, amplitude = mention rank</div>
+    <svg class="pulse-strip" viewBox="0 0 720 120" preserveAspectRatio="none" role="img" aria-label="Reception trace showing one detected signal out of twelve queries">
+      <line class="grid-line" x1="0" y1="30" x2="720" y2="30"/>
+      <line class="grid-line" x1="0" y1="60" x2="720" y2="60"/>
+      <line class="grid-line" x1="0" y1="90" x2="720" y2="90"/>
+      <polyline class="trace" points="0,90 60,90 60,88 120,88 120,90 180,90 180,89 240,89 240,90 300,90 300,86 360,86 360,90 420,90 420,90 480,90 480,90 540,90 540,90 600,90 600,88 660,88 660,90 720,90"/>
+      <polyline class="spike" points="480,90 480,34 540,34 540,90"/>
+      <line class="sweep" x1="0" y1="0" x2="0" y2="120" id="sweepLine"/>
+      <text x="15" y="112" class="tick-label">Q1</text>
+      <text x="495" y="112" class="tick-label hit">Q9 — hit</text>
+      <text x="690" y="112" class="tick-label">Q12</text>
+    </svg>
+  </div>
+</div>
+
+<main>
+
+  <section id="m1" class="block">
+    <div class="freq-tag">Freq 01 — Reception Check</div>
+    <h2>Is Fernbridge being picked up at all?</h2>
+    <p class="lede">Twelve buying questions, run against four models. Rank 1 counted as strong reception, omission counted as silence.</p>
+
+    <div class="reading-row">
+      <div class="reading primary">
+        <div class="value" data-count="1" data-of="12">– / 12</div>
+        <div class="caption">Queries where Fernbridge was recommended</div>
+      </div>
+      <div class="reading">
+        <div class="value" data-count="74">–<span class="unit">/100</span></div>
+        <div class="caption">Technical reception score</div>
+      </div>
+    </div>
+
+    <div class="verdict-note">
+      "The site is readable. The signal just isn't strong enough to be picked up when it matters — at the moment someone is actually comparing tools."
+    </div>
+  </section>
+
+  <section id="m2" class="block">
+    <div class="freq-tag">Freq 02 — Transcript</div>
+    <h2>What buyers are actually hearing</h2>
+    <p class="lede">Raw model output, unedited. <strong>Deputy</strong> and <strong>When I Work</strong> came through clearly. Fernbridge came through once.</p>
+
+    <div class="transmission miss">
+      <div class="transmission-head">
+        <span class="rx"><span class="wave-icon"><i style="height:4px"></i><i style="height:8px"></i><i style="height:3px"></i></span>ChatGPT</span>
+        <span>"best employee scheduling software for retail"</span>
+      </div>
+      <div class="transmission-body">
+        <q>For retail teams, <mark>Deputy</mark> is widely used for its shift-swapping and labor-compliance
+        tools. <mark>When I Work</mark> is another strong pick, especially for hourly teams needing mobile-first
+        scheduling.</q>
+        <div class="result-line">No signal — Fernbridge not mentioned</div>
+      </div>
+    </div>
+
+    <div class="transmission miss">
+      <div class="transmission-head">
+        <span class="rx"><span class="wave-icon"><i style="height:4px"></i><i style="height:8px"></i><i style="height:3px"></i></span>Gemini</span>
+        <span>"workforce management software comparison"</span>
+      </div>
+      <div class="transmission-body">
+        <q>Common comparisons in this category include <mark>Homebase</mark>, praised for its free tier,
+        and <mark>Deputy</mark>, which scales well for multi-location businesses with compliance needs.</q>
+        <div class="result-line">No signal — Fernbridge not mentioned</div>
+      </div>
+    </div>
+
+    <div class="transmission hit">
+      <div class="transmission-head">
+        <span class="rx"><span class="wave-icon"><i style="height:4px"></i><i style="height:8px"></i><i style="height:3px"></i></span>Claude</span>
+        <span>"free employee scheduling tool"</span>
+      </div>
+      <div class="transmission-body">
+        <q>A few options: <mark>Homebase</mark> offers a generous free tier for small teams, and
+        <mark class="us">Fernbridge</mark> has a lighter free plan aimed at field-service crews specifically.</q>
+        <div class="result-line">Signal detected — mentioned, rank #2 of 2</div>
+      </div>
+    </div>
+
+    <div class="tally">
+      <div class="tally-item"><span class="n">10/12</span> — Deputy cited</div>
+      <div class="tally-item"><span class="n">8/12</span> — When I Work cited</div>
+      <div class="tally-item"><span class="n">6/12</span> — Homebase cited</div>
+    </div>
+  </section>
+
+  <section id="m3" class="block">
+    <div class="freq-tag">Freq 03 — Source Trace</div>
+    <h2>Why competitors are coming through louder</h2>
+    <p class="lede">Every answer traces back to somewhere the model trusts. We followed the trail.</p>
+
+    <div class="forensic-readout">
+      Gemini's comparison pulled from three review aggregators. Deputy and Homebase are indexed on
+      all three. Fernbridge is indexed on one — so the model had confirmable ground to stand on for
+      competitors, and none for Fernbridge.
+    </div>
+
+    <div class="source-grid">
+      <div class="source-row">
+        <div class="domain mono">g2.com</div>
+        <div class="bars"><i class="on" style="height:6px"></i><i class="on" style="height:10px"></i><i class="on" style="height:14px"></i><i class="on" style="height:18px"></i><i style="height:20px"></i></div>
+        <div class="status miss">not indexed</div>
+      </div>
+      <div class="source-row">
+        <div class="domain mono">capterra.com</div>
+        <div class="bars"><i class="on" style="height:6px"></i><i class="on" style="height:10px"></i><i class="on" style="height:14px"></i><i style="height:18px"></i><i style="height:20px"></i></div>
+        <div class="status hit">indexed</div>
+      </div>
+      <div class="source-row">
+        <div class="domain mono">softwareadvice.com</div>
+        <div class="bars"><i class="on" style="height:6px"></i><i class="on" style="height:10px"></i><i style="height:14px"></i><i style="height:18px"></i><i style="height:20px"></i></div>
+        <div class="status miss">not indexed</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="m4" class="block">
+    <div class="freq-tag">Freq 04 — Diagnostic</div>
+    <h2>What AI sees when it looks at fernbridge.io directly</h2>
+    <p class="lede">Zero cost to run, seconds to check. This is the part fully within Fernbridge's own control.</p>
+
+    <div class="diag-group">
+      <h3>No direct line to the receivers</h3>
+      <div class="diag">
+        <button class="diag-head" aria-expanded="false">
+          <svg class="gauge" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="#DCE2DE" stroke-width="4"/><circle cx="18" cy="18" r="15" fill="none" stroke="#D9791F" stroke-width="4" stroke-dasharray="94.2" stroke-dashoffset="0" transform="rotate(-90 18 18)"/></svg>
+          <span class="symptom">No llms.txt — models get nothing straight from the source</span>
+          <span class="conf-label">Confidence: High</span>
+          <span class="diag-chevron"></span>
+        </button>
+        <div class="diag-body">
+          <div class="diag-body-inner">
+            <div class="row"><span class="k">Mechanism</span><span>No llms.txt, no blocking in robots.txt — crawlers can enter, but nothing points them to what matters.</span></div>
+            <div class="row"><span class="k">Cost</span><span>Models default to third-party pages about Fernbridge instead of what the company would say directly.</span></div>
+            <div class="diag-fix">
+              <span class="fix-desc">Publish llms.txt</span>
+              <span class="fix-tag win">Quick win · low effort</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag-group">
+      <h3>Present, but not quotable</h3>
+      <div class="diag">
+        <button class="diag-head" aria-expanded="false">
+          <svg class="gauge" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="#DCE2DE" stroke-width="4"/><circle cx="18" cy="18" r="15" fill="none" stroke="#D9791F" stroke-width="4" stroke-dasharray="94.2" stroke-dashoffset="0" transform="rotate(-90 18 18)"/></svg>
+          <span class="symptom">No FAQ schema, no direct-answer content on pricing or comparison pages</span>
+          <span class="conf-label">Confidence: High</span>
+          <span class="diag-chevron"></span>
+        </button>
+        <div class="diag-body">
+          <div class="diag-body-inner">
+            <div class="row"><span class="k">Mechanism</span><span>Models quote pages that already read like an answer. Fernbridge's pages sell — they don't answer.</span></div>
+            <div class="row"><span class="k">Cost</span><span>This is why Deputy gets quoted directly and Fernbridge gets left out of the same list entirely.</span></div>
+            <div class="diag-fix">
+              <span class="fix-desc">Rewrite pricing + comparison pages to open with a direct answer, add FAQ schema</span>
+              <span class="fix-tag mid">Medium effort</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag-group">
+      <h3>Possibly invisible to non-JS crawlers</h3>
+      <div class="diag">
+        <button class="diag-head" aria-expanded="false">
+          <svg class="gauge" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="#DCE2DE" stroke-width="4"/><circle cx="18" cy="18" r="15" fill="none" stroke="#67716B" stroke-width="4" stroke-dasharray="47" stroke-dashoffset="0" transform="rotate(-90 18 18)"/></svg>
+          <span class="symptom">Feature pages render client-side, no fallback</span>
+          <span class="conf-label">Confidence: Medium</span>
+          <span class="diag-chevron"></span>
+        </button>
+        <div class="diag-body">
+          <div class="diag-body-inner">
+            <div class="row"><span class="k">Mechanism</span><span>No SSR or noscript fallback on the feature pages — a bot that skips JS may see nothing there.</span></div>
+            <div class="row"><span class="k">Cost</span><span>Content already written may functionally not exist to a share of the crawlers reaching the site.</span></div>
+            <div class="diag-fix">
+              <span class="fix-desc">Add SSR or noscript fallback on feature pages</span>
+              <span class="fix-tag heavy">High effort · needs a dev</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="all-clear mono">
+      ALL CLEAR — HTTPS · PAGE WEIGHT · LANG ATTRIBUTE: PASS
+      <span class="note">This was never a broken-site problem. The foundation holds.</span>
+    </div>
+  </section>
+
+  <section id="m5" class="block">
+    <div class="freq-tag">Freq 05 — Tuning Plan</div>
+    <h2>What to adjust, in order</h2>
+    <p class="lede">Sorted by how directly each change moves the reception rate.</p>
+
+    <div class="tuning-plan">
+      <div class="tuning-phase">
+        <div class="phase-head mono">Phase 1</div>
+        <h3>Open a direct line</h3>
+        <div class="tuning-item">
+          <div class="desc">Publish llms.txt so models get brand-controlled context.</div>
+          <div class="impact high">High</div>
+        </div>
+        <div class="tuning-item">
+          <div class="desc">Add FAQ schema and direct-answer openings to pricing and comparison pages.</div>
+          <div class="impact high">High</div>
+        </div>
+      </div>
+      <div class="tuning-phase">
+        <div class="phase-head mono">Phase 2</div>
+        <h3>Get onto the sources models trust</h3>
+        <div class="tuning-item">
+          <div class="desc">Get indexed on G2 and Software Advice — the two aggregators Fernbridge is missing from.</div>
+          <div class="impact high">High</div>
+        </div>
+        <div class="tuning-item">
+          <div class="desc">Publish a comparison page against Deputy and When I Work, aimed at field-service use cases.</div>
+          <div class="impact medium">Medium</div>
+        </div>
+      </div>
+      <div class="tuning-phase">
+        <div class="phase-head mono">Phase 3</div>
+        <h3>Confirm the signal held</h3>
+        <div class="tuning-item">
+          <div class="desc">Add SSR fallback to feature pages.</div>
+          <div class="impact medium">Medium</div>
+        </div>
+        <div class="tuning-item">
+          <div class="desc">Re-run this scan in 30 days and compare the reception rate.</div>
+          <div class="impact medium">Medium</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="closing" id="closing">
+  <div class="closing-inner">
+    <div class="freq-tag">Final Assessment</div>
+    <h2>The gap isn't the product. It's the signal.</h2>
+    <p>
+      Fernbridge is a real option for field-service scheduling — the models just don't have enough to
+      go on to say so with confidence. <strong>Everything in the diagnostic panel is fixable without new
+      product work</strong>, and most of it costs nothing to check again. That's the fastest lever available
+      before anything else gets touched.
+    </p>
+    <div class="cta-row">
+      <a href="#" class="cta-primary">Discuss the full engagement →</a>
+      <a href="#" class="cta-secondary">Download this report (PDF)</a>
+    </div>
+    <div class="closing-foot">
+      <span>Subject: fernbridge.io</span>
+      <span>Archdrift — scanned in under an hour, near-zero cost to run</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var el = document.getElementById('typewriter');
+    var text = 'Fernbridge came through once. Out of twelve.';
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced){ el.textContent = text; return; }
+    var i = 0;
+    function tick(){
+      if(i <= text.length){
+        el.innerHTML = text.slice(0, i).replace('once.', '<span class="hit">once.</span>');
+        i++;
+        setTimeout(tick, 22);
+      }
+    }
+    tick();
+  })();
+
+  (function(){
+    var blocks = document.querySelectorAll('.block');
+    if('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('is-visible'); });
+      }, {threshold:0.12});
+      blocks.forEach(function(b){obs.observe(b);});
+    } else {
+      blocks.forEach(function(b){b.classList.add('is-visible');});
+    }
+  })();
+
+  (function(){
+    var sections = document.querySelectorAll('main .block, .closing');
+    var links = document.querySelectorAll('.dial-nav a');
+    if(!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var id = entry.target.id;
+        var link = document.querySelector('.dial-nav a[data-s="'+id+'"]');
+        if(entry.isIntersecting && link){
+          links.forEach(function(l){l.classList.remove('active');});
+          link.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-35% 0px -55% 0px'});
+    sections.forEach(function(s){obs.observe(s);});
+  })();
+
+  (function(){
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var primary = document.querySelector('.reading.primary .value');
+    var second = document.querySelector('.reading:not(.primary) .value');
+    function animateFraction(el, target, of){
+      if(reduced){ el.textContent = target + ' / ' + of; return; }
+      var c = 0;
+      var t = setInterval(function(){ c++; el.textContent = c + ' / ' + of; if(c>=target) clearInterval(t); }, 400);
+    }
+    function animateNumber(el, target){
+      if(reduced){ el.innerHTML = target + '<span class="unit">/100</span>'; return; }
+      var c = 0; var step = Math.max(1, Math.round(target/28));
+      var t = setInterval(function(){ c += step; if(c>=target){c=target; clearInterval(t);} el.innerHTML = c + '<span class="unit">/100</span>'; }, 22);
+    }
+    var started = false;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting && !started){
+          started = true;
+          animateFraction(primary, parseInt(primary.dataset.count), parseInt(primary.dataset.of));
+          animateNumber(second, parseInt(second.dataset.count));
+        }
+      });
+    }, {threshold:0.5});
+    if(primary) obs.observe(primary);
+  })();
+
+  (function(){
+    var sweep = document.getElementById('sweepLine');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced || !sweep) return;
+    var x = 0;
+    function animate(){
+      x += 3;
+      if(x > 720) x = 0;
+      sweep.setAttribute('x1', x); sweep.setAttribute('x2', x);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  })();
+
+  document.querySelectorAll('.diag-head').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var diag = btn.closest('.diag');
+      var open = diag.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -24,7 +24,14 @@ export default function Home() {
         body: JSON.stringify({ companyName, websiteUrl })
       });
       
-      const data = await response.json();
+      let data;
+      const text = await response.text();
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        throw new Error(!response.ok ? text : "Invalid JSON response from server");
+      }
+
       if (!response.ok) throw new Error(data.error || "Failed to infer context");
       
       setInferredData(data);
@@ -65,7 +72,14 @@ export default function Home() {
       clearTimeout(timer);
       clearTimeout(timer2);
 
-      const data = await response.json();
+      let data;
+      const text = await response.text();
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        throw new Error(!response.ok ? text : "Invalid JSON response from server");
+      }
+
       if (!response.ok) throw new Error(data.error || "Failed to generate report");
 
       window.location.href = "/report";

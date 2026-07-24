@@ -1002,7 +1002,7 @@ export function PremiumReportView({ data }: PremiumReportViewProps) {
 
           <div className="pt-12 border-t border-[#EDEBE3]/10 font-roboto-mono text-[0.66rem] text-[#9B9A8F] flex flex-wrap justify-between gap-3">
             <span>Prepared for {metadata.domainHost}</span>
-            <span>Archdrift — Completed in under an hour</span>
+            <span>Archdrift — Proprietary AI Visibility Audit</span>
           </div>
         </div>
       </footer>

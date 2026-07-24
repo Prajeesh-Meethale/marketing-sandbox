@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case File AD-2607-114 — Sleepy Owl Coffee · AI Visibility Investigation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161A22;
+    --ink-2:#1F2530;
+    --parchment:#EDE6D3;
+    --parchment-2:#E3DAC2;
+    --line:#C7BB9C;
+    --charcoal:#211E17;
+    --stamp-red:#8A2E2E;
+    --stamp-green:#33513A;
+    --gold:#A5772E;
+    --muted:#7A7360;
+    --on-ink:#EDE6D3;
+    --on-ink-dim:#9A9A8E;
+    --shadow: 0 18px 40px -18px rgba(20,16,8,0.35);
+    --radius-stamp: 3px 9px 4px 8px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--charcoal);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  ::selection{background:var(--gold); color:var(--parchment);}
+
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;background:var(--gold);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  /* ---------- skip link ---------- */
+  .skip-link{
+    position:absolute; left:-999px; top:0;
+    background:var(--gold); color:var(--ink); padding:10px 16px;
+    z-index:100; font-family:'IBM Plex Mono',monospace; font-size:0.85rem;
+  }
+  .skip-link:focus{left:12px; top:12px;}
+
+  :focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(1200px 600px at 15% -10%, #232A38 0%, transparent 60%),
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:var(--on-ink);
+    padding:56px 24px 88px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(237,230,211,0.025) 0px, rgba(237,230,211,0.025) 1px, transparent 1px, transparent 3px);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:920px; margin:0 auto; position:relative; z-index:1;}
+
+  .brandmark{
+    display:flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--on-ink-dim);
+    margin-bottom:44px;
+  }
+  .brandmark svg{flex-shrink:0;}
+
+  .case-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    color:var(--gold);
+    border:1px solid rgba(165,119,46,0.4);
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:var(--radius-stamp);
+    margin-bottom:28px;
+    transform:rotate(-1deg);
+  }
+
+  .hero-client{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--on-ink-dim);
+    margin-bottom:14px;
+  }
+
+  .verdict-line{
+    font-size:clamp(1.9rem, 4.6vw, 3.4rem);
+    line-height:1.14;
+    font-weight:600;
+    max-width:16ch;
+    min-height:1.14em;
+  }
+  .verdict-line em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--gold);
+  }
+  .cursor{
+    display:inline-block;
+    width:0.5ch;
+    background:var(--gold);
+    margin-left:2px;
+    animation:blink 0.9s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  .hero-sub{
+    max-width:56ch;
+    font-size:1.05rem;
+    color:var(--on-ink-dim);
+    margin-top:26px;
+    padding-top:26px;
+    border-top:1px solid rgba(237,230,211,0.14);
+  }
+  .hero-sub strong{color:var(--on-ink); font-weight:600;}
+
+  .scroll-cue{
+    margin-top:56px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--on-ink-dim);
+    display:flex; align-items:center; gap:10px;
+  }
+  .scroll-cue .arrow{animation:bob 1.8s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+
+  /* ---------- LAYOUT: rail + main ---------- */
+  .layout{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:0;
+  }
+  .rail{
+    position:sticky; top:0;
+    align-self:start;
+    height:100vh;
+    padding:40px 18px 40px 24px;
+    display:flex; flex-direction:column;
+    gap:2px;
+  }
+  .rail-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+  .rail a{
+    text-decoration:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--muted);
+    padding:9px 10px;
+    border-left:2px solid transparent;
+    transition:color .2s ease, border-color .2s ease, background .2s ease;
+    border-radius:0 3px 3px 0;
+  }
+  .rail a:hover{color:var(--charcoal); background:rgba(0,0,0,0.03);}
+  .rail a.active{
+    color:var(--charcoal);
+    border-left-color:var(--stamp-red);
+    background:rgba(138,46,46,0.06);
+    font-weight:500;
+  }
+
+  main{
+    padding:0 28px 0 32px;
+    border-left:1px solid var(--line);
+  }
+
+  /* ---------- MODULE shell ---------- */
+  .module{
+    padding:80px 0 56px;
+    border-bottom:1px solid var(--line);
+    max-width:760px;
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .module.is-visible{opacity:1; transform:translateY(0);}
+  .module:last-of-type{border-bottom:none;}
+
+  .module h2{
+    font-size:clamp(1.5rem, 2.6vw, 2rem);
+    margin-top:14px;
+    max-width:20ch;
+  }
+  .module .lede{
+    margin-top:16px;
+    font-size:1.02rem;
+    color:#3A362B;
+    max-width:58ch;
+  }
+
+  /* ---------- MODULE 1: reality check ---------- */
+  .metric-row{
+    display:flex; flex-wrap:wrap; gap:48px;
+    margin-top:40px;
+    align-items:flex-end;
+  }
+  .metric-hero .value{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(3.2rem, 8vw, 5.2rem);
+    line-height:0.9;
+    color:var(--stamp-red);
+  }
+  .metric-hero .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:10px;
+  }
+  .metric-sub .value{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:2.1rem;
+    color:var(--charcoal);
+  }
+  .metric-sub .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:6px;
+  }
+
+  .finding-callout{
+    margin-top:32px;
+    padding:18px 20px;
+    background:var(--parchment-2);
+    border-left:3px solid var(--gold);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.05rem;
+    color:#332C1E;
+  }
+
+  .matrix-note{
+    margin-top:36px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .matrix{
+    margin-top:14px;
+    display:grid;
+    grid-template-columns:140px repeat(4, 1fr);
+    gap:6px;
+    max-width:640px;
+  }
+  .matrix .h{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    align-self:end;
+    padding-bottom:6px;
+  }
+  .matrix .row-label{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:0.82rem;
+    color:var(--charcoal);
+    display:flex;
+    align-items:center;
+    padding-right:8px;
+  }
+  .cell{
+    aspect-ratio:1/1;
+    border-radius:4px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    cursor:default;
+    position:relative;
+  }
+  .cell.absent{background:rgba(138,46,46,0.12); color:var(--stamp-red); border:1px solid rgba(138,46,46,0.3);}
+  .cell.present{background:rgba(51,81,58,0.14); color:var(--stamp-green); border:1px solid rgba(51,81,58,0.35);}
+  .cell:hover::after{
+    content:attr(data-tip);
+    position:absolute; bottom:110%; left:50%; transform:translateX(-50%);
+    background:var(--ink); color:var(--on-ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:0.72rem; line-height:1.3;
+    padding:8px 10px; border-radius:5px;
+    width:180px; z-index:5; box-shadow:var(--shadow);
+    pointer-events:none;
+  }
+
+  /* ---------- MODULE 2: evidence ---------- */
+  .exhibit{
+    margin-top:28px;
+    background:#FBF8EF;
+    border:1px solid var(--line);
+    border-radius:2px;
+    box-shadow:var(--shadow);
+    padding:22px 24px;
+    position:relative;
+  }
+  .exhibit::before{
+    content:attr(data-exhibit);
+    position:absolute; top:-11px; left:20px;
+    background:var(--stamp-red);
+    color:var(--parchment);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border-radius:var(--radius-stamp);
+    transform:rotate(-2deg);
+  }
+  .exhibit-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--muted);
+    margin-bottom:12px;
+    padding-top:6px;
+  }
+  .exhibit-body{
+    font-size:0.95rem;
+    color:#3A362B;
+  }
+  .exhibit-body mark{
+    background:none;
+    color:var(--stamp-red);
+    text-decoration:underline;
+    text-decoration-thickness:1.5px;
+    text-underline-offset:3px;
+    font-weight:600;
+  }
+  .exhibit-tag{
+    display:inline-block; margin-top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  .competitor-tally{
+    margin-top:28px;
+    display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .competitor-tally span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    background:rgba(138,46,46,0.08);
+    color:var(--stamp-red);
+    padding:5px 10px;
+    border-radius:var(--radius-stamp);
+    border:1px solid rgba(138,46,46,0.25);
+  }
+
+  /* ---------- MODULE 3: forensics ---------- */
+  .source-list{margin-top:34px;}
+  .source{
+    display:grid;
+    grid-template-columns:1fr 120px 90px;
+    align-items:center;
+    gap:16px;
+    padding:14px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .source .domain{font-family:'IBM Plex Mono', monospace; font-size:0.88rem;}
+  .source .bar-track{height:6px; background:rgba(0,0,0,0.06); border-radius:3px; overflow:hidden;}
+  .source .bar-fill{height:100%; background:var(--gold);}
+  .source .status{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase;
+    text-align:right;
+  }
+  .source .status.absent{color:var(--stamp-red);}
+  .source .status.present{color:var(--stamp-green);}
+
+  .forensic-line{
+    margin-top:30px;
+    padding:18px 20px;
+    background:var(--parchment-2);
+    border-left:3px solid var(--stamp-red);
+    font-size:0.98rem;
+  }
+
+  /* ---------- MODULE 4: machine layer ---------- */
+  .consequence-group{margin-top:44px;}
+  .consequence-group h3{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    color:var(--charcoal);
+    display:flex; align-items:center; gap:10px;
+  }
+  .consequence-group h3 .dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--stamp-red); flex-shrink:0;
+  }
+  .consequence-group.ok h3 .dot{background:var(--stamp-green);}
+
+  .finding{
+    margin-top:14px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    background:#FBF8EF;
+    overflow:hidden;
+  }
+  .finding-head{
+    width:100%;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px;
+    padding:14px 18px;
+    background:none; border:none;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:0.92rem; font-weight:500;
+    color:var(--charcoal);
+    cursor:pointer;
+    text-align:left;
+  }
+  .finding-head:hover{background:rgba(0,0,0,0.02);}
+  .finding-head .symptom{flex:1;}
+  .stamp{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.65rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:3px 9px;
+    border-radius:var(--radius-stamp);
+    border:1.5px solid currentColor;
+    transform:rotate(-2deg);
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+  .stamp.high{color:var(--stamp-red);}
+  .stamp.medium{color:var(--gold);}
+  .stamp.low{color:var(--muted);}
+  .quickwin{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.65rem;
+    color:var(--stamp-green);
+    border:1.5px solid var(--stamp-green);
+    padding:3px 9px;
+    border-radius:var(--radius-stamp);
+    transform:rotate(1.5deg);
+    white-space:nowrap;
+  }
+  .chevron{
+    width:9px; height:9px;
+    border-right:2px solid var(--muted); border-bottom:2px solid var(--muted);
+    transform:rotate(45deg);
+    transition:transform .25s ease;
+    flex-shrink:0;
+  }
+  .finding.open .chevron{transform:rotate(-135deg);}
+
+  .finding-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease;
+  }
+  .finding.open .finding-body{max-height:400px;}
+  .finding-body-inner{
+    padding:0 18px 20px;
+    font-size:0.9rem;
+    color:#3A362B;
+    display:grid;
+    gap:10px;
+  }
+  .finding-body-inner .row{display:flex; gap:8px;}
+  .finding-body-inner .k{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--muted); flex-shrink:0; width:110px; padding-top:2px;
+  }
+  .finding-body-inner .fix-row{
+    margin-top:4px; padding-top:12px; border-top:1px dashed var(--line);
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+  .effort-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem; color:var(--muted);
+  }
+
+  .confirming-line{
+    margin-top:44px;
+    padding:20px 22px;
+    background:rgba(51,81,58,0.07);
+    border:1px solid rgba(51,81,58,0.25);
+    border-radius:3px;
+    font-size:0.95rem;
+    color:#2A3B2E;
+    display:flex; gap:12px; align-items:flex-start;
+  }
+  .confirming-line .check{
+    color:var(--stamp-green); font-family:'IBM Plex Mono', monospace; font-weight:600; flex-shrink:0;
+  }
+
+  /* ---------- MODULE 5: roadmap ---------- */
+  .phase{
+    margin-top:38px;
+    padding-left:24px;
+    border-left:2px solid var(--line);
+    position:relative;
+  }
+  .phase::before{
+    content:attr(data-phase);
+    position:absolute; left:-13px; top:0;
+    width:24px; height:24px;
+    background:var(--ink);
+    color:var(--parchment);
+    border-radius:50%;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .phase h3{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600; font-size:1.02rem;
+    padding-bottom:2px;
+  }
+  .action-item{
+    margin-top:14px;
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
+    padding:12px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .action-item .desc{font-size:0.92rem; max-width:44ch;}
+  .action-item .tags{display:flex; gap:8px; flex-shrink:0;}
+  .impact-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.65rem; letter-spacing:0.05em; text-transform:uppercase;
+    padding:3px 8px; border-radius:3px;
+  }
+  .impact-tag.high{background:rgba(138,46,46,0.1); color:var(--stamp-red);}
+  .impact-tag.medium{background:rgba(165,119,46,0.12); color:var(--gold);}
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    background:linear-gradient(180deg, var(--ink-2) 0%, var(--ink) 100%);
+    color:var(--on-ink);
+    padding:90px 24px 70px;
+    margin-left:0;
+  }
+  .closing-inner{max-width:680px; margin:0 auto;}
+  .closing h2{
+    color:var(--on-ink);
+    font-size:clamp(1.6rem, 3vw, 2.2rem);
+    max-width:18ch;
+  }
+  .closing p{
+    color:var(--on-ink-dim);
+    font-size:1.02rem;
+    margin-top:20px;
+    max-width:56ch;
+  }
+  .closing p strong{color:var(--on-ink);}
+  .cta-row{
+    margin-top:40px;
+    display:flex; gap:16px; flex-wrap:wrap; align-items:center;
+  }
+  .cta-primary{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem; letter-spacing:0.05em; text-transform:uppercase;
+    background:var(--gold); color:var(--ink);
+    padding:14px 22px; border-radius:3px;
+    text-decoration:none; font-weight:600;
+    transition:transform .15s ease;
+  }
+  .cta-primary:hover{transform:translateY(-2px);}
+  .cta-secondary{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem; color:var(--on-ink-dim);
+    text-decoration:underline; text-underline-offset:3px;
+  }
+  .closing-foot{
+    margin-top:64px; padding-top:24px;
+    border-top:1px solid rgba(237,230,211,0.12);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem; color:var(--on-ink-dim);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .layout{grid-template-columns:1fr;}
+    .rail{
+      position:sticky; top:0; z-index:10;
+      height:auto; flex-direction:row; overflow-x:auto;
+      padding:12px 16px; background:var(--parchment); border-bottom:1px solid var(--line);
+      gap:4px;
+    }
+    .rail-title{display:none;}
+    .rail a{white-space:nowrap; border-left:none; border-bottom:2px solid transparent; border-radius:0;}
+    .rail a.active{border-left:none; border-bottom-color:var(--stamp-red); background:none;}
+    main{border-left:none; padding:0 20px;}
+    .matrix{grid-template-columns:100px repeat(4,1fr);}
+    .source{grid-template-columns:1fr 70px 80px;}
+  }
+  @media (max-width:520px){
+    .hero{padding:40px 18px 64px;}
+    .metric-row{gap:28px;}
+    .matrix{grid-template-columns:1fr; gap:2px;}
+    .matrix .h{display:none;}
+    .matrix .row-label{padding-top:10px;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#module-1" class="skip-link">Skip to report</a>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brandmark">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="15" y1="15" x2="21" y2="21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      Archdrift Investigations
+    </div>
+
+    <div class="case-meta mono">CASE FILE NO. AD-2607-114 &nbsp;·&nbsp; OPENED 21 JUL 2026</div>
+
+    <div class="hero-client mono">Subject: Sleepy Owl Coffee &nbsp;(sleepyowl.co)</div>
+
+    <h1 class="verdict-line" id="typewriter" aria-live="polite"></h1>
+
+    <p class="hero-sub">
+      This is not a monitoring dashboard. It's an investigation into what four AI systems tell buyers when they ask
+      about coffee brands like yours — and why <strong>the answer, so far, keeps leaving Sleepy Owl out.</strong>
+    </p>
+
+    <div class="scroll-cue"><span class="arrow">↓</span> Review the case, module by module</div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="rail" aria-label="Report sections">
+    <div class="rail-title">Case Index</div>
+    <a href="#module-1" data-section="module-1">01 — Reality Check</a>
+    <a href="#module-2" data-section="module-2">02 — Evidence</a>
+    <a href="#module-3" data-section="module-3">03 — Forensics</a>
+    <a href="#module-4" data-section="module-4">04 — Machine Layer</a>
+    <a href="#module-5" data-section="module-5">05 — Roadmap</a>
+    <a href="#closing" data-section="closing">Final Assessment</a>
+  </nav>
+
+  <main>
+
+    <!-- MODULE 1 -->
+    <section id="module-1" class="module">
+      <div class="eyebrow">Module 01 — The Reality Check</div>
+      <h2>Are AI systems recommending Sleepy Owl?</h2>
+      <p class="lede">We tested 12 real buying questions — the kind a first-time coffee buyer actually types — across ChatGPT, Perplexity, Gemini, and Claude.</p>
+
+      <div class="metric-row">
+        <div class="metric-hero">
+          <div class="value" data-count="1" data-of="12">0 / 12</div>
+          <div class="label">Buying questions where Sleepy Owl was recommended</div>
+        </div>
+        <div class="metric-sub">
+          <div class="value" data-count="80">0</div>
+          <div class="label">Technical readiness score</div>
+        </div>
+      </div>
+
+      <div class="finding-callout">
+        “AI understands Sleepy Owl's website reasonably well — it just almost never recommends the brand.”
+      </div>
+
+      <div class="matrix-note">Engine × query matrix — 4 of 12 questions shown</div>
+      <div class="matrix" role="table" aria-label="AI engine responses by query">
+        <div class="h"></div>
+        <div class="h">ChatGPT</div>
+        <div class="h">Perplexity</div>
+        <div class="h">Gemini</div>
+        <div class="h">Claude</div>
+
+        <div class="row-label">Best cold brew coffee brand India</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Blue Tokai, Rage Coffee">✕</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Blue Tokai, Continental">✕</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Blue Tokai, Rage Coffee">✕</div>
+        <div class="cell present" data-tip="Mentioned at rank #3">#3</div>
+
+        <div class="row-label">Healthiest instant coffee India</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Rage Coffee, Continental">✕</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Blue Tokai">✕</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Rage Coffee">✕</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Blue Tokai, Rage Coffee">✕</div>
+
+        <div class="row-label">Top D2C coffee brands India</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Blue Tokai, Rage Coffee, Continental">✕</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Blue Tokai, Rage Coffee">✕</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Blue Tokai">✕</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Rage Coffee, Continental">✕</div>
+
+        <div class="row-label">Coffee gift box under ₹1500</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Continental, Blue Tokai">✕</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Blue Tokai">✕</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Rage Coffee">✕</div>
+        <div class="cell absent" data-tip="Omitted. Recommended: Blue Tokai, Continental">✕</div>
+      </div>
+    </section>
+
+    <!-- MODULE 2 -->
+    <section id="module-2" class="module">
+      <div class="eyebrow">Module 02 — The Evidence</div>
+      <h2>What buyers are actually being told</h2>
+      <p class="lede">The models consistently named <strong>Blue Tokai</strong> and <strong>Rage Coffee</strong> instead of Sleepy Owl. Here's the raw output, unedited.</p>
+
+      <div class="exhibit" data-exhibit="Exhibit A">
+        <div class="exhibit-meta mono">ChatGPT · Query: "best cold brew coffee brand india"</div>
+        <div class="exhibit-body">
+          "For cold brew in India, <mark>Blue Tokai</mark> is one of the most recognized names, known for
+          single-origin sourcing. <mark>Rage Coffee</mark> is another strong option, popular for its
+          bold, high-caffeine blends aimed at younger buyers. Both offer nationwide delivery and
+          subscription options."
+        </div>
+        <div class="exhibit-tag mono">Sleepy Owl: not mentioned</div>
+      </div>
+
+      <div class="exhibit" data-exhibit="Exhibit B">
+        <div class="exhibit-meta mono">Perplexity · Query: "top D2C coffee brands india"</div>
+        <div class="exhibit-body">
+          "Leading D2C coffee brands in India include <mark>Blue Tokai Coffee Roasters</mark>, known for
+          specialty-grade beans, and <mark>Continental Coffee</mark>, a long-established name with wide
+          retail distribution. Both are frequently cited in coffee culture roundups."
+        </div>
+        <div class="exhibit-tag mono">Sleepy Owl: not mentioned</div>
+      </div>
+
+      <div class="exhibit" data-exhibit="Exhibit C">
+        <div class="exhibit-meta mono">Claude · Query: "best cold brew coffee brand india"</div>
+        <div class="exhibit-body">
+          "A few options worth considering: <mark>Blue Tokai</mark> for specialty single-origin cold brew,
+          and Sleepy Owl, a D2C brand known for convenient ready-to-drink formats."
+        </div>
+        <div class="exhibit-tag mono">Sleepy Owl: mentioned, rank #3 of 3</div>
+      </div>
+
+      <div class="competitor-tally">
+        <span>Blue Tokai — cited 9 / 12</span>
+        <span>Rage Coffee — cited 6 / 12</span>
+        <span>Continental — cited 4 / 12</span>
+      </div>
+    </section>
+
+    <!-- MODULE 3 -->
+    <section id="module-3" class="module">
+      <div class="eyebrow">Module 03 — The Forensics</div>
+      <h2>Why AI trusts your competitors more than you</h2>
+      <p class="lede">We traced each answer back to the sources the models actually cited when forming a recommendation.</p>
+
+      <div class="forensic-line">
+        ChatGPT looked for "best cold brew" across three cited roundup sites. Blue Tokai and Rage Coffee
+        appear on all three. Sleepy Owl appears on none of them — so the model defaulted to the brands
+        it could confirm.
+      </div>
+
+      <div class="source-list">
+        <div class="source">
+          <div class="domain">thebetterindia.com</div>
+          <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+          <div class="status absent">Sleepy Owl absent</div>
+        </div>
+        <div class="source">
+          <div class="domain">mensxp.com</div>
+          <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+          <div class="status absent">Sleepy Owl absent</div>
+        </div>
+        <div class="source">
+          <div class="domain">chefspencil.com</div>
+          <div class="bar-track"><div class="bar-fill" style="width:55%"></div></div>
+          <div class="status present">Sleepy Owl present</div>
+        </div>
+        <div class="source">
+          <div class="domain">vogue.in</div>
+          <div class="bar-track"><div class="bar-fill" style="width:40%"></div></div>
+          <div class="status absent">Sleepy Owl absent</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 4 -->
+    <section id="module-4" class="module">
+      <div class="eyebrow">Module 04 — The Machine Layer</div>
+      <h2>What AI actually sees when it looks at you</h2>
+      <p class="lede">This part costs nothing to run and takes seconds — so we run it first. It's the site's own contribution to the problem.</p>
+
+      <div class="consequence-group">
+        <h3><span class="dot"></span>Machines can't find the front door</h3>
+
+        <div class="finding">
+          <button class="finding-head" aria-expanded="false">
+            <span class="symptom">No llms.txt — AI gets zero direct guidance on the brand</span>
+            <span class="stamp high">Confidence: High</span>
+            <span class="chevron"></span>
+          </button>
+          <div class="finding-body">
+            <div class="finding-body-inner">
+              <div class="row"><span class="k">Mechanism</span><span>No llms.txt or robots.txt blocking — crawlers can enter, but nothing tells them what matters most on the site.</span></div>
+              <div class="row"><span class="k">Business cost</span><span>Models fall back on whatever the wider web says about Sleepy Owl instead of what the brand would say about itself.</span></div>
+              <div class="fix-row">
+                <span class="effort-tag">Fix: publish llms.txt</span>
+                <span class="quickwin">★ Quick win · Low effort</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="consequence-group">
+        <h3><span class="dot"></span>Machines find you, but can't confidently repeat what you do</h3>
+
+        <div class="finding">
+          <button class="finding-head" aria-expanded="false">
+            <span class="symptom">No FAQ schema, no direct-answer content on core pages</span>
+            <span class="stamp high">Confidence: High</span>
+            <span class="chevron"></span>
+          </button>
+          <div class="finding-body">
+            <div class="finding-body-inner">
+              <div class="row"><span class="k">Mechanism</span><span>AI models cite sources that already read like an answer. Sleepy Owl's pages read like a brochure, not evidence.</span></div>
+              <div class="row"><span class="k">Business cost</span><span>This is why competitors get quoted directly in AI answers, and Sleepy Owl gets summarized vaguely — or skipped.</span></div>
+              <div class="fix-row">
+                <span class="effort-tag">Fix: rewrite top 5 pages to open with a one-line direct answer, add FAQ schema</span>
+                <span class="quickwin" style="color:var(--gold); border-color:var(--gold);">Medium effort</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="consequence-group">
+        <h3><span class="dot"></span>Machines might be seeing a blank page</h3>
+
+        <div class="finding">
+          <button class="finding-head" aria-expanded="false">
+            <span class="symptom">Product pages render client-side, no fallback content</span>
+            <span class="stamp medium">Confidence: Medium</span>
+            <span class="chevron"></span>
+          </button>
+          <div class="finding-body">
+            <div class="finding-body-inner">
+              <div class="row"><span class="k">Mechanism</span><span>Key pages render via JavaScript with no server-side or noscript fallback — a bot that doesn't execute JS may see an empty shell.</span></div>
+              <div class="row"><span class="k">Business cost</span><span>Content already invested in may functionally not exist to a meaningful share of the crawlers hitting the site.</span></div>
+              <div class="fix-row">
+                <span class="effort-tag">Fix: SSR or noscript fallback on buyer-facing pages</span>
+                <span class="quickwin" style="color:var(--muted); border-color:var(--muted);">High effort · needs a dev</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="confirming-line">
+        <span class="check">✓</span>
+        <span>Nothing else is holding Sleepy Owl back. HTTPS, page weight, and language declaration all pass — the technical foundation is sound. This was never a "broken website" problem.</span>
+      </div>
+    </section>
+
+    <!-- MODULE 5 -->
+    <section id="module-5" class="module">
+      <div class="eyebrow">Module 05 — The Roadmap</div>
+      <h2>What to fix first</h2>
+      <p class="lede">Sorted by how directly each item moves the recommendation rate — not by how the findings were discovered.</p>
+
+      <div class="phase" data-phase="1">
+        <h3>Fix the read</h3>
+        <div class="action-item">
+          <div class="desc">Publish llms.txt so AI systems get direct, brand-controlled context.</div>
+          <div class="tags"><span class="impact-tag high">High impact</span></div>
+        </div>
+        <div class="action-item">
+          <div class="desc">Add FAQ schema and direct-answer openings to the 5 highest-traffic pages.</div>
+          <div class="tags"><span class="impact-tag high">High impact</span></div>
+        </div>
+      </div>
+
+      <div class="phase" data-phase="2">
+        <h3>Claim the lane</h3>
+        <div class="action-item">
+          <div class="desc">Get listed on the 3 roundup sites ChatGPT and Perplexity cite most (TheBetterIndia, MensXP, Vogue India).</div>
+          <div class="tags"><span class="impact-tag high">High impact</span></div>
+        </div>
+        <div class="action-item">
+          <div class="desc">Publish a comparison page positioning Sleepy Owl against Blue Tokai and Rage Coffee on format and convenience.</div>
+          <div class="tags"><span class="impact-tag medium">Medium impact</span></div>
+        </div>
+      </div>
+
+      <div class="phase" data-phase="3">
+        <h3>Prove it moved</h3>
+        <div class="action-item">
+          <div class="desc">Add SSR fallback to product pages so nothing renders blank to non-JS crawlers.</div>
+          <div class="tags"><span class="impact-tag medium">Medium impact</span></div>
+        </div>
+        <div class="action-item">
+          <div class="desc">Re-run this investigation in 30 days and compare the recommendation rate.</div>
+          <div class="tags"><span class="impact-tag medium">Medium impact</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="closing" id="closing">
+  <div class="closing-inner">
+    <div class="eyebrow" style="color:var(--on-ink-dim);">Final Assessment</div>
+    <h2>The opportunity isn't to become more visible. It's to become understandable.</h2>
+    <p>
+      Sleepy Owl has the product and the credibility — they're just disconnected from each other in a way
+      AI can't parse yet. Every gap in this file is fixable without new content: mostly better packaging
+      of what already exists. <strong>The Machine Layer findings alone cost nothing to act on and nothing to
+      re-run.</strong> That's the fastest lever available before touching anything else.
+    </p>
+    <div class="cta-row">
+      <a href="#" class="cta-primary">Discuss the full engagement →</a>
+      <a href="#" class="cta-secondary">Download this case file (PDF)</a>
+    </div>
+    <div class="closing-foot">
+      <span>Case AD-2607-114 · Sleepy Owl Coffee</span>
+      <span>Archdrift Investigations — generated in &lt;1 hour, at near-zero cost to run</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Typewriter hero line
+  (function(){
+    var el = document.getElementById('typewriter');
+    var text = 'Across 12 buying questions and 4 AI systems, Sleepy Owl appeared once.';
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced){
+      el.textContent = text;
+      return;
+    }
+    var i = 0;
+    var cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    cursor.innerHTML = '&nbsp;';
+    function tick(){
+      if(i <= text.length){
+        el.textContent = text.slice(0, i);
+        el.appendChild(cursor);
+        i++;
+        setTimeout(tick, 18);
+      } else {
+        cursor.remove();
+      }
+    }
+    tick();
+  })();
+
+  // Scroll reveal for modules
+  (function(){
+    var modules = document.querySelectorAll('.module');
+    if('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, {threshold:0.12});
+      modules.forEach(function(m){obs.observe(m);});
+    } else {
+      modules.forEach(function(m){m.classList.add('is-visible');});
+    }
+  })();
+
+  // Active rail link tracking
+  (function(){
+    var sections = document.querySelectorAll('main .module, .closing');
+    var links = document.querySelectorAll('.rail a');
+    if(!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var id = entry.target.id;
+        var link = document.querySelector('.rail a[data-section="'+id+'"]');
+        if(entry.isIntersecting && link){
+          links.forEach(function(l){l.classList.remove('active');});
+          link.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-40% 0px -50% 0px'});
+    sections.forEach(function(s){obs.observe(s);});
+  })();
+
+  // Count-up metrics
+  (function(){
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var heroMetric = document.querySelector('.metric-hero .value');
+    var subMetric = document.querySelector('.metric-sub .value');
+    function animateFraction(el, target, of){
+      if(reduced){ el.textContent = target + ' / ' + of; return; }
+      var current = 0;
+      var timer = setInterval(function(){
+        current++;
+        el.textContent = current + ' / ' + of;
+        if(current >= target) clearInterval(timer);
+      }, 350);
+    }
+    function animateNumber(el, target){
+      if(reduced){ el.textContent = target; return; }
+      var current = 0;
+      var step = Math.max(1, Math.round(target/30));
+      var timer = setInterval(function(){
+        current += step;
+        if(current >= target){current = target; clearInterval(timer);}
+        el.textContent = current;
+      }, 20);
+    }
+    var started = false;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting && !started){
+          started = true;
+          animateFraction(heroMetric, parseInt(heroMetric.dataset.count), parseInt(heroMetric.dataset.of));
+          animateNumber(subMetric, parseInt(subMetric.dataset.count));
+        }
+      });
+    }, {threshold:0.5});
+    if(heroMetric) obs.observe(heroMetric);
+  })();
+
+  // Expandable findings
+  document.querySelectorAll('.finding-head').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var finding = btn.closest('.finding');
+      var isOpen = finding.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+    });
+  });
+</script>
+
+</body>
+</html>

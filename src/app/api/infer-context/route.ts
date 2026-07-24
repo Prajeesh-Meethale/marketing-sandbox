@@ -62,7 +62,14 @@ Return ONLY a valid JSON object matching this schema:
         const response = await provider.execute(prompt, "Gemini");
 
         const cleanedJson = response.rawTranscript.replace(/```json\n?|\n?```/g, "").trim();
-        const data = JSON.parse(cleanedJson);
+        
+        let data;
+        try {
+            data = JSON.parse(cleanedJson);
+        } catch (parseError) {
+            console.error("Failed to parse JSON. Raw transcript:", response.rawTranscript);
+            return NextResponse.json({ error: "AI model failed to return a valid structured response. Please try again." }, { status: 500 });
+        }
         
         return NextResponse.json(data);
 
