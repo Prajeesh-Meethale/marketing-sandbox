@@ -74,7 +74,7 @@ The following features were outlined in [lead_generation_brainstorm.md](file:///
   1. **Industry Scrape (Infrequent)**: Run a batch of 10-20 prompts for a target niche (e.g. "Indian Fintech" or "D2C Ice Cream") and save as `niche_datasets` in Supabase.
   2. **Lead AEO Audit (Free)**: Run live technical checks on the prospect's domain (`llms.txt`, schema, crawler blocks).
   3. **Cheap LLM Synthesis**: Pass the lead's AEO results + cached Niche dataset into Gemini Flash via OpenRouter to generate a personalized narrative for pennies.
-* **Current Gap**: Currently, every audit runs fresh live AI queries per lead via OpenRouter. The cached `niche_datasets` table and reuse pipeline are unbuilt.
+* **Current Gap**: Currently, every audit runs fresh live AI queries per lead via `SmartFallbackProvider` (Gemini Free Key Rotation Pool first $\rightarrow$ OpenRouter failover). The cached `niche_datasets` table and reuse pipeline are unbuilt.
 
 ### 2. Automated Bulk Lead Generator Portal (`/admin/lead-gen`)
 * **Concept**: A portal designed for external freelancers or outbound BDRs:
